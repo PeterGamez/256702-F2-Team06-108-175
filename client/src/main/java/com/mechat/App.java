@@ -22,7 +22,7 @@ public class App extends Application {
         double windowWidth = screenWidth * 0.4;
         double windowHeight = screenHeight * 0.6;
 
-        stage.setTitle("JavaFX App");
+        stage.setTitle("MeChat");
         MainScreen mainScreen = new MainScreen();
         Scene scene = new Scene(mainScreen.createContent(), windowWidth, windowHeight);
         stage.setScene(scene);
