@@ -9,6 +9,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class App extends Application {
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -25,6 +26,15 @@ public class App extends Application {
         stage.setTitle("MeChat");
         MainScreen mainScreen = new MainScreen();
         Scene scene = new Scene(mainScreen.createContent(), windowWidth, windowHeight);
+
+        String userTheme = WindowsSettings.getWindowsTheme();
+
+        if ("dark".equals(userTheme)) {
+            scene.getStylesheets().add(getClass().getResource("/styles/dark-theme.css").toExternalForm());
+        } else {
+            scene.getStylesheets().add(getClass().getResource("/styles/light-theme.css").toExternalForm());
+        }
+
         stage.setScene(scene);
         stage.show();
     }
