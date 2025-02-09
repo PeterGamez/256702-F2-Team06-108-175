@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 
 public class MainScreen implements ScreenInterface {
+
     public Parent createContent() {
         Label content = new Label("Welcome, USER!");
         content.setAlignment(Pos.CENTER);
