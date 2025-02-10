@@ -17,6 +17,7 @@
     <maven.compiler.release>21</maven.compiler.release>
   </properties>
 
+  <!-- lookup parent from repository -->
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -54,11 +55,17 @@
       <artifactId>javafx-controls</artifactId>
       <version>23.0.2</version>
     </dependency>
-
+    <!-- JavaFX -->
     <dependency>
-    <groupId>org.openjfx</groupId>
-    <artifactId>javafx-graphics</artifactId>
-    <version>23.0.2</version>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-fxml</artifactId>
+      <version>23.0.2</version>
+    </dependency>
+    <!-- JavaFX -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-graphics</artifactId>
+      <version>23.0.2</version>
     </dependency>
     <!-- Spring Boot Starter WebFlux -->
     <dependency>
@@ -128,6 +135,32 @@
         <version>0.0.8</version>
         <configuration>
           <mainClass>com.mechat.App</mainClass>
+        </configuration>
+      </plugin>
+
+      <!-- Maven Assembly Plugin for Fat JAR -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.4.0</version>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
+              <mainClass>com.mechat.Main</mainClass>
+            </manifest>
+          </archive>
         </configuration>
       </plugin>
     </plugins>
