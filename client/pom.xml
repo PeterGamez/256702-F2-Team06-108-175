@@ -54,6 +54,12 @@
       <artifactId>javafx-controls</artifactId>
       <version>23.0.2</version>
     </dependency>
+
+    <dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-graphics</artifactId>
+    <version>23.0.2</version>
+    </dependency>
     <!-- Spring Boot Starter WebFlux -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
