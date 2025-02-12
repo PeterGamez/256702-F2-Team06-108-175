@@ -1,7 +1,7 @@
 package com.mechat;
 
 import com.mechat.interfaces.ScreenInterface;
-import com.mechat.screens.RegisterScreen;
+import com.mechat.screens.MainChatScreen;
 
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
@@ -25,7 +25,7 @@ public class App extends Application {
         double windowHeight = screenHeight * 0.6;
 
         stage.setTitle("MeChat");
-        ScreenInterface mainScreen = new RegisterScreen();
+        ScreenInterface mainScreen = new MainChatScreen();
         Scene scene = new Scene(mainScreen.createContent(), windowWidth, windowHeight);
 
         String userTheme = WindowsSettings.getWindowsTheme();

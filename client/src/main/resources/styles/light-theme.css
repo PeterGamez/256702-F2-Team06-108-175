@@ -2,3 +2,51 @@
     -fx-background-color: white;
     -fx-text-fill: black;
 }
+
+.sidebar {
+    -fx-background-color: #d9d9d9;
+    -fx-pref-width: 200px;
+    -fx-text-fill: black;
+    -fx-alignment: center;
+}
+
+.user-bar {
+    -fx-background-color: #e6e6e6;
+    -fx-min-height: 100px;
+    -fx-pref-height: 100px;
+    -fx-text-fill: black;
+    -fx-alignment: center;
+}
+
+.chats-bar {
+    -fx-background-color: #d9d9d9;
+    -fx-pref-height: 60px;
+    -fx-text-fill: black;
+    -fx-alignment: center;
+}
+
+.user-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: black;
+    -fx-alignment: center;
+}
+
+.others-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: black;
+    -fx-alignment: center;
+}
+
+.chat-area {
+    -fx-background-color: white;
+    -fx-pref-width: 400px;
+}
+
+.nav-bar {
+    -fx-background-color: #f2f2f2;
+    -fx-pref-height: 60px;
+}
+
+.scroll-pane {
+    -fx-fit-to-width: true;
+}
