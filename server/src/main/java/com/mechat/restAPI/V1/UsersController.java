@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mechat.entity.User;
+import com.mechat.dto.UserDTO;
 import com.mechat.service.UserService;
 
 @RestController
@@ -17,7 +17,7 @@ public class UsersController {
     private UserService userService;
 
     @GetMapping()
-    public List<User> getUsers() { 
+    public List<UserDTO> getUsers() { 
         return userService.getAllUsers();
     }
 }

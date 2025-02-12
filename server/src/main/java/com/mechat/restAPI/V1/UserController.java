@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mechat.entity.User;
+import com.mechat.dto.UserDTO;
 import com.mechat.service.UserService;
 
 @RestController
@@ -16,7 +16,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/{id}")
-    public User getUser(@PathVariable("id") Long id) {
+    public UserDTO getUser(@PathVariable("id") Long id) {
         return userService.getUserById(id);
     }
 }
