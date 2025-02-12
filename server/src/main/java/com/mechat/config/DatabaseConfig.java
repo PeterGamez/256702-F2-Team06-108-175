@@ -20,6 +20,7 @@ import jakarta.persistence.EntityManagerFactory;
 @Configuration
 @EnableJpaRepositories(basePackages = "com.mechat.repository") // กำหนด package ที่เก็บ Repository
 public class DatabaseConfig {
+
     @Value("${spring.datasource.url}")
     private String url;
 

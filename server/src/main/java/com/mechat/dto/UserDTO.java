@@ -1,6 +1,7 @@
 package com.mechat.dto;
 
 public class UserDTO extends BaseDTO {
+
     private String username;
     private String password;
     private String displayName;

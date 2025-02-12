@@ -13,11 +13,12 @@ import com.mechat.service.UserService;
 @RestController
 @RequestMapping("/v1/users")
 public class UsersController {
+
     @Autowired
     private UserService userService;
 
     @GetMapping()
-    public List<UserDTO> getUsers() { 
+    public List<UserDTO> getUsers() {
         return userService.getAllUsers();
     }
 }

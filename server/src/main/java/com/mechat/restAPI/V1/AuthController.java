@@ -20,6 +20,7 @@ import com.mechat.utils.JWT;
 @RestController
 @RequestMapping("/v1/auth")
 public class AuthController {
+
     @Autowired
     private UserService userService;
 

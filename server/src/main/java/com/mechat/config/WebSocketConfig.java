@@ -12,6 +12,7 @@ import com.mechat.webSocket.WebSocketHandler;
 @Configuration
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
+
     @Value("${websocket.path}")
     private String websocketPath;
 

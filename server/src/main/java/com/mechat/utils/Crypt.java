@@ -3,6 +3,7 @@ package com.mechat.utils;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
 public class Crypt {
+
     private static final int saltRounds = 10;
 
     public static String encrypt(String data) {

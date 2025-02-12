@@ -12,6 +12,7 @@ import com.mechat.service.UserService;
 @RestController
 @RequestMapping("/v1/user")
 public class UserController {
+
     @Autowired
     private UserService userService;
 

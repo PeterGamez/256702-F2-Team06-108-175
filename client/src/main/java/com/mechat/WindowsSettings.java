@@ -11,8 +11,7 @@ public class WindowsSettings {
                     "query",
                     "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
                     "/v",
-                    "AppsUseLightTheme"
-            );
+                    "AppsUseLightTheme");
             Process process = processBuilder.start();
             process.waitFor();
             String result = new String(process.getInputStream().readAllBytes());

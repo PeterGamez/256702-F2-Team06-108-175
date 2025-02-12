@@ -12,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @ConfigurationProperties(prefix = "api.cors")
 public class APIConfig implements WebMvcConfigurer {
+
     @Value("${api.prefix}")
     private String prefix;
 

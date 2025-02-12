@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "chats")
 public class Chat extends BaseEntity {
+
     public enum Type {
         PRIVATE, GROUP
     }
