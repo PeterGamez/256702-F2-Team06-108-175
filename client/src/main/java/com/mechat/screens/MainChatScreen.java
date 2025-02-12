@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.mechat.interfaces.ScreenInterface;
 
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -29,7 +28,6 @@ public class MainChatScreen implements ScreenInterface {
         VBox userBar = new VBox();
         userBar.getStyleClass().add("user-bar");
         userBar.getChildren().add(userLabel);
-        userBar.setAlignment(Pos.CENTER);
 
         VBox chatBar = new VBox();
 
@@ -38,14 +36,12 @@ public class MainChatScreen implements ScreenInterface {
         }
 
         chatBar.getChildren().addAll(chats);
+        ScrollPane scrollPane = new ScrollPane(chatBar);
+        scrollPane.getStyleClass().add("scroll-pane");
 
         sidebar.getChildren().add(userBar);
-        sidebar.getChildren().add(chatBar);
+        sidebar.getChildren().add(scrollPane);
 
-        ScrollPane scrollPane = new ScrollPane(sidebar);
-        scrollPane.setFitToWidth(true);
-
-        
         Pane chatArea = new Pane();
         chatArea.getStyleClass().add("chat-area");
 
@@ -53,7 +49,7 @@ public class MainChatScreen implements ScreenInterface {
         navBar.getStyleClass().add("nav-bar");
 
         BorderPane root = new BorderPane();
-        root.setLeft(scrollPane);
+        root.setLeft(sidebar);
         root.setCenter(chatArea);
         root.setBottom(navBar);
 
@@ -68,7 +64,6 @@ public class MainChatScreen implements ScreenInterface {
 
         chat.getChildren().add(label);
         chat.getStyleClass().add("chats-bar");
-        chat.setAlignment(Pos.CENTER);
 
         chats.add(chat);
 

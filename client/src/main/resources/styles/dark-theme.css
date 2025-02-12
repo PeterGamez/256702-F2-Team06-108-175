@@ -7,37 +7,34 @@
     -fx-background-color: #545454;
     -fx-pref-width: 200px;
     -fx-text-fill: white;
+    -fx-alignment: center;
 }
 
 .user-bar {
     -fx-background-color: #737373;
-    -fx-pref-width: 200px;
+    -fx-min-height: 100px;
     -fx-pref-height: 100px;
     -fx-text-fill: white;
+    -fx-alignment: center;
 }
 
 .chats-bar {
     -fx-background-color: #545454;
-    -fx-pref-width: 100px;
     -fx-pref-height: 60px;
     -fx-text-fill: white;
-}
-
-.scroll-pane {
-    /* -fx-background-color: #545454;
-    -fx-pref-width: 200px;
-    -fx-pref-height: 1000px;
-    -fx-text-fill: white; */
+    -fx-alignment: center;
 }
 
 .user-label {
     -fx-font-size: 16px;
     -fx-text-fill: white;
+    -fx-alignment: center;
 }
 
 .others-label {
     -fx-font-size: 14px;
     -fx-text-fill: white;
+    -fx-alignment: center;
 }
 
 .chat-area {
@@ -48,4 +45,8 @@
 .nav-bar {
     -fx-background-color: #2d2e30;
     -fx-pref-height: 60px;
+}
+
+.scroll-pane {
+    -fx-fit-to-width: true;
 }
