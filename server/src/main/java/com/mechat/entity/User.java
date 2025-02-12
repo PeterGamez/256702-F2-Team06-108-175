@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User extends EntityBase {
+public class User extends BaseEntity {
     @Column(name = "username", length = 20, unique = true)
     private String username;
 
