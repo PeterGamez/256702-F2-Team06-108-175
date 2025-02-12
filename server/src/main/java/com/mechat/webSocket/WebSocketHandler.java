@@ -23,7 +23,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
         try {
             session.sendMessage(response.send());
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
@@ -42,7 +41,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
             try {
                 session.sendMessage(response.send());
             } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
