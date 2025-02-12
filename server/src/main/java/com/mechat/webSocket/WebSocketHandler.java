@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class WebSocketHandler extends TextWebSocketHandler {
+
     private static Set<WebSocketSession> sessions = new HashSet<>();
 
     @Override

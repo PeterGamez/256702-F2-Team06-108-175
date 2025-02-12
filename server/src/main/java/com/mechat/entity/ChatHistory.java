@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "chat_history")
 public class ChatHistory extends BaseEntity {
+
     @Column(name = "chat_id")
     private Number chatId;
 

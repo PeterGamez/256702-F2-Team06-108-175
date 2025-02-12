@@ -7,6 +7,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "chat_attachments")
 public class ChatAttachments extends BaseEntity {
+
     @Column(name = "chat_history_id")
     private Number chatHistoryId;
 

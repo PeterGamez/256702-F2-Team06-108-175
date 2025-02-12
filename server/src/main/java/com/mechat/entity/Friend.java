@@ -12,6 +12,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "friends")
 public class Friend extends BaseEntity {
+
     public enum Status {
         PENDING, ACCEPTED, REJECTED
     }

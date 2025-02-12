@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class RequestMessage {
+
     private int op;
     private int t;
     private Map<String, Object> d = new LinkedHashMap<>();

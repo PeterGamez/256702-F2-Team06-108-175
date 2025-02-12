@@ -3,6 +3,7 @@ package com.mechat.dto;
 import java.time.LocalDateTime;
 
 public abstract class BaseDTO {
+
     private Long id;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
