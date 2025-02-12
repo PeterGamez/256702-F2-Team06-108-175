@@ -6,7 +6,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "chat_members")
-public class ChatMember extends EntityBase {
+public class ChatMember extends BaseEntity {
     @Column(name = "chat_id")
     private Number chatId;
 

@@ -1,24 +1,9 @@
-package com.mechat.entity;
+package com.mechat.dto;
 
-import com.mechat.utils.Crypt;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "users")
-public class User extends BaseEntity {
-    @Column(name = "username", length = 20, unique = true)
+public class UserDTO extends BaseDTO {
     private String username;
-
-    @Column(name = "password", length = 80)
     private String password;
-
-    @Column(name = "display_name", nullable = false, length = 20)
     private String displayName;
-
-    @Column(name = "avatar", nullable = false, length = 100)
     private String avatar;
 
     public String getUsername() {
@@ -34,11 +19,7 @@ public class User extends BaseEntity {
     }
 
     public void setPassword(String password) {
-        this.password = Crypt.encrypt(password);
-    }
-
-    public boolean verifyPassword(String password) {
-        return Crypt.decrypt(password, this.password);
+        this.password = password;
     }
 
     public String getDisplayName() {

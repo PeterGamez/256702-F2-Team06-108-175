@@ -1,10 +1,12 @@
 package com.mechat.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.mechat.dto.UserDTO;
 import com.mechat.entity.User;
 import com.mechat.repository.UserRepository;
 
@@ -13,27 +15,41 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-
-    public User getUserById(Long id) {
-        return userRepository.findById(id).orElse(null);
-    }
-
-    public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username).orElse(null);
-    }
-
-    public User login(String username, String password) {
-        User user = getUserByUsername(username);
+    private UserDTO convertToDTO(User user) {
         if (user == null) {
             return null;
         }
-        if (user.verifyPassword(password) == false) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
+        userDTO.setUsername(user.getUsername());
+        userDTO.setPassword(null);
+        userDTO.setDisplayName(user.getDisplayName());
+        userDTO.setAvatar(user.getAvatar());
+        userDTO.setCreatedAt(user.getCreatedAt());
+        userDTO.setUpdatedAt(user.getUpdatedAt());
+        return userDTO;
+    }
+
+    public List<UserDTO> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    public UserDTO getUserById(Long id) {
+        return convertToDTO(userRepository.findById(id).orElse(null));
+    }
+
+    public UserDTO getUserByUsername(String username) {
+        return convertToDTO(userRepository.findByUsername(username).orElse(null));
+    }
+
+    public UserDTO login(String username, String password) {
+        User user = userRepository.findByUsername(username).orElse(null);
+        if (user == null || !user.verifyPassword(password)) {
             return null;
         }
-        return user;
+        return convertToDTO(user);
     }
 
     public User createUser(User user) {
@@ -41,7 +57,7 @@ public class UserService {
     }
 
     public User updateUser(Long id, User updatedUser) {
-        User user = getUserById(id);
+        User user = userRepository.findById(id).orElse(null);
         if (user == null) {
             return null;
         }

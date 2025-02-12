@@ -1,7 +1,5 @@
 package com.mechat.utils;
 
-import org.springframework.stereotype.Component;
-
 import io.jsonwebtoken.Header;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
@@ -12,7 +10,6 @@ import java.util.Map;
 
 import javax.crypto.SecretKey;
 
-@Component
 public class JWT {
 
     private static final String SECRET_KEY = "your-very-secret-key-your-very-secret-key";
@@ -30,6 +27,12 @@ public class JWT {
     }
 
     public static String generateToken(Map<String, Object> payload) {
+        payload.forEach((k, v) -> {
+            if (v == null) {
+                payload.put(k, "");
+            }
+        });
+
         return Jwts.builder()
                 .header()
                 .add(header())
