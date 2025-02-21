@@ -25,9 +25,10 @@ public class MainScreen implements ScreenInterface {
 
         Label content = new Label("MECHAT");
         content.setAlignment(Pos.CENTER);
+        content.setStyle("-fx-font-size: 80px; -fx-text-fill: #44ad53;");
 
         row1.getChildren().addAll(imageView, content);
-        row1.setSpacing(10);
+        row1.setSpacing(20);
         row1.setAlignment(Pos.CENTER);
 
         // row 2
@@ -35,6 +36,7 @@ public class MainScreen implements ScreenInterface {
 
         Label title = new Label("A Real-Time Chat Application in Java");
         title.setAlignment(Pos.CENTER);
+        title.setStyle("-fx-font-size: 30px; -fx-text-fill: #FFFFFF;");
 
         row2.getChildren().add(title);
         row2.setAlignment(Pos.CENTER);
@@ -48,14 +50,14 @@ public class MainScreen implements ScreenInterface {
         rightButton.getStyleClass().add("button");
 
         row3.getChildren().addAll(leftButton, rightButton);
-        row3.setSpacing(20);
+        row3.setSpacing(80);
         row3.setAlignment(Pos.CENTER);
 
         // horizontal layout
         VBox box = new VBox();
 
         box.getChildren().addAll(row1, row2, row3);
-        box.setSpacing(80);
+        box.setSpacing(75);
         box.setAlignment(Pos.CENTER);
 
         return box;
