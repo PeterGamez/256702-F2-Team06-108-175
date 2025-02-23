@@ -25,7 +25,7 @@ public class AuthController {
     private UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String, Object>> login(@RequestBody Map<String, Object> payload) {
+    public ResponseEntity<?> login(@RequestBody Map<String, Object> payload) {
         if (!payload.containsKey("username") || !payload.containsKey("password")) {
             Map<String, Object> response = new LinkedHashMap<>();
             response.put("status", "error");
@@ -60,7 +60,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Map<String, Object>> register(@RequestBody Map<String, Object> payload) {
+    public ResponseEntity<?> register(@RequestBody Map<String, Object> payload) {
         if (!payload.containsKey("username") || !payload.containsKey("password")) {
             Map<String, Object> response = new LinkedHashMap<>();
             response.put("status", "error");
@@ -90,6 +90,6 @@ public class AuthController {
         Map<String, Object> response = new LinkedHashMap<>();
         response.put("status", "success");
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }

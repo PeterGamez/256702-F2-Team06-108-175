@@ -1,5 +1,10 @@
 package com.mechat.restAPI;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -7,12 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class APIController {
 
     @GetMapping()
-    public String index() {
-        return "Hello, Spring Boot API!";
+    public ResponseEntity<?> index() {
+        Map<String, Object> response = new LinkedHashMap<>();
+        response.put("message", "Hello, Spring Boot API!");
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/v1")
-    public String getV1() {
-        return "This is API version 1";
+    public ResponseEntity<?> getV1() {
+        Map<String, Object> response = new LinkedHashMap<>();
+        response.put("message", "This is API version 1");
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
