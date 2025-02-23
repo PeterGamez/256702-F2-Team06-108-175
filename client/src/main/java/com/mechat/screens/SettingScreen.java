@@ -26,6 +26,7 @@ public class SettingScreen implements ScreenInterface {
         HBox header = new HBox();
         header.getStyleClass().add("header");
         header.setPrefHeight(70);
+        header.setSpacing(30);
 
         ImageView backButton = new ImageView(new Image("images/back-button.png"));
         backButton.setFitWidth(20);
@@ -38,7 +39,7 @@ public class SettingScreen implements ScreenInterface {
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
         header.getChildren().addAll(backButton, settingsLabel, spacer);
-        header.setSpacing(30);
+        
 
         // Menu
         VBox menu = new VBox();
@@ -64,27 +65,6 @@ public class SettingScreen implements ScreenInterface {
         ImageView avatar = new ImageView(new Image("images/profile-icon.png"));
         avatar.setFitWidth(100);
         avatar.setFitHeight(100);
-
-        // HBox profileBox = new HBox();
-        // profileBox.setPadding(new Insets(0, 100, 0, 100));
-        // Label title = new Label("Display Name");
-        // title.getStyleClass().add("settings-label");
-        // Label name = new Label(user);
-        // name.getStyleClass().add("settings-label");
-        // profileBox.getChildren().addAll(title, name);
-        // profileBox.setAlignment(Pos.CENTER);
-        // profileBox.setSpacing(60);
-        // HBox UUIDBox = new HBox();
-        // UUIDBox.setPadding(new Insets(0, 100, 0, 100));
-        // Label uTitle = new Label("UUID");
-        // uTitle.getStyleClass().add("settings-label");
-        // Label uuid = new Label(uid);
-        // uuid.getStyleClass().add("settings-label");
-        // UUIDBox.getChildren().addAll(uTitle, uuid);
-        // UUIDBox.setAlignment(Pos.CENTER);
-        // UUIDBox.setSpacing(60);
-
-        // content.getChildren().addAll(avatar, profileBox, UUIDBox);
 
         VBox titleBox = new VBox();
         titleBox.setSpacing(40);
