@@ -20,6 +20,7 @@ public class LoginScreen implements ScreenInterface {
 
         Label content = new Label("Login");
         content.setAlignment(Pos.CENTER);
+        content.setStyle("-fx-font-size: 80px; -fx-text-fill: #FFFFFF;");
 
         row1.getChildren().addAll(content);
         row1.setAlignment(Pos.CENTER);
@@ -29,6 +30,7 @@ public class LoginScreen implements ScreenInterface {
 
         TextField usernameField = new TextField();
         usernameField.setPromptText("Username");
+        usernameField.getStyleClass().add("text-field");
 
         row2.getChildren().add(usernameField);
         row2.setAlignment(Pos.CENTER);
@@ -38,6 +40,7 @@ public class LoginScreen implements ScreenInterface {
 
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Password");
+        passwordField.getStyleClass().add("text-field");
 
         row3.getChildren().add(passwordField);
         row3.setAlignment(Pos.CENTER);
@@ -55,7 +58,7 @@ public class LoginScreen implements ScreenInterface {
         VBox box = new VBox();
 
         box.getChildren().addAll(row1, row2, row3, row4);
-        box.setSpacing(20);
+        box.setSpacing(40);
         box.setAlignment(Pos.CENTER);
 
         return box;

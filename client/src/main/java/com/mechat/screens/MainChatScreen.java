@@ -4,9 +4,12 @@ import java.util.ArrayList;
 
 import com.mechat.interfaces.ScreenInterface;
 
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -47,6 +50,21 @@ public class MainChatScreen implements ScreenInterface {
 
         HBox navBar = new HBox();
         navBar.getStyleClass().add("nav-bar");
+
+        ImageView addfriendView = new ImageView(new Image("/images/add-friend-icon.png"));
+        ImageView homeView = new ImageView(new Image("/images/home-icon.png"));
+        ImageView settingView = new ImageView(new Image("/images/settings-icon.png"));
+
+        addfriendView.setFitWidth(30);
+        addfriendView.setFitHeight(30);
+        homeView.setFitWidth(30);
+        homeView.setFitHeight(30);
+        settingView.setFitWidth(30);
+        settingView.setFitHeight(30);
+
+        navBar.getChildren().addAll(addfriendView, homeView, settingView);
+        navBar.setSpacing(200);
+        navBar.setAlignment(Pos.CENTER);
 
         BorderPane root = new BorderPane();
         root.setLeft(sidebar);
