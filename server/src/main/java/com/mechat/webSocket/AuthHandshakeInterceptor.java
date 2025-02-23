@@ -51,8 +51,17 @@ public class AuthHandshakeInterceptor implements HandshakeInterceptor {
     }
 
     private boolean validateToken(String authToken) {
-        String authType = authToken.split(" ")[0];
-        String token = authToken.split(" ")[1];
+        String[] args = authToken.split(" ");
+        if (args.length != 2) {
+            return false;
+        }
+
+        String authType = args[0];
+        String token = args[1];
+
+        if (authToken.length() < 0 || token.length() < 0) {
+            return false;
+        }
 
         if (!authType.equals("Bearer")) {
             return false;
