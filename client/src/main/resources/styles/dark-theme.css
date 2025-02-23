@@ -1,60 +1,14 @@
-.root {
-    -fx-background-color: #2d2e30;
-    -fx-text-fill: white;
-}
-
-.sidebar {
-    -fx-background-color: #545454;
+.button {
+    -fx-background-color: #44ad53;
+    -fx-font-size: 24px;
+    -fx-pref-height: 75px;
     -fx-pref-width: 200px;
     -fx-text-fill: white;
-    -fx-alignment: center;
-}
-
-.user-bar {
-    -fx-background-color: #737373;
-    -fx-min-height: 100px;
-    -fx-pref-height: 100px;
-    -fx-text-fill: white;
-    -fx-alignment: center;
-}
-
-.chats-bar {
-    -fx-background-color: #545454;
-    -fx-pref-height: 60px;
-    -fx-text-fill: white;
-    -fx-alignment: center;
-}
-
-.user-label {
-    -fx-font-size: 16px;
-    -fx-text-fill: white;
-    -fx-alignment: center;
-}
-
-.others-label {
-    -fx-font-size: 14px;
-    -fx-text-fill: white;
-    -fx-alignment: center;
 }
 
 .chat-area {
     -fx-background-color: #2d2e30;
     -fx-pref-width: 400px;
-}
-
-.nav-bar {
-    -fx-background-color: #2d2e30;
-    -fx-pref-height: 60px;
-}
-
-.scroll-pane {
-    -fx-fit-to-width: true;
-}
-
-.header {
-    -fx-background-color: #2d2e30;
-    -fx-alignment: center-left;
-    -fx-padding: 10px;
 }
 
 .chat-box {
@@ -67,9 +21,36 @@
     -fx-border-color: transparent;
 }
 
+.chats-bar {
+    -fx-alignment: center;
+    -fx-background-color: #545454;
+    -fx-pref-height: 60px;
+    -fx-text-fill: white;
+}
+
+.friend-name {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.header {
+    -fx-alignment: center-left;
+    -fx-background-color: #2d2e30;
+    -fx-padding: 10px;
+}
+
 .input-area {
     -fx-background-color: #2d2e30;
     -fx-padding: 10px;
+}
+
+.left-menu {
+    -fx-background-color: #545454;
+    -fx-font-size: 18px;
+    -fx-pref-height: 75px;
+    -fx-pref-width: 200px;
+    -fx-text-fill: white;
 }
 
 .message-field {
@@ -77,51 +58,74 @@
     -fx-padding: 8px;
 }
 
+.nav-bar {
+    -fx-background-color: #2d2e30;
+    -fx-pref-height: 60px;
+}
+
+.others-label {
+    -fx-alignment: center;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+}
+
 .received-message {
     -fx-background-color: #3A3A3A;
-    -fx-text-fill: white;
-    -fx-padding: 10px;
     -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-text-fill: white;
+}
+
+.root {
+    -fx-background-color: #2d2e30;
+    -fx-text-fill: white;
+}
+
+.scroll-pane {
+    -fx-fit-to-width: true;
 }
 
 .sent-message {
     -fx-background-color: #44ad53;
-    -fx-text-fill: white;
-    -fx-padding: 10px;
     -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-text-fill: white;
+}
+
+.settings-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.sidebar {
+    -fx-alignment: center;
+    -fx-background-color: #545454;
+    -fx-pref-width: 200px;
+    -fx-text-fill: white;
+}
+
+.text-field {
+    -fx-font-size: 18px;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 250px;
 }
 
 .time-label {
-    -fx-text-fill: gray;
     -fx-font-size: 10px;
+    -fx-text-fill: gray;
 }
 
-.friend-name {
+.user-bar {
+    -fx-alignment: center;
+    -fx-background-color: #737373;
+    -fx-min-height: 100px;
+    -fx-pref-height: 100px;
     -fx-text-fill: white;
+}
+
+.user-label {
+    -fx-alignment: center;
     -fx-font-size: 16px;
-    -fx-font-weight: bold;
-}
-.button {
-    -fx-background-color: #44ad53;
     -fx-text-fill: white;
-    -fx-pref-width: 200px; 
-    -fx-pref-height: 75px;
-    -fx-font-size: 24px;
-}
-.text-field{
-    -fx-pref-width: 250px;
-    -fx-pref-height: 50px;
-    -fx-font-size: 18px;
-}
-.left-menu {
-    -fx-background-color: #545454;
-    -fx-text-fill: white;
-    -fx-pref-width: 200px; 
-    -fx-pref-height: 75px;
-    -fx-font-size: 18px;
-}
-.settings-label{
-    -fx-text-fill: white;
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
 }
