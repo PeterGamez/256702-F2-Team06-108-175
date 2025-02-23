@@ -12,7 +12,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public class SettingScreen implements ScreenInterface {
@@ -26,7 +25,7 @@ public class SettingScreen implements ScreenInterface {
         HBox header = new HBox();
         header.getStyleClass().add("header");
         header.setPrefHeight(70);
-        header.setSpacing(30);
+        header.setSpacing(35);
 
         ImageView backButton = new ImageView(new Image("images/back-button.png"));
         backButton.setFitWidth(20);
@@ -35,10 +34,7 @@ public class SettingScreen implements ScreenInterface {
         Label settingsLabel = new Label("Settings");
         settingsLabel.getStyleClass().add("settings-label");
 
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-
-        header.getChildren().addAll(backButton, settingsLabel, spacer);
+        header.getChildren().addAll(backButton, settingsLabel);
         
 
         // Menu
