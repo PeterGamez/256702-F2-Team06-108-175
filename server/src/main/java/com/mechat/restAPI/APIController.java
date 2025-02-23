@@ -10,4 +10,9 @@ public class APIController {
     public String index() {
         return "Hello, Spring Boot API!";
     }
+
+    @GetMapping("/v1")
+    public String getV1() {
+        return "This is API version 1";
+    }
 }
