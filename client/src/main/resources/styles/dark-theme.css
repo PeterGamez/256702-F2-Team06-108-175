@@ -52,23 +52,23 @@
 }
 
 .header {
-    -fx-background-color: #2E2E2E;
+    -fx-background-color: #2d2e30;
     -fx-alignment: center-left;
     -fx-padding: 10px;
 }
 
 .chat-box {
-    -fx-background-color: #1E1E1E;
+    -fx-background-color: #2d2e30;
     -fx-padding: 10px;
 }
 
 .chat-scroll-pane {
-    -fx-background: #1E1E1E;
+    -fx-background: #2d2e30;
     -fx-border-color: transparent;
 }
 
 .input-area {
-    -fx-background-color: #3A3A3A;
+    -fx-background-color: #2d2e30;
     -fx-padding: 10px;
 }
 
@@ -99,5 +99,29 @@
 .friend-name {
     -fx-text-fill: white;
     -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+.button {
+    -fx-background-color: #44ad53;
+    -fx-text-fill: white;
+    -fx-pref-width: 200px; 
+    -fx-pref-height: 75px;
+    -fx-font-size: 24px;
+}
+.text-field{
+    -fx-pref-width: 250px;
+    -fx-pref-height: 50px;
+    -fx-font-size: 18px;
+}
+.left-menu {
+    -fx-background-color: #545454;
+    -fx-text-fill: white;
+    -fx-pref-width: 200px; 
+    -fx-pref-height: 75px;
+    -fx-font-size: 18px;
+}
+.settings-label{
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
     -fx-font-weight: bold;
 }
