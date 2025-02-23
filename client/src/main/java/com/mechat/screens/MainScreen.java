@@ -18,7 +18,7 @@ public class MainScreen implements ScreenInterface {
         // row 1
         HBox row1 = new HBox();
 
-        Image image = new Image("/images/icon.png");
+        Image image = new Image("/images/main-icon.png");
         ImageView imageView = new ImageView(image);
         imageView.setFitWidth(100);
         imageView.setFitHeight(100);

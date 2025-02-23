@@ -1,0 +1,50 @@
+.header {
+    -fx-background-color: #2E2E2E;
+    -fx-alignment: center-left;
+    -fx-padding: 10px;
+}
+
+.chat-box {
+    -fx-background-color: #1E1E1E;
+    -fx-padding: 10px;
+}
+
+.chat-scroll-pane {
+    -fx-background: #1E1E1E;
+    -fx-border-color: transparent;
+}
+
+.input-area {
+    -fx-background-color: #3A3A3A;
+    -fx-padding: 10px;
+}
+
+.message-field {
+    -fx-background-radius: 20px;
+    -fx-padding: 8px;
+}
+
+.received-message {
+    -fx-background-color: #3A3A3A;
+    -fx-text-fill: white;
+    -fx-padding: 10px;
+    -fx-background-radius: 10px;
+}
+
+.sent-message {
+    -fx-background-color: #44ad53;
+    -fx-text-fill: white;
+    -fx-padding: 10px;
+    -fx-background-radius: 10px;
+}
+
+.time-label {
+    -fx-text-fill: gray;
+    -fx-font-size: 10px;
+}
+
+.friend-name {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
