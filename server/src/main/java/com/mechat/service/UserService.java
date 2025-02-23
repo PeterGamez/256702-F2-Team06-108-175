@@ -23,7 +23,6 @@ public class UserService {
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
         userDTO.setUsername(user.getUsername());
-        userDTO.setPassword(null);
         userDTO.setDisplayName(user.getDisplayName());
         userDTO.setAvatar(user.getAvatar());
         userDTO.setCreatedAt(user.getCreatedAt());
