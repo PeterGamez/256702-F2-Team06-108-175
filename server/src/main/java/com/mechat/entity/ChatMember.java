@@ -1,32 +1,35 @@
 package com.mechat.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "chat_members")
 public class ChatMember extends BaseEntity {
 
-    @Column(name = "chat_id")
-    private Number chatId;
+    @ManyToOne
+    @JoinColumn(name = "chat_id")
+    private Chat chat;
 
-    @Column(name = "user_id")
-    private Number userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Number getChatId() {
-        return chatId;
+    public Chat getChat() {
+        return chat;
     }
 
-    public void setChatId(Number chatId) {
-        this.chatId = chatId;
+    public void setChat(Chat chat) {
+        this.chat = chat;
     }
 
-    public Number getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Number userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

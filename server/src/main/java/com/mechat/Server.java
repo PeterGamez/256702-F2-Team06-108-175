@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Server {
 
     public static void main(String[] args) {
-        SpringApplication.run(Server.class, args);
+        SpringApplication app = new SpringApplication(Server.class);
+        app.setBanner(new CustomBanner());
+        app.run(args);
     }
 }

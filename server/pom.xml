@@ -69,6 +69,11 @@
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-core</artifactId>
     </dependency>
+    <!-- Spring Boot Context -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+    </dependency>
     <!-- MariaDB Connector -->
     <dependency>
       <groupId>org.mariadb.jdbc</groupId>

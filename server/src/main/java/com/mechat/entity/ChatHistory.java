@@ -5,17 +5,21 @@ import com.mechat.utils.BoolToIntConverter;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "chat_history")
 public class ChatHistory extends BaseEntity {
 
-    @Column(name = "chat_id")
-    private Number chatId;
+    @ManyToOne
+    @JoinColumn(name = "chat_id")
+    private Chat chat;
 
-    @Column(name = "user_id")
-    private Number userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(name = "message", length = 4096)
     private String message;
@@ -28,20 +32,20 @@ public class ChatHistory extends BaseEntity {
     @Convert(converter = BoolToIntConverter.class)
     private Boolean deleted;
 
-    public Number getChatId() {
-        return chatId;
+    public Chat getChat() {
+        return chat;
     }
 
-    public void setChatId(Number chatId) {
-        this.chatId = chatId;
+    public void setChat(Chat chat) {
+        this.chat= chat;
     }
 
-    public Number getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Number userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getMessage() {

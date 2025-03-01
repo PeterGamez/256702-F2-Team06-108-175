@@ -7,6 +7,8 @@ import com.mechat.utils.YearConverter;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -17,11 +19,13 @@ public class Friend extends BaseEntity {
         PENDING, ACCEPTED, REJECTED
     }
 
-    @Column(name = "user_id")
-    private Number userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Column(name = "friend_id")
-    private Number friendId;
+    @ManyToOne
+    @JoinColumn(name = "friend_id")
+    private User friend;
 
     @Column(name = "status")
     private Status status;
@@ -30,20 +34,20 @@ public class Friend extends BaseEntity {
     @Convert(converter = YearConverter.class)
     private LocalDateTime acceptedAt;
 
-    public Number getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Number userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Number getFriendId() {
-        return friendId;
+    public User getFriend() {
+        return friend;
     }
 
-    public void setFriendId(Number friendId) {
-        this.friendId = friendId;
+    public void setFriend(User friend) {
+        this.friend = friend;
     }
 
     public Status getStatus() {

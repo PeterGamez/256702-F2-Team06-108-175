@@ -2,23 +2,26 @@ package com.mechat.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "chat_attachments")
 public class ChatAttachments extends BaseEntity {
 
-    @Column(name = "chat_history_id")
-    private Number chatHistoryId;
+    @ManyToOne
+    @JoinColumn(name = "chat_history_id")
+    private ChatHistory chatHistory;
 
     @Column(name = "file_path", length = 100)
     private String filePath;
 
-    public Number getChatHistoryId() {
-        return chatHistoryId;
+    public ChatHistory getChatHistory() {
+        return chatHistory;
     }
 
-    public void setChatHistoryId(Number chatHistoryId) {
-        this.chatHistoryId = chatHistoryId;
+    public void setChatHistory(ChatHistory chatHistory) {
+        this.chatHistory = chatHistory;
     }
 }

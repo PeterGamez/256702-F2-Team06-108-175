@@ -30,7 +30,15 @@ Respond
 	}
 }
 ```
-
+## User Status
+Respond (Auto send by Server)
+```ts
+	op: 2,
+	t: 1,
+	d: {
+		user_ids: User[]
+	}
+```
 ## Send Message to Chat
 Send (Sender)
 ```ts
@@ -47,7 +55,7 @@ Respond (Everyone in chat not Sender)
 ```ts
 {
 	op: 12,
-	t: 2,
+	t: 1,
 	d: {
 		sender: User
 		message: Message
@@ -57,8 +65,8 @@ Respond (Everyone in chat not Sender)
 ## Update Message in Chat
 Send (Sender)
 ```ts
-	op: 14,
-	t: 1,
+	op: 11,
+	t: 2,
 	d: {
 		chat_id: Number
 		message_id: Number
@@ -67,8 +75,8 @@ Send (Sender)
 ```
 Respond (Everyone in chat not Sender)
 ```ts
-	op: 15,
-	t: 1,
+	op: 12,
+	t: 2,
 	d: {
 		chat_id: Number
 		message_id: Number
@@ -78,8 +86,8 @@ Respond (Everyone in chat not Sender)
 ## Delete Message in Chat
 Send (Sender)
 ```ts
-	op: 14,
-	t: 1,
+	op: 11,
+	t: 3,
 	d: {
 		chat_id: Number
 		message_id: Number
@@ -87,20 +95,26 @@ Send (Sender)
 ```
 Respond (Everyone in chat not Sender)
 ```ts
-	op: 15,
-	t: 1,
+	op: 12,
+	t: 3,
 	d: {
 		chat_id: Number
 		message_id: Number
 	}
 ```
-## User Status
-Respond (Auto send by Server)
+## Update Chat
+Send
 ```ts
-	op: 14,
+	op: 12,
 	t: 1,
 	d: {
-		user_ids: User[]
+	}
+```
+Respond
+```ts
+	op: 13,
+	t: 1,
+	d: {
 	}
 ```
 ## Add Friend

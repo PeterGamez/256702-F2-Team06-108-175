@@ -6,29 +6,38 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import com.mechat.dto.UserDTO;
+import com.mechat.webSocket.connections.ConnectionEvent;
+import com.mechat.webSocket.connections.PresenceEvent;
+import com.mechat.webSocket.events.ChatEvent;
+import com.mechat.webSocket.events.FriendEvent;
+import com.mechat.webSocket.events.MessageEvent;
+import com.mechat.webSocket.interfaces.EventInterface;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 public class WebSocketHandler extends TextWebSocketHandler {
 
     private static Set<WebSocketSession> sessions = new HashSet<>();
+    private static ArrayList<EventInterface> events = new ArrayList<>();
+
+    public WebSocketHandler() {
+        events.add(new ChatEvent());
+        events.add(new FriendEvent());
+        events.add(new MessageEvent());
+    }
 
     @Override
     public void afterConnectionEstablished(@NonNull WebSocketSession session) {
         sessions.add(session);
         UserDTO user = (UserDTO) session.getAttributes().get("user");
 
-        ResponseMessage response = new ResponseMessage(1, 1);
+        ConnectionEvent connectionEvent = new ConnectionEvent();
+        connectionEvent.handle(sessions, session, user);
 
-        response.put("status", "success");
-        response.put("message", "Hello, " + user.getUsername() + "!");
-
-        try {
-            session.sendMessage(response.send());
-        } catch (IOException e) {
-        }
+        PresenceEvent presenceEvent = new PresenceEvent();
+        presenceEvent.handle(sessions, session, user);
     }
 
     @Override
@@ -36,24 +45,15 @@ public class WebSocketHandler extends TextWebSocketHandler {
         RequestMessage request = new RequestMessage(data.getPayload());
         UserDTO user = (UserDTO) session.getAttributes().get("user");
 
-        if (request.getT() == 2) {
-            String message = request.getD().get("message").toString();
-
-            ResponseMessage response = new ResponseMessage(1, 1);
-
-            response.put("status", "success");
-            response.put("message", message);
-
-            try {
-                session.sendMessage(response.send());
-            } catch (IOException e) {
+        for (EventInterface event : events) {
+            if (event.getOp() == request.getOp()) {
+                event.handle(session, request, user);
             }
         }
     }
 
     @Override
-    public void afterConnectionClosed(@NonNull WebSocketSession session,
-            @NonNull org.springframework.web.socket.CloseStatus status) {
+    public void afterConnectionClosed(@NonNull WebSocketSession session, @NonNull org.springframework.web.socket.CloseStatus status) {
         sessions.remove(session);
     }
 }
