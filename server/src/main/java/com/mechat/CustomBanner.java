@@ -12,9 +12,14 @@ public class CustomBanner implements Banner {
 
     private PrintStream out;
 
+    private String version;
+    private String javaVersion = System.getProperty("java.version");
+    private String springBootVersion = org.springframework.boot.SpringBootVersion.getVersion();
+
     @Override
     public void printBanner(Environment environment, Class<?> sourceClass, PrintStream out) {
         this.out = out;
+        version = environment.getProperty("app.version", "UNKNOWN");
 
         printLogo();
         printCaption();
@@ -36,11 +41,10 @@ public class CustomBanner implements Banner {
     }
 
     private void printCaption() {
-        AppInfo appInfo = new AppInfo();
         out.println("");
-        out.println("        Version:        " + appInfo.getVersion());
-        out.println("        JVM:            " + appInfo.getJavaVersion());
-        out.println("        Spring Boot:    " + appInfo.getSpringBootVersion());
+        out.println("        Version:        " + version);
+        out.println("        JVM:            " + javaVersion);
+        out.println("        Spring Boot:    " + springBootVersion);
         out.println("");
     }
 }

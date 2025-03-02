@@ -6,7 +6,7 @@
 
   <groupId>com.mechat</groupId>
   <artifactId>server</artifactId>
-  <version>1.0</version>
+  <version>1.0.0-Beta</version>
 
   <name>server</name>
   <!-- FIXME change it to the project's website -->
@@ -113,6 +113,11 @@
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.3.1</version>
+          <configuration>
+            <delimiters>
+              <delimiter>${app.*}</delimiter>
+            </delimiters>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>

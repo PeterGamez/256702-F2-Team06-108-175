@@ -1,3 +1,7 @@
+app: # Environment variables (pom.xml)
+  name: ${project.name}
+  version: ${project.version}
+
 server:
   port: 8080
 
