@@ -16,10 +16,10 @@ public class User extends BaseEntity {
     @Column(name = "password", length = 80)
     private String password;
 
-    @Column(name = "display_name", nullable = false, length = 20)
+    @Column(name = "display_name", nullable = true, length = 20)
     private String displayName;
 
-    @Column(name = "avatar", nullable = false, length = 100)
+    @Column(name = "avatar", nullable = true, length = 100)
     private String avatar;
 
     public String getUsername() {
