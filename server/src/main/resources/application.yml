@@ -2,9 +2,6 @@ app: # Environment variables (pom.xml)
   name: ${project.name}
   version: ${project.version}
 
-server:
-  port: 8080
-
 api:
   prefix: ""
   cors:
@@ -20,12 +17,15 @@ websocket:
   path: "/ws"
   allowed-origins: "*"
 
+server:
+  port: 8080
+
 spring:
   datasource:
-    url: jdbc:mariadb://119.59.100.53:3306/mechat
-    username: alltime_mechat
-    password: iW~e0752p
-    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:${DB_TYPE}://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    driver-class-name: ${DB_DRIVER}
     hikari:
       maximum-pool-size: 10 # จำนวน connection สูงสุด
       minimum-idle: 10 # จำนวน connection ต่ำสุด
