@@ -1,12 +1,13 @@
 package com.mechat;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 
 import org.springframework.boot.Banner;
 import org.springframework.core.env.Environment;
-import org.springframework.util.ResourceUtils;
 
 public class CustomBanner implements Banner {
 
@@ -27,16 +28,25 @@ public class CustomBanner implements Banner {
 
     private void printLogo() {
         try {
-            String bannerFilePath = ResourceUtils.getFile("classpath:logo.txt").getAbsolutePath();
-            BufferedReader reader = new BufferedReader(new FileReader(bannerFilePath));
-            String line;
+            InputStream file = getClass().getClassLoader().getResourceAsStream("logo.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(file, StandardCharsets.UTF_8));
 
-            while ((line = reader.readLine()) != null) {
+            if (file == null) {
+                out.println("Logo file not found.");
+                return;
+            }
+
+            while (true) {
+                String line = reader.readLine();
+
+                if (line == null) {
+                    break;
+                }
+
                 out.println(line);
             }
-            reader.close();
         } catch (Exception e) {
-            out.println("Error while reading the banner file");
+            out.println("Error while reading the banner file: " + e.getMessage());
         }
     }
 
