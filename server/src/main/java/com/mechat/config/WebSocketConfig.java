@@ -8,7 +8,6 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
-import com.mechat.service.UserService;
 import com.mechat.webSocket.AuthHandshakeInterceptor;
 import com.mechat.webSocket.WebSocketHandler;
 
@@ -17,7 +16,10 @@ import com.mechat.webSocket.WebSocketHandler;
 public class WebSocketConfig implements WebSocketConfigurer {
 
     @Autowired
-    private UserService userService;
+    private WebSocketHandler webSocketHandler;
+
+    @Autowired
+    private AuthHandshakeInterceptor authHandshakeInterceptor;
 
     @Value("${websocket.path}")
     private String websocketPath;
@@ -27,8 +29,8 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(@NonNull WebSocketHandlerRegistry registry) {
-        registry.addHandler(new WebSocketHandler(), websocketPath)
+        registry.addHandler(webSocketHandler, websocketPath)
                 .setAllowedOrigins(allowedOrigins)
-                .addInterceptors(new AuthHandshakeInterceptor(userService));
+                .addInterceptors(authHandshakeInterceptor);
     }
 }

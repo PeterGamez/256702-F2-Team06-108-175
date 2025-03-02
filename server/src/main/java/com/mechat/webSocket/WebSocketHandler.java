@@ -1,6 +1,8 @@
 package com.mechat.webSocket;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -17,15 +19,31 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+@Component
 public class WebSocketHandler extends TextWebSocketHandler {
 
     private static Set<WebSocketSession> sessions = new HashSet<>();
     private static ArrayList<EventInterface> events = new ArrayList<>();
 
+    @Autowired
+    ConnectionEvent connectionEvent;
+
+    @Autowired
+    PresenceEvent presenceEvent;
+
+    @Autowired
+    ChatEvent chatEvent;
+
+    @Autowired
+    FriendEvent friendEvent;
+
+    @Autowired
+    MessageEvent messageEvent;
+
     public WebSocketHandler() {
-        events.add(new ChatEvent());
-        events.add(new FriendEvent());
-        events.add(new MessageEvent());
+        events.add(chatEvent);
+        events.add(friendEvent);
+        events.add(messageEvent);
     }
 
     @Override
@@ -33,10 +51,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
         sessions.add(session);
         UserDTO user = (UserDTO) session.getAttributes().get("user");
 
-        ConnectionEvent connectionEvent = new ConnectionEvent();
         connectionEvent.handle(sessions, session, user);
 
-        PresenceEvent presenceEvent = new PresenceEvent();
         presenceEvent.handle(sessions, session, user);
     }
 

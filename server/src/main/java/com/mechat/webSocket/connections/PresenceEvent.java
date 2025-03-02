@@ -3,12 +3,14 @@ package com.mechat.webSocket.connections;
 import java.util.ArrayList;
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.mechat.dto.UserDTO;
 import com.mechat.webSocket.ResponseMessage;
 import com.mechat.webSocket.interfaces.ConnectionInterface;
 
+@Component
 public class PresenceEvent implements ConnectionInterface {
 
     private static int responseOp = 2;

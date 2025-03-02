@@ -1,11 +1,13 @@
 package com.mechat.webSocket.events;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.mechat.dto.UserDTO;
 import com.mechat.webSocket.RequestMessage;
 import com.mechat.webSocket.interfaces.EventInterface;
 
+@Component
 public class ChatEvent implements EventInterface {
 
     private static int op = 13;

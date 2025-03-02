@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.mechat.dto.UserDTO;
@@ -14,10 +15,13 @@ import com.mechat.service.FriendService;
 import com.mechat.webSocket.ResponseMessage;
 import com.mechat.webSocket.interfaces.ConnectionInterface;
 
+@Component
 public class ConnectionEvent implements ConnectionInterface {
 
     @Autowired
     ChatService chatService;
+
+    @Autowired
     FriendService friendService;
 
     private static int responseOp = 1;
