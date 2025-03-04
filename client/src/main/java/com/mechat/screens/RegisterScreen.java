@@ -2,6 +2,7 @@ package com.mechat.screens;
 
 import com.mechat.interfaces.ScreenInterface;
 
+import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -12,6 +13,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class RegisterScreen implements ScreenInterface {
+
+    private TextField usernameField;
+    private PasswordField passwordField;
+    private PasswordField confirmPasswordField;
 
     @Override
     public Parent createContent() {
@@ -28,7 +33,7 @@ public class RegisterScreen implements ScreenInterface {
         // row 2
         HBox row2 = new HBox();
 
-        TextField usernameField = new TextField();
+        usernameField = new TextField();
         usernameField.setPromptText("Username");
         usernameField.setStyle("text-field");
 
@@ -38,7 +43,7 @@ public class RegisterScreen implements ScreenInterface {
         // row 3
         HBox row3 = new HBox();
 
-        PasswordField passwordField = new PasswordField();
+        passwordField = new PasswordField();
         passwordField.setPromptText("Password");
         passwordField.setStyle("text-field");
 
@@ -48,7 +53,7 @@ public class RegisterScreen implements ScreenInterface {
         // row 4
         HBox row4 = new HBox();
 
-        PasswordField confirmPasswordField = new PasswordField();
+        confirmPasswordField = new PasswordField();
         confirmPasswordField.setPromptText("Confirm Password");
         confirmPasswordField.setStyle("text-field");
 
@@ -60,6 +65,7 @@ public class RegisterScreen implements ScreenInterface {
 
         Button registerButton = new Button("Register");
         registerButton.getStyleClass().add("button");
+        registerButton.setOnAction(e -> registerEvent(e));
 
         row5.getChildren().addAll(registerButton);
         row5.setAlignment(Pos.CENTER);
@@ -67,10 +73,16 @@ public class RegisterScreen implements ScreenInterface {
         // horizontal layout
         VBox box = new VBox();
 
-        box.getChildren().addAll(row1, row2, row3, row4 , row5);
+        box.getChildren().addAll(row1, row2, row3, row4, row5);
         box.setSpacing(30);
         box.setAlignment(Pos.CENTER);
 
         return box;
+    }
+
+    private void registerEvent(ActionEvent e) {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+        String confirmPassword = confirmPasswordField.getText();
     }
 }

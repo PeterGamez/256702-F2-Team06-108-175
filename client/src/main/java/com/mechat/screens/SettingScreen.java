@@ -35,7 +35,6 @@ public class SettingScreen implements ScreenInterface {
         settingsLabel.getStyleClass().add("settings-label");
 
         header.getChildren().addAll(backButton, settingsLabel);
-        
 
         // Menu
         VBox menu = new VBox();
