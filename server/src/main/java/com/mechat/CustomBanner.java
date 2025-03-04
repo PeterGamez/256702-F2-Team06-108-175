@@ -1,6 +1,7 @@
 package com.mechat;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -50,8 +51,8 @@ public class CustomBanner implements Banner {
 
                 out.println(line);
             }
-        } catch (Exception e) {
-            out.println("Error while reading the banner file: " + e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

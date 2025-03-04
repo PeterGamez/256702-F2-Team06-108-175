@@ -20,6 +20,7 @@ public class Crypt {
         try {
             return BCrypt.checkpw(data, hashedData);
         } catch (IllegalArgumentException e) {
+            e.printStackTrace();
             return false;
         }
     }
