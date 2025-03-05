@@ -1,5 +1,6 @@
 package com.mechat.webSocket.connections;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -30,10 +31,11 @@ public class PresenceEvent implements ConnectionInterface {
 
         response.put("users", users);
 
-        sessions.forEach(s -> {
+        sessions.stream().filter(s -> s.isOpen()).forEach(s -> {
             try {
-                s.sendMessage(response.send());
-            } catch (Exception e) {
+                s.sendMessage(response.json());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }

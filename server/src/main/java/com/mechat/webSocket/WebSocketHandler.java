@@ -63,7 +63,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
         for (EventInterface event : events) {
             if (event.getOp() == request.getOp()) {
-                event.handle(session, request, user);
+                event.handle(sessions, session, request, user);
             }
         }
     }

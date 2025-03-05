@@ -1,5 +1,7 @@
 package com.mechat.webSocket.events;
 
+import java.util.Set;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
 
@@ -21,6 +23,6 @@ public class FriendEvent implements EventInterface {
         return responseOp;
     }
 
-    public void handle(WebSocketSession session, RequestMessage request, UserDTO user) {
+    public void handle(Set<WebSocketSession> sessions, WebSocketSession session, RequestMessage request, UserDTO user) {
     }
 }
