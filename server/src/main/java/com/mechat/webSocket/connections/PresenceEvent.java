@@ -1,14 +1,17 @@
 package com.mechat.webSocket.connections;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
 
 import com.mechat.dto.UserDTO;
 import com.mechat.webSocket.ResponseMessage;
 import com.mechat.webSocket.interfaces.ConnectionInterface;
 
+@Component
 public class PresenceEvent implements ConnectionInterface {
 
     private static int responseOp = 2;
@@ -28,10 +31,11 @@ public class PresenceEvent implements ConnectionInterface {
 
         response.put("users", users);
 
-        sessions.forEach(s -> {
+        sessions.stream().filter(s -> s.isOpen()).forEach(s -> {
             try {
-                s.sendMessage(response.send());
-            } catch (Exception e) {
+                s.sendMessage(response.json());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
     }

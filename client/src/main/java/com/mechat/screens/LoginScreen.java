@@ -2,6 +2,7 @@ package com.mechat.screens;
 
 import com.mechat.interfaces.ScreenInterface;
 
+import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -12,6 +13,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class LoginScreen implements ScreenInterface {
+
+    private TextField usernameField;
+    private PasswordField passwordField;
 
     @Override
     public Parent createContent() {
@@ -28,7 +32,7 @@ public class LoginScreen implements ScreenInterface {
         // row 2
         HBox row2 = new HBox();
 
-        TextField usernameField = new TextField();
+        usernameField = new TextField();
         usernameField.setPromptText("Username");
         usernameField.getStyleClass().add("text-field");
 
@@ -38,7 +42,7 @@ public class LoginScreen implements ScreenInterface {
         // row 3
         HBox row3 = new HBox();
 
-        PasswordField passwordField = new PasswordField();
+        passwordField = new PasswordField();
         passwordField.setPromptText("Password");
         passwordField.getStyleClass().add("text-field");
 
@@ -48,8 +52,9 @@ public class LoginScreen implements ScreenInterface {
         // row 4
         HBox row4 = new HBox();
 
-        Button loginButton = new Button("Register");
+        Button loginButton = new Button("Login");
         loginButton.getStyleClass().add("button");
+        loginButton.setOnAction(e -> loginEvent(e));
 
         row4.getChildren().addAll(loginButton);
         row4.setAlignment(Pos.CENTER);
@@ -62,5 +67,10 @@ public class LoginScreen implements ScreenInterface {
         box.setAlignment(Pos.CENTER);
 
         return box;
+    }
+
+    private void loginEvent(ActionEvent e) {
+        String username = usernameField.getText();
+        String password = passwordField.getText();
     }
 }

@@ -16,7 +16,7 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    private UserDTO convertToDTO(User user) {
+    public UserDTO convertToDTO(User user) {
         if (user == null) {
             return null;
         }
@@ -28,6 +28,20 @@ public class UserService {
         userDTO.setCreatedAt(user.getCreatedAt());
         userDTO.setUpdatedAt(user.getUpdatedAt());
         return userDTO;
+    }
+
+    public User convertToEntity(UserDTO userDTO) {
+        if (userDTO == null) {
+            return null;
+        }
+        User user = new User();
+        user.setId(userDTO.getId());
+        user.setUsername(userDTO.getUsername());
+        user.setDisplayName(userDTO.getDisplayName());
+        user.setAvatar(userDTO.getAvatar());
+        user.setCreatedAt(userDTO.getCreatedAt());
+        user.setUpdatedAt(userDTO.getUpdatedAt());
+        return user;
     }
 
     public List<UserDTO> getAllUsers() {

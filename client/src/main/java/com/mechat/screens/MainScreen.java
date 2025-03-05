@@ -1,7 +1,9 @@
 package com.mechat.screens;
 
+import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ScreenInterface;
 
+import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -45,9 +47,12 @@ public class MainScreen implements ScreenInterface {
         HBox row3 = new HBox();
 
         Button leftButton = new Button("Register");
-        Button rightButton = new Button("Login");
         leftButton.getStyleClass().add("button");
+        leftButton.setOnAction(e -> registerEvent(e));
+
+        Button rightButton = new Button("Login");
         rightButton.getStyleClass().add("button");
+        rightButton.setOnAction(e -> loginEvent(e));
 
         row3.getChildren().addAll(leftButton, rightButton);
         row3.setSpacing(80);
@@ -61,5 +66,13 @@ public class MainScreen implements ScreenInterface {
         box.setAlignment(Pos.CENTER);
 
         return box;
+    }
+
+    private void registerEvent(ActionEvent e) {
+        ScreenHandler.setScreen(new RegisterScreen());
+    }
+
+    private void loginEvent(ActionEvent e) {
+        ScreenHandler.setScreen(new LoginScreen());
     }
 }

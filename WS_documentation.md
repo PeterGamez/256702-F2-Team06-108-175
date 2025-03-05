@@ -1,9 +1,28 @@
 # Websocket
 
+## Table of Contents
+- [Websocket](#websocket)
+	- [Table of Contents](#table-of-contents)
+	- [Body](#body)
+	- [Start Connection](#start-connection)
+	- [User Status](#user-status)
+	- [Message](#message)
+		- [Private Chat](#private-chat)
+		- [Group Chat](#group-chat)
+		- [Update Message in Chat](#update-message-in-chat)
+		- [Delete Message in Chat](#delete-message-in-chat)
+	- [Chat](#chat)
+		- [Create Chat](#create-chat)
+		- [Update Chat](#update-chat)
+	- [Friend](#friend)
+		- [Add Friend](#add-friend)
+		- [Accept/Deny Friend request](#acceptdeny-friend-request)
+
+## Body
 header
 ```ts
 {
-	Authorization: String
+	Authorization: Bearer Token
 }
 ```
 payload
@@ -39,15 +58,16 @@ Respond (Auto send by Server)
 		user_ids: User[]
 	}
 ```
-## Send Message to Chat
+## Message
+### Private Chat
 Send (Sender)
 ```ts
 {
 	op: 11,
 	t: 1,
 	d: {
-		user: User
-		message: Message
+		chat: Number
+		message: String
 	}
 }
 ```
@@ -57,16 +77,40 @@ Respond (Everyone in chat not Sender)
 	op: 12,
 	t: 1,
 	d: {
-		sender: User
-		message: Message
+		chat: Number
+		message: String
 	}
 }
 ```
-## Update Message in Chat
+### Group Chat
+Send (Sender)
+```ts
+{
+	op: 11,
+	t: 2,
+	d: {
+		chat: Number
+		message: String
+	}
+}
+```
+Respond (Everyone in chat not Sender)
+```ts
+{
+	op: 12,
+	t: 2,
+	d: {
+		chat: Number
+		sender: Number
+		message: String
+	}
+}
+```
+### Update Message in Chat
 Send (Sender)
 ```ts
 	op: 11,
-	t: 2,
+	t: 6,
 	d: {
 		chat_id: Number
 		message_id: Number
@@ -76,18 +120,18 @@ Send (Sender)
 Respond (Everyone in chat not Sender)
 ```ts
 	op: 12,
-	t: 2,
+	t: 6,
 	d: {
 		chat_id: Number
 		message_id: Number
 		message: String
 	}
 ```
-## Delete Message in Chat
+### Delete Message in Chat
 Send (Sender)
 ```ts
 	op: 11,
-	t: 3,
+	t: 7,
 	d: {
 		chat_id: Number
 		message_id: Number
@@ -96,28 +140,45 @@ Send (Sender)
 Respond (Everyone in chat not Sender)
 ```ts
 	op: 12,
-	t: 3,
+	t: 7,
 	d: {
 		chat_id: Number
 		message_id: Number
 	}
 ```
-## Update Chat
+## Chat
+### Create Chat
 Send
-```ts
-	op: 12,
-	t: 1,
-	d: {
-	}
-```
-Respond
 ```ts
 	op: 13,
 	t: 1,
 	d: {
 	}
 ```
-## Add Friend
+Respond
+```ts
+	op: 14,
+	t: 1,
+	d: {
+	}
+```
+### Update Chat
+Send
+```ts
+	op: 13,
+	t: 2,
+	d: {
+	}
+```
+Respond
+```ts
+	op: 14,
+	t: 2,
+	d: {
+	}
+```
+## Friend
+### Add Friend
 Sender
 ```ts
 {
@@ -138,7 +199,7 @@ Respond
 	}
 }
 ```
-## Accept/Deny Friend request
+### Accept/Deny Friend request
 - 1 Accept
 - 2 Deny
 Sender
