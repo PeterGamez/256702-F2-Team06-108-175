@@ -82,3 +82,6 @@ MeChat: Real-Time Chat Application in Java
 - [MariaDB](https://mariadb.com/kb/en/about-mariadb-connector-j)
 - [Maven Repository](https://mvnrepository.com)
 - [Java 21](https://docs.oracle.com/en/java/javase/21)
+
+## งานนำเสนอ
+[Slide](https://www.canva.com/design/DAGhauw1ILA/mFspp8oLcBjjJQ_yRsH56w/view?utm_content=DAGhauw1ILA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h51a1fb10b0)
