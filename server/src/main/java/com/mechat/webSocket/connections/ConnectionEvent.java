@@ -33,7 +33,7 @@ public class ConnectionEvent implements ConnectionInterface {
     public void handle(Set<WebSocketSession> sessions, WebSocketSession session, UserDTO user) {
         ResponseMessage response = new ResponseMessage(session, responseOp, 1);
 
-        List<Chat> chats = chatService.getChats(user.getId());
+        List<Chat> chats = chatService.getChatsByUserId(user.getId());
         List<Friend> friends = friendService.getFriends(user.getId());
 
         response.put("chats", chats);

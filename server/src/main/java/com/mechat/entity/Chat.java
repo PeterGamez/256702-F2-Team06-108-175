@@ -9,7 +9,37 @@ import jakarta.persistence.Table;
 public class Chat extends BaseEntity {
 
     public enum Type {
-        PRIVATE, GROUP
+        PRIVATE(0), GROUP(1);
+
+        private final int value;
+
+        Type(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public static Type fromValue(int value) {
+            for (Type status : Type.values()) {
+                if (status.getValue() == value) {
+                    return status;
+                }
+            }
+
+            return null;
+        }
+
+        public static Type fromValue(String value) {
+            for (Type status : Type.values()) {
+                if (status.name().equals(value)) {
+                    return status;
+                }
+            }
+
+            return null;
+        }
     }
 
     @Column(name = "name", length = 20)

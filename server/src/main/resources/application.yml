@@ -36,3 +36,6 @@ spring:
     hibernate:
       ddl-auto: update # จัดการการสร้าง schema อัตโนมัติ (update, create, create-drop, validate)
     show-sql: true # แสดง SQL queries ที่ Hibernate สร้างขึ้น
+    properties:
+      hibernate:
+        format_sql: true
