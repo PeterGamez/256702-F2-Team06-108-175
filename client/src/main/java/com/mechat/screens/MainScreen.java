@@ -27,7 +27,7 @@ public class MainScreen implements ScreenInterface {
 
         Label content = new Label("MECHAT");
         content.setAlignment(Pos.CENTER);
-        content.setStyle("-fx-font-size: 80px; -fx-text-fill: #44ad53;");
+        content.setStyle("-fx-font-size: 100px; -fx-font-weight: bold; -fx-text-fill: #44ad53;");
 
         row1.getChildren().addAll(imageView, content);
         row1.setSpacing(20);
@@ -38,7 +38,7 @@ public class MainScreen implements ScreenInterface {
 
         Label title = new Label("A Real-Time Chat Application in Java");
         title.setAlignment(Pos.CENTER);
-        title.setStyle("-fx-font-size: 30px; -fx-text-fill: #FFFFFF;");
+        title.getStyleClass().add("mc-label");
 
         row2.getChildren().add(title);
         row2.setAlignment(Pos.CENTER);

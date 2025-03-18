@@ -1,5 +1,6 @@
 package com.mechat.screens;
 
+import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ScreenInterface;
 
 import javafx.event.ActionEvent;
@@ -24,7 +25,7 @@ public class LoginScreen implements ScreenInterface {
 
         Label content = new Label("Login");
         content.setAlignment(Pos.CENTER);
-        content.setStyle("-fx-font-size: 80px; -fx-text-fill: #FFFFFF;");
+        content.getStyleClass().add("title-label");
 
         row1.getChildren().addAll(content);
         row1.setAlignment(Pos.CENTER);
@@ -34,7 +35,7 @@ public class LoginScreen implements ScreenInterface {
 
         usernameField = new TextField();
         usernameField.setPromptText("Username");
-        usernameField.getStyleClass().add("text-field");
+        usernameField.getStyleClass().add("login-field");
 
         row2.getChildren().add(usernameField);
         row2.setAlignment(Pos.CENTER);
@@ -44,7 +45,7 @@ public class LoginScreen implements ScreenInterface {
 
         passwordField = new PasswordField();
         passwordField.setPromptText("Password");
-        passwordField.getStyleClass().add("text-field");
+        passwordField.getStyleClass().add("login-field");
 
         row3.getChildren().add(passwordField);
         row3.setAlignment(Pos.CENTER);
@@ -52,18 +53,28 @@ public class LoginScreen implements ScreenInterface {
         // row 4
         HBox row4 = new HBox();
 
-        Button loginButton = new Button("Login");
+        Button loginButton = new Button("Sign In");
         loginButton.getStyleClass().add("button");
         loginButton.setOnAction(e -> loginEvent(e));
 
-        row4.getChildren().addAll(loginButton);
+        Button backButton = new Button("Back");
+        backButton.getStyleClass().add("button");
+        backButton.setOnAction(e -> backEvent(e));
+
+        row4.getChildren().addAll(backButton, loginButton);
+        row4.setSpacing(80);
         row4.setAlignment(Pos.CENTER);
 
         // horizontal layout
+        VBox textFields = new VBox();
+
+        textFields.getChildren().addAll(row2, row3);
+        textFields.setSpacing(10);
+
         VBox box = new VBox();
 
-        box.getChildren().addAll(row1, row2, row3, row4);
-        box.setSpacing(40);
+        box.getChildren().addAll(row1, textFields, row4);
+        box.setSpacing(30);
         box.setAlignment(Pos.CENTER);
 
         return box;
@@ -72,5 +83,9 @@ public class LoginScreen implements ScreenInterface {
     private void loginEvent(ActionEvent e) {
         String username = usernameField.getText();
         String password = passwordField.getText();
+    }
+
+    private void backEvent(ActionEvent e) {
+        ScreenHandler.setScreen(new MainScreen());
     }
 }
