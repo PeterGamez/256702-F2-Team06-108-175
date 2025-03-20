@@ -38,7 +38,7 @@ public class MainScreen implements ScreenInterface {
 
         Label title = new Label("A Real-Time Chat Application in Java");
         title.setAlignment(Pos.CENTER);
-        title.getStyleClass().add("mc-label");
+        title.getStyleClass().add("misc-label");
 
         row2.getChildren().add(title);
         row2.setAlignment(Pos.CENTER);
