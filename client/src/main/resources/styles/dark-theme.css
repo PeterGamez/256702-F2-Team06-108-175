@@ -51,7 +51,7 @@
 .scroll-pane {
     -fx-background: #545454;
     -fx-fit-to-width: true;
-    -fx-pref-height: 500px;
+    -fx-pref-height: 450px;
     -fx-border-color: #737373;
 }
 
@@ -77,4 +77,9 @@
 .uid-label {
     -fx-font-size: 12px;
     -fx-text-fill: white;
+}
+
+.nav-bar {
+    -fx-background-color: #2d2e30;
+    -fx-pref-height: 60px;
 }
