@@ -62,7 +62,7 @@ public class MainScreen implements ScreenInterface {
         VBox box = new VBox();
 
         box.getChildren().addAll(row1, row2, row3);
-        box.setSpacing(75);
+        box.setSpacing(93);
         box.setAlignment(Pos.CENTER);
 
         return box;

@@ -79,13 +79,19 @@ public class RegisterScreen implements ScreenInterface {
 
         // horizontal layout
         VBox textFields = new VBox();
+        
         textFields.getChildren().addAll(row2, row3, row4);
         textFields.setSpacing(10);
 
+        VBox titleTextField = new VBox();
+
+        titleTextField.getChildren().addAll(row1, textFields);
+        titleTextField.setSpacing(20);
+
         VBox box = new VBox();
 
-        box.getChildren().addAll(row1, textFields, row5);
-        box.setSpacing(30);
+        box.getChildren().addAll(titleTextField, row5);
+        box.setSpacing(40);
         box.setAlignment(Pos.CENTER);
 
         return box;

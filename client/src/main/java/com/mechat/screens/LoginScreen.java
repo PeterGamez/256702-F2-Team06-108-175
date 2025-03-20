@@ -71,10 +71,15 @@ public class LoginScreen implements ScreenInterface {
         textFields.getChildren().addAll(row2, row3);
         textFields.setSpacing(10);
 
+        VBox titleTextField = new VBox();
+
+        titleTextField.getChildren().addAll(row1, textFields);
+        titleTextField.setSpacing(20);
+
         VBox box = new VBox();
 
-        box.getChildren().addAll(row1, textFields, row4);
-        box.setSpacing(30);
+        box.getChildren().addAll(titleTextField, row4);
+        box.setSpacing(40);
         box.setAlignment(Pos.CENTER);
 
         return box;

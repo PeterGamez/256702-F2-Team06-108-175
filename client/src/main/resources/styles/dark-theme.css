@@ -1,3 +1,11 @@
+.button {
+    -fx-background-color: #44ad53;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 75px;
+    -fx-pref-width: 200px;
+    -fx-text-fill: white;
+}
 .title-label{
     -fx-font-size: 100px;
     -fx-font-weight: bold;
@@ -11,22 +19,14 @@
 .reg-field {
     -fx-font-size: 20px;
     -fx-pref-height: 50px;
-    -fx-pref-width: 250px;
+    -fx-pref-width: 240px;
 }
 .login-field {
     -fx-font-size: 24px;
     -fx-pref-height: 80px;
-    -fx-pref-width: 300px;
+    -fx-pref-width: 320px;
 }
 
-.button {
-    -fx-background-color: #44ad53;
-    -fx-font-size: 26px;
-    -fx-font-weight: bold;
-    -fx-pref-height: 75px;
-    -fx-pref-width: 200px;
-    -fx-text-fill: white;
-}
 
 .chat-area {
     -fx-background-color: #2d2e30;
