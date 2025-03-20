@@ -28,6 +28,8 @@ public class MainChatScreen implements ScreenInterface {
 
         VBox userBox = new VBox();
         userBox.getStyleClass().add("user-box");
+        userBox.getChildren().add(userInfo());
+        userBox.setAlignment(Pos.CENTER);
 
         VBox friendList = new VBox();
 
@@ -70,7 +72,26 @@ public class MainChatScreen implements ScreenInterface {
     }
 
     public Parent userInfo() {
+        ImageView profile = new ImageView("images/profile-icon.png");
+        profile.setFitHeight(80);
+        profile.setFitWidth(80);
 
-        return null;
+        Label userLabel = new Label("User");
+        userLabel.getStyleClass().add("user-label");
+        Label uidLabel = new Label("UID: 1234567890");
+        uidLabel.getStyleClass().add("uid-label");
+
+        VBox userInfo = new VBox();
+        userInfo.getChildren().addAll(userLabel, uidLabel);
+        userInfo.setSpacing(5);
+        userInfo.setAlignment(Pos.CENTER_LEFT);
+
+        HBox userBox = new HBox();
+        userBox.getChildren().addAll(profile, userInfo);
+        userBox.setSpacing(20);
+        userBox.setAlignment(Pos.CENTER_LEFT);
+        HBox.setMargin(profile, new Insets(0, 0, 0, 20));
+
+        return userBox;
     }
 }
