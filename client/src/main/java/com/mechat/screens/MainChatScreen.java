@@ -30,6 +30,13 @@ public class MainChatScreen implements ScreenInterface {
         return root;
     }
 
+    private ImageView createImageView(String imagePath, double width, double height) {
+        ImageView imageView = new ImageView(new Image(imagePath));
+        imageView.setFitWidth(width);
+        imageView.setFitHeight(height);
+        return imageView;
+    }
+
     public void addChat(String avatar, String title) {
         VBox chat = new VBox();
         chat.setAlignment(Pos.CENTER);
@@ -37,9 +44,7 @@ public class MainChatScreen implements ScreenInterface {
         Label label = new Label(title);
         label.getStyleClass().add("friend-label");
 
-        ImageView profile = new ImageView("images/profile-icon.png");
-        profile.setFitHeight(50);
-        profile.setFitWidth(50);
+        ImageView profile = createImageView("images/profile-icon.png", 50, 50);
 
         HBox chatHeader = new HBox();
         HBox.setMargin(profile, new Insets(0, 0, 0, 20));
@@ -51,13 +56,10 @@ public class MainChatScreen implements ScreenInterface {
         chat.getStyleClass().add("friend-box");
 
         chats.add(chat);
-
     }
 
     public Parent userInfo() {
-        ImageView profile = new ImageView("images/profile-icon.png");
-        profile.setFitHeight(80);
-        profile.setFitWidth(80);
+        ImageView profile = createImageView("images/profile-icon.png", 80, 80);
 
         Label userLabel = new Label("User");
         userLabel.getStyleClass().add("user-label");
@@ -106,17 +108,9 @@ public class MainChatScreen implements ScreenInterface {
     }
 
     public Parent navBar() {
-        ImageView addfriendView = new ImageView(new Image("/images/add-friend-icon.png"));
-        addfriendView.setFitWidth(30);
-        addfriendView.setFitHeight(30);
-
-        ImageView homeView = new ImageView(new Image("/images/home-icon.png"));
-        homeView.setFitWidth(30);
-        homeView.setFitHeight(30);
-
-        ImageView settingView = new ImageView(new Image("/images/settings-icon.png"));
-        settingView.setFitWidth(30);
-        settingView.setFitHeight(30);
+        ImageView addfriendView = createImageView("/images/add-friend-icon.png", 30, 30);
+        ImageView homeView = createImageView("/images/home-icon.png", 30, 30);
+        ImageView settingView = createImageView("/images/settings-icon.png", 30, 30);
 
         HBox navBar = new HBox();
         navBar.getStyleClass().add("nav-bar");
@@ -130,9 +124,7 @@ public class MainChatScreen implements ScreenInterface {
 
     public Parent chatBox() {
         VBox chatBox = new VBox();
-        ImageView logo = new ImageView("images/chat-icon.png");
-        logo.setFitHeight(300);
-        logo.setFitWidth(300);
+        ImageView logo = createImageView("images/chat-icon.png", 250, 250);
         chatBox.getChildren().add(logo);
         chatBox.setAlignment(Pos.CENTER);
 
