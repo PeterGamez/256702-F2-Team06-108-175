@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import com.mechat.interfaces.ScreenInterface;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -21,69 +21,56 @@ public class MainChatScreen implements ScreenInterface {
 
     @Override
     public Parent createContent() {
+        BorderPane root = new BorderPane();
 
-        VBox sidebar = new VBox();
-        sidebar.getStyleClass().add("sidebar");
+        VBox leftBox = new VBox();
+        leftBox.getStyleClass().add("left-box");
 
-        Label userLabel = new Label("USER\nUUID: 000000001");
-        userLabel.getStyleClass().add("user-label");
+        VBox userBox = new VBox();
+        userBox.getStyleClass().add("user-box");
 
-        VBox userBar = new VBox();
-        userBar.getStyleClass().add("user-bar");
-        userBar.getChildren().add(userLabel);
+        VBox friendList = new VBox();
 
-        VBox chatBar = new VBox();
-
-        for (int i = 0; i < 20; i++) {
-            addChat("", "Chat " + (i + 1));
+        for (int i = 0; i < 99; i++) {
+            addChat("", "Friend " + (i + 1));
         }
 
-        chatBar.getChildren().addAll(chats);
-        ScrollPane scrollPane = new ScrollPane(chatBar);
+        friendList.getChildren().addAll(chats);
+
+        ScrollPane scrollPane = new ScrollPane(friendList);
         scrollPane.getStyleClass().add("scroll-pane");
 
-        sidebar.getChildren().add(userBar);
-        sidebar.getChildren().add(scrollPane);
-
-        Pane chatArea = new Pane();
-        chatArea.getStyleClass().add("chat-area");
-
-        HBox navBar = new HBox();
-        navBar.getStyleClass().add("nav-bar");
-
-        ImageView addfriendView = new ImageView(new Image("/images/add-friend-icon.png"));
-        ImageView homeView = new ImageView(new Image("/images/home-icon.png"));
-        ImageView settingView = new ImageView(new Image("/images/settings-icon.png"));
-
-        addfriendView.setFitWidth(30);
-        addfriendView.setFitHeight(30);
-        homeView.setFitWidth(30);
-        homeView.setFitHeight(30);
-        settingView.setFitWidth(30);
-        settingView.setFitHeight(30);
-
-        navBar.getChildren().addAll(addfriendView, homeView, settingView);
-        navBar.setSpacing(200);
-        navBar.setAlignment(Pos.CENTER);
-
-        BorderPane root = new BorderPane();
-        root.setLeft(sidebar);
-        root.setCenter(chatArea);
-        root.setBottom(navBar);
-
+        leftBox.getChildren().addAll(userBox, scrollPane);
+        root.setLeft(leftBox);
         return root;
     }
 
     public void addChat(String avatar, String title) {
         VBox chat = new VBox();
+        chat.setAlignment(Pos.CENTER);
 
         Label label = new Label(title);
         label.getStyleClass().add("friend-label");
 
-        chat.getChildren().add(label);
-        chat.getStyleClass().add("chats-bar");
+        ImageView profile = new ImageView("images/profile-icon.png");
+        profile.setFitHeight(50);
+        profile.setFitWidth(50);
+
+        HBox chatHeader = new HBox();
+        HBox.setMargin(profile, new Insets(0, 0, 0, 20));
+        chatHeader.getChildren().addAll(profile, label);
+        chatHeader.setSpacing(20);
+        chatHeader.setAlignment(Pos.CENTER_LEFT);
+
+        chat.getChildren().add(chatHeader);
+        chat.getStyleClass().add("friend-box");
 
         chats.add(chat);
 
+    }
+
+    public Parent userInfo() {
+
+        return null;
     }
 }
