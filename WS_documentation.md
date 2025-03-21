@@ -44,8 +44,8 @@ Respond
 	op: 1,
 	t: 1,
 	d: {
-		chats: Chat[],
-		friends: Friend[]
+		chat_ids: Number[],
+		friend_ids: Number[]
 	}
 }
 ```
@@ -55,7 +55,7 @@ Respond (Auto send by Server)
 	op: 2,
 	t: 1,
 	d: {
-		user_ids: User[]
+		user_ids: Number[]
 	}
 ```
 ## Message
@@ -66,7 +66,7 @@ Send (Sender)
 	op: 11,
 	t: 1,
 	d: {
-		chat: Number
+		chat_id: Number
 		message: String
 	}
 }
@@ -77,7 +77,7 @@ Respond (Everyone in chat not Sender)
 	op: 12,
 	t: 1,
 	d: {
-		chat: Number
+		chat_id: Number
 		message: String
 	}
 }
@@ -89,7 +89,7 @@ Send (Sender)
 	op: 11,
 	t: 2,
 	d: {
-		chat: Number
+		chat_id: Number
 		message: String
 	}
 }
@@ -100,8 +100,8 @@ Respond (Everyone in chat not Sender)
 	op: 12,
 	t: 2,
 	d: {
-		chat: Number
-		sender: Number
+		chat_id: Number
+		sender_id: Number
 		message: String
 	}
 }
@@ -153,6 +153,8 @@ Send
 	op: 13,
 	t: 1,
 	d: {
+		user_ids: Number[]
+		type: 1 | 2
 	}
 ```
 Respond
@@ -160,6 +162,7 @@ Respond
 	op: 14,
 	t: 1,
 	d: {
+		chat_id: Number
 	}
 ```
 ### Update Chat
@@ -168,6 +171,10 @@ Send
 	op: 13,
 	t: 2,
 	d: {
+		chat_id: Number
+		chat: String
+		add_users: Number[]
+		remove_users: Number[]
 	}
 ```
 Respond
@@ -175,6 +182,9 @@ Respond
 	op: 14,
 	t: 2,
 	d: {
+		chat_id: Number
+		chat: String
+		users: Number[]
 	}
 ```
 ## Friend

@@ -16,7 +16,38 @@ import jakarta.persistence.Table;
 public class Friend extends BaseEntity {
 
     public enum Status {
-        PENDING, ACCEPTED, REJECTED
+
+        PENDING(0), ACCEPTED(1), REJECTED(2);
+
+        private final int value;
+
+        Status(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public static Status fromValue(int value) {
+            for (Status status : Status.values()) {
+                if (status.getValue() == value) {
+                    return status;
+                }
+            }
+
+            return null;
+        }
+
+        public static Status fromValue(String value) {
+            for (Status status : Status.values()) {
+                if (status.name().equals(value)) {
+                    return status;
+                }
+            }
+
+            return null;
+        }
     }
 
     @ManyToOne

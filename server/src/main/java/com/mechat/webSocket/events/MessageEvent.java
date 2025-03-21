@@ -44,22 +44,26 @@ public class MessageEvent implements EventInterface {
         this.user = user;
 
         if (request.getT() == 1) {
-            sendToPrivateChat();
+            sendToPrivateChat(1);
         } else if (request.getT() == 2) {
-            sendToGroupChat();
+            sendToGroupChat(2);
+        } else if (request.getT() == 6) {
+            updateMessage(3);
+        } else if (request.getT() == 7) {
+            deleteMessage(4);
         }
     }
 
-    private void sendToPrivateChat() {
+    private void sendToPrivateChat(int responseType) {
         String chatStr = request.getD().get("chat").toString();
         String message = request.getD().get("message").toString();
 
-        Long chat_id = null;
+        Long chatId = null;
 
         try {
-            chat_id = Long.parseLong(chatStr);
+            chatId = Long.parseLong(chatStr);
         } catch (NumberFormatException e) {
-            ResponseMessage response = new ResponseMessage(session, responseOp, 1);
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
 
             response.put("status", "error");
             response.put("message", "chat id is not valid");
@@ -68,9 +72,9 @@ public class MessageEvent implements EventInterface {
             return;
         }
 
-        Chat chat = chatService.getChatById(chat_id);
+        Chat chat = chatService.getChatById(chatId);
         if (chat == null) {
-            ResponseMessage response = new ResponseMessage(session, responseOp, 1);
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
 
             response.put("status", "error");
             response.put("message", "chat not found");
@@ -92,31 +96,31 @@ public class MessageEvent implements EventInterface {
                 .findFirst();
 
         if (sessionUser.isPresent()) {
-            ResponseMessage response = new ResponseMessage(sessionUser.get(), responseOp, 1);
+            ResponseMessage response = new ResponseMessage(sessionUser.get(), responseOp, responseType);
 
-            response.put("chat", chat.getId());
+            response.put("chat_id", chat.getId());
             response.put("message", message);
 
             response.send();
         }
 
-        ResponseMessage response = new ResponseMessage(session, responseOp, 1);
+        ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
 
         response.put("status", "success");
 
         response.send();
     }
 
-    private void sendToGroupChat() {
-        String chatStr = request.getD().get("chat").toString();
+    private void sendToGroupChat(int responseType) {
+        String chatStr = request.getD().get("chat_id").toString();
         String message = request.getD().get("message").toString();
 
-        Long chat_id = null;
+        Long chatId = null;
 
         try {
-            chat_id = Long.parseLong(chatStr);
+            chatId = Long.parseLong(chatStr);
         } catch (NumberFormatException e) {
-            ResponseMessage response = new ResponseMessage(session, responseOp, 1);
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
 
             response.put("status", "error");
             response.put("message", "chat id is not valid");
@@ -125,9 +129,9 @@ public class MessageEvent implements EventInterface {
             return;
         }
 
-        Chat chat = chatService.getChatById(chat_id);
+        Chat chat = chatService.getChatById(chatId);
         if (chat == null) {
-            ResponseMessage response = new ResponseMessage(session, responseOp, 1);
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
 
             response.put("status", "error");
             response.put("message", "chat not found");
@@ -147,16 +151,156 @@ public class MessageEvent implements EventInterface {
                     return chatUsers.stream().anyMatch(u -> u.getId() == user.getId());
                 })
                 .forEach(s -> {
-                    ResponseMessage response = new ResponseMessage(s, responseOp, 1);
+                    ResponseMessage response = new ResponseMessage(s, responseOp, responseType);
 
-                    response.put("chat", chat.getId());
-                    response.put("sender", user.getId());
+                    response.put("chat_id", chat.getId());
+                    response.put("sender_id", user.getId());
                     response.put("message", message);
 
                     response.send();
                 });
 
-        ResponseMessage response = new ResponseMessage(session, responseOp, 1);
+        ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
+
+        response.put("status", "success");
+
+        response.send();
+    }
+
+    private void updateMessage(int responseType) {
+        String chatStr = request.getD().get("chat_id").toString();
+        String messageStr = request.getD().get("message_id").toString();
+        String message = request.getD().get("message").toString();
+
+        Long chatId = null;
+
+        try {
+            chatId = Long.parseLong(chatStr);
+        } catch (NumberFormatException e) {
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
+
+            response.put("status", "error");
+            response.put("message", "chat id is not valid");
+
+            response.send();
+            return;
+        }
+
+        Long messageId = null;
+
+        try {
+            messageId = Long.parseLong(messageStr);
+        } catch (NumberFormatException e) {
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
+
+            response.put("status", "error");
+            response.put("message", "message id is not valid");
+
+            response.send();
+            return;
+        }
+
+        Chat chat = chatService.getChatById(chatId);
+        if (chat == null) {
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
+
+            response.put("status", "error");
+            response.put("message", "chat not found");
+
+            response.send();
+            return;
+        }
+
+        chatService.updateChatHistory(chat, messageId, message);
+
+        List<UserDTO> chatUsers = chatService.getChatUsers(chat, user);
+
+        sessions.stream()
+                .filter(s -> s.isOpen() && s.getAttributes().get("user") != null)
+                .filter(s -> {
+                    UserDTO user = (UserDTO) s.getAttributes().get("user");
+                    return chatUsers.stream().anyMatch(u -> u.getId() == user.getId());
+                })
+                .forEach(s -> {
+                    ResponseMessage response = new ResponseMessage(s, responseOp, responseType);
+
+                    response.put("chat_id", chat.getId());
+                    response.put("message_id", user.getId());
+                    response.put("message", message);
+
+                    response.send();
+                });
+
+        ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
+
+        response.put("status", "success");
+
+        response.send();
+    }
+
+    private void deleteMessage(int responseType) {
+        String chatStr = request.getD().get("chat_id").toString();
+        String messageStr = request.getD().get("message_id").toString();
+
+        Long chatId = null;
+
+        try {
+            chatId = Long.parseLong(chatStr);
+        } catch (NumberFormatException e) {
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
+
+            response.put("status", "error");
+            response.put("message", "chat id is not valid");
+
+            response.send();
+            return;
+        }
+
+        Long messageId = null;
+
+        try {
+            messageId = Long.parseLong(messageStr);
+        } catch (NumberFormatException e) {
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
+
+            response.put("status", "error");
+            response.put("message", "message id is not valid");
+
+            response.send();
+            return;
+        }
+
+        Chat chat = chatService.getChatById(chatId);
+        if (chat == null) {
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
+
+            response.put("status", "error");
+            response.put("message", "chat not found");
+
+            response.send();
+            return;
+        }
+
+        chatService.deleteChatHistory(chat, messageId);
+
+        List<UserDTO> chatUsers = chatService.getChatUsers(chat, user);
+
+        sessions.stream()
+                .filter(s -> s.isOpen() && s.getAttributes().get("user") != null)
+                .filter(s -> {
+                    UserDTO user = (UserDTO) s.getAttributes().get("user");
+                    return chatUsers.stream().anyMatch(u -> u.getId() == user.getId());
+                })
+                .forEach(s -> {
+                    ResponseMessage response = new ResponseMessage(s, responseOp, responseType);
+
+                    response.put("chat_id", chat.getId());
+                    response.put("message_id", user.getId());
+
+                    response.send();
+                });
+
+        ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
 
         response.put("status", "success");
 
