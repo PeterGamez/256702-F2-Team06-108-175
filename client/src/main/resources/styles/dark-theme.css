@@ -51,7 +51,7 @@
     -fx-background: #545454;
     -fx-fit-to-width: true;
     -fx-pref-height: 450px;
-    -fx-border-color: #737373;
+    -fx-border-color: #545454;
 }
 
 .friend-label {
@@ -80,7 +80,7 @@
 .nav-bar {
     -fx-background-color: #2d2e30;
     -fx-pref-height: 60px;
-    -fx-border-color: #545454;
+    -fx-border-color: #2d2e30;
 }
 
 .header {
@@ -102,7 +102,7 @@
 
 .chat-scroll-pane {
     -fx-background: #2d2e30;
-    -fx-border-color: transparent;
+    -fx-border-color: #2d2e30;
 }
 
 .sent-message {

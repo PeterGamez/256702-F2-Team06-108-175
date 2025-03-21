@@ -68,7 +68,6 @@ public class ChatScreen implements ScreenInterface {
 
         addReceivedMessage("Who are you?", getCurrentTime());
         addReceivedMessage("My name is Friend 1", getCurrentTime());
-        addSentMessage("Hello, Friend 1", getCurrentTime());
 
         return chatScrollPane;
     }
@@ -84,6 +83,14 @@ public class ChatScreen implements ScreenInterface {
         HBox.setHgrow(messageField, Priority.ALWAYS);
 
         ImageView attachButton = createImageView("images/attach-button.png", 30, 30);
+
+        messageField.setOnAction(e -> {
+            String message = messageField.getText();
+            if (!message.trim().isEmpty()) {
+                addSentMessage(message, getCurrentTime());
+                messageField.clear();
+            }
+        });
 
         messageBox.getChildren().addAll(messageField, attachButton);
         messageBox.setSpacing(20);
