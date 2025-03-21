@@ -1,7 +1,6 @@
 .root {
     -fx-background-color: #2d2e30;
     -fx-text-fill: white;
-
 }
 
 .button {
@@ -82,4 +81,16 @@
     -fx-background-color: #2d2e30;
     -fx-pref-height: 60px;
     -fx-border-color: #545454;
+}
+
+.header {
+    -fx-background-color: #2d2e30;
+    -fx-pref-height: 100px;
+    -fx-fit-to-width: true;
+}
+
+.friend-name-label{
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
 }

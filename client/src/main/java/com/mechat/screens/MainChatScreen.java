@@ -92,7 +92,7 @@ public class MainChatScreen implements ScreenInterface {
 
         VBox friendList = new VBox();
 
-        for (int i = 0; i < 99; i++) {
+        for (int i = 0; i < 20; i++) {
             addChat("", "Friend " + (i + 1));
         }
 
