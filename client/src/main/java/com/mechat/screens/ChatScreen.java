@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,7 +27,7 @@ public class ChatScreen implements ScreenInterface {
 
         VBox root = new VBox();
         root.getStyleClass().add("root");
-        root.getChildren().add(createHeader());
+        root.getChildren().addAll(createHeader(), createChatBox(), createMessageField());
 
         return root;
     }
@@ -52,7 +53,43 @@ public class ChatScreen implements ScreenInterface {
         header.getChildren().addAll(backButton, profile, friendName, spacer, information);
         header.setSpacing(20);
         header.setPadding(new Insets(10, 20, 10, 20));
+
         return header;
+    }
+
+    private Parent createChatBox() {
+        chatBox = new VBox();
+        chatBox.getStyleClass().add("chat-box");
+
+        ScrollPane chatScrollPane = new ScrollPane(chatBox);
+        chatScrollPane.getStyleClass().add("chat-scroll-pane");
+        chatScrollPane.setFitToWidth(true);
+        VBox.setVgrow(chatScrollPane, Priority.ALWAYS);
+
+        addReceivedMessage("Who are you?", getCurrentTime());
+        addReceivedMessage("My name is Friend 1", getCurrentTime());
+        addSentMessage("Hello, Friend 1", getCurrentTime());
+
+        return chatScrollPane;
+    }
+
+    private Parent createMessageField() {
+        HBox messageBox = new HBox();
+        messageBox.getStyleClass().add("message-box");
+        messageBox.setAlignment(Pos.CENTER);
+
+        messageField = new TextField();
+        messageField.setPromptText("Message @Friend 1");
+        messageField.getStyleClass().add("message-field");
+        HBox.setHgrow(messageField, Priority.ALWAYS);
+
+        ImageView attachButton = createImageView("images/attach-button.png", 30, 30);
+
+        messageBox.getChildren().addAll(messageField, attachButton);
+        messageBox.setSpacing(20);
+        messageBox.setPadding(new Insets(10, 20, 10, 20));
+
+        return messageBox;
     }
 
     private void backEvent(MouseEvent e) {
@@ -63,6 +100,7 @@ public class ChatScreen implements ScreenInterface {
         ImageView imageView = new ImageView(new Image(imagePath));
         imageView.setFitWidth(width);
         imageView.setFitHeight(height);
+
         return imageView;
     }
 

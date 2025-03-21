@@ -68,7 +68,7 @@ public class MainChatScreen implements ScreenInterface {
 
         VBox userInfo = new VBox();
         userInfo.getChildren().addAll(userLabel, uidLabel);
-        userInfo.setSpacing(5);
+        userInfo.setSpacing(2);
         userInfo.setAlignment(Pos.CENTER_LEFT);
 
         HBox userBox = new HBox();

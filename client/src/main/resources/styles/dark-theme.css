@@ -89,8 +89,37 @@
     -fx-fit-to-width: true;
 }
 
-.friend-name-label{
+.friend-name-label {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
+}
+
+.chat-box {
+    -fx-background-color: #2d2e30;
+    -fx-padding: 10px;
+}
+
+.chat-scroll-pane {
+    -fx-background: #2d2e30;
+    -fx-border-color: transparent;
+}
+
+.sent-message {
+    -fx-background-color: #44ad53;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-text-fill: white;
+}
+
+.received-message {
+    -fx-background-color: #3A3A3A;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-text-fill: white;
+}
+
+.message-field {
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
 }
