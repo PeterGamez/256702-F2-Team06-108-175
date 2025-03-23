@@ -84,7 +84,7 @@
 }
 
 .header {
-    -fx-background-color: #2d2e30;
+    -fx-background-color: #3A3A3A;
     -fx-pref-height: 100px;
     -fx-fit-to-width: true;
 }
@@ -122,4 +122,41 @@
 .message-field {
     -fx-background-radius: 10px;
     -fx-padding: 10px;
+}
+
+.setting-label {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.setting-header {
+    -fx-background-color: #3A3A3A;
+    -fx-pref-height: 100px;
+    -fx-fit-to-width: true;
+}
+
+
+.tab-box {
+    -fx-background-color: #3A3A3A;
+    -fx-pref-width: 300px;
+}
+
+.tab-button {
+    -fx-background-color: #3A3A3A;
+    -fx-font-size: 24px;
+    -fx-font-weight: normal;
+    -fx-pref-height: 85px;
+    -fx-pref-width: 300px;
+    -fx-text-fill: white;
+}
+
+.setting-content {
+    -fx-background-color: #2d2e30;
+}
+
+.setting-content-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: normal;
+    -fx-text-fill: white;
 }
