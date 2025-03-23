@@ -21,10 +21,11 @@ public class SettingScreen implements ScreenInterface {
 
     private String user = "USER";
     private String uid = "0000000001";
+    private BorderPane root;
 
     @Override
     public Parent createContent() {
-        BorderPane root = new BorderPane();
+        root = new BorderPane();
 
         root.setLeft(createTabBox());
         root.setCenter(createGeneralContent());
@@ -66,12 +67,14 @@ public class SettingScreen implements ScreenInterface {
         VBox buttonsLayout = new VBox();
         Button general = new Button("General");
         general.getStyleClass().add("tab-button");
+        general.setOnAction(e -> root.setCenter(createGeneralContent()));
 
         Button account = new Button("Chat");
         account.getStyleClass().add("tab-button");
 
         Button about = new Button("About");
         about.getStyleClass().add("tab-button");
+        about.setOnAction(e -> root.setCenter(createAboutContent()));
 
         buttonsLayout.getChildren().addAll(general, account, about);
 
@@ -112,6 +115,23 @@ public class SettingScreen implements ScreenInterface {
         showuuid.getChildren().addAll(displayuuid, spacer2, uuid);
 
         content.getChildren().addAll(profile, showUser, showuuid);
+
+        return content;
+    }
+
+    private Parent createAboutContent() {
+        VBox content = new VBox();
+        content.getStyleClass().add("setting-content");
+        content.setPadding(new Insets(80, 20, 20, 20));
+        content.setAlignment(Pos.TOP_CENTER);
+        content.setSpacing(10);
+
+        Label aboutTitle = new Label("Author: Mechat Team");
+        aboutTitle.getStyleClass().add("setting-label");
+
+        Label aboutContent = new Label("หากมีข้อสงสัยหรือข้อเสนอแนะ สามารถติดต่อได้ที่ xxx-xxx-xxxx");
+        aboutContent.getStyleClass().add("setting-about-label");
+        content.getChildren().addAll(aboutTitle, aboutContent);
 
         return content;
     }

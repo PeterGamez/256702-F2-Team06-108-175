@@ -166,3 +166,9 @@
     -fx-font-weight: normal;
     -fx-text-fill: white;
 }
+
+.setting-about-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: normal;
+    -fx-text-fill: white;
+}
