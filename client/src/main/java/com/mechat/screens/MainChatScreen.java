@@ -7,6 +7,7 @@ import com.mechat.interfaces.ScreenInterface;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -107,15 +108,22 @@ public class MainChatScreen implements ScreenInterface {
         return leftBar;
     }
 
+    private Button createImageButton(String imagePath, double width, double height, String styleClass) {
+        Button button = new Button();
+        ImageView imageView = createImageView(imagePath, width, height);
+        button.setGraphic(imageView);
+        button.getStyleClass().add(styleClass);
+        return button;
+    }
+
     public Parent navBar() {
-        ImageView addfriendView = createImageView("/images/add-friend-icon.png", 30, 30);
-        ImageView homeView = createImageView("/images/home-icon.png", 30, 30);
-        ImageView settingView = createImageView("/images/settings-icon.png", 30, 30);
+        Button addFriendButton = createImageButton("/images/add-friend-icon.png", 30, 30, "nav-button");
+        Button homeButton = createImageButton("/images/home-icon.png", 30, 30, "nav-button");
+        Button settingButton = createImageButton("/images/settings-icon.png", 30, 30, "nav-button");
 
         HBox navBar = new HBox();
         navBar.getStyleClass().add("nav-bar");
-        navBar.getChildren().addAll(addfriendView, homeView, settingView);
-        navBar.setSpacing(180);
+        navBar.getChildren().addAll(addFriendButton, homeButton, settingButton);
         navBar.setAlignment(Pos.CENTER);
         HBox.setHgrow(navBar, Priority.ALWAYS);
 

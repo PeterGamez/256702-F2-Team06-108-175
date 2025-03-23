@@ -83,6 +83,13 @@
     -fx-border-color: #2d2e30;
 }
 
+.nav-button{
+    -fx-background-color: #2d2e30;
+    -fx-pref-height: 60px;
+    -fx-pref-width: 200px;
+    -fx-text-fill: white;
+}
+
 .header {
     -fx-background-color: #3A3A3A;
     -fx-pref-height: 100px;
