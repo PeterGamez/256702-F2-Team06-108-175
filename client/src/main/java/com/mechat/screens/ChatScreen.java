@@ -94,7 +94,7 @@ public class ChatScreen implements ScreenInterface {
 
         messageBox.getChildren().addAll(messageField, attachButton);
         messageBox.setSpacing(20);
-        messageBox.setPadding(new Insets(10, 20, 10, 20));
+        messageBox.setPadding(new Insets(10, 20, 20, 20));
 
         return messageBox;
     }

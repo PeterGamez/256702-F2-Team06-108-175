@@ -59,7 +59,7 @@ public class SettingScreen implements ScreenInterface {
         header.getChildren().addAll(backButton, settings);
         header.getStyleClass().add("setting-header");
         header.setAlignment(Pos.CENTER_LEFT);
-        header.setSpacing(50);
+        header.setSpacing(30);
         header.setPadding(new Insets(0, 0, 0, 20));
 
         //Buttons
@@ -83,9 +83,11 @@ public class SettingScreen implements ScreenInterface {
     private Parent createGeneralContent() {
         VBox content = new VBox();
         content.getStyleClass().add("setting-content");
-        content.setPadding(new Insets(20, 60, 20, 60));
-        content.setAlignment(Pos.CENTER);
+        content.setPadding(new Insets(80, 60, 20, 60));
+        content.setAlignment(Pos.TOP_CENTER);
         content.setSpacing(20);
+
+        ImageView profile = createImageView("images/profile-icon.png", 100, 100);
 
         HBox showUser = new HBox();
         showUser.setAlignment(Pos.CENTER);
@@ -93,9 +95,11 @@ public class SettingScreen implements ScreenInterface {
         displayName.getStyleClass().add("setting-content-label");
         Label name = new Label(user);
         name.getStyleClass().add("setting-content-label");
+        ImageView edit = createImageView("images/edit-icon.png", 20, 20);
         Region spacer1 = new Region();
         HBox.setHgrow(spacer1, Priority.ALWAYS);
-        showUser.getChildren().addAll(displayName, spacer1, name);
+        showUser.getChildren().addAll(displayName, spacer1, name, edit);
+        showUser.setSpacing(5);
 
         HBox showuuid = new HBox();
         showuuid.setAlignment(Pos.CENTER);
@@ -107,7 +111,7 @@ public class SettingScreen implements ScreenInterface {
         HBox.setHgrow(spacer2, Priority.ALWAYS);
         showuuid.getChildren().addAll(displayuuid, spacer2, uuid);
 
-        content.getChildren().addAll(showUser, showuuid);
+        content.getChildren().addAll(profile, showUser, showuuid);
 
         return content;
     }
