@@ -2,6 +2,7 @@ package com.mechat.screens;
 
 import java.util.ArrayList;
 
+import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ScreenInterface;
 
 import javafx.geometry.Insets;
@@ -120,6 +121,7 @@ public class MainChatScreen implements ScreenInterface {
         Button addFriendButton = createImageButton("/images/add-friend-icon.png", 30, 30, "nav-button");
         Button homeButton = createImageButton("/images/home-icon.png", 30, 30, "nav-button");
         Button settingButton = createImageButton("/images/settings-icon.png", 30, 30, "nav-button");
+        settingButton.setOnMouseClicked(e -> ScreenHandler.setScreen(new SettingScreen()));
 
         HBox navBar = new HBox();
         navBar.getStyleClass().add("nav-bar");

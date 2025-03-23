@@ -84,6 +84,12 @@
     -fx-border-color: #d9d9d9;
 }
 
+.nav-button{
+    -fx-background-color: #d9d9d9;
+    -fx-pref-height: 60px;
+    -fx-pref-width: 200px;
+}
+
 .header {
     -fx-background-color: white;
     -fx-pref-height: 100px;
