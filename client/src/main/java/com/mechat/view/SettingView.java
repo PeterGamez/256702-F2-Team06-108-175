@@ -50,11 +50,17 @@ public class SettingView implements ScreenInterface {
         general.getStyleClass().add("tab-button");
         general.setOnAction(e -> root.setCenter(createGeneralContent()));
 
+        Button server = new Button("Server");
+        server.getStyleClass().add("tab-button");
+
+        Button logOut = new Button("Log Out");
+        logOut.getStyleClass().add("tab-button");
+
         Button about = new Button("About");
         about.getStyleClass().add("tab-button");
         about.setOnAction(e -> root.setCenter(createAboutContent()));
 
-        buttonsLayout.getChildren().addAll(general, about);
+        buttonsLayout.getChildren().addAll(general, server, about, logOut);
 
         tabBox.getChildren().addAll(header, buttonsLayout);
         tabBox.setAlignment(Pos.TOP_CENTER);
