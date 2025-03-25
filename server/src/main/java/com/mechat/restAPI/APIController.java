@@ -26,4 +26,12 @@ public class APIController {
 
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/v1/connection")
+    public ResponseEntity<?> getConnection() {
+        Map<String, Object> response = new LinkedHashMap<>();
+        response.put("message", "Online");
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
