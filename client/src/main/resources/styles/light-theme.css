@@ -1,52 +1,175 @@
 .root {
     -fx-background-color: white;
     -fx-text-fill: black;
+
 }
 
-.sidebar {
-    -fx-background-color: #d9d9d9;
+.button {
+    -fx-background-color: #44ad53;
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 75px;
     -fx-pref-width: 200px;
-    -fx-text-fill: black;
-    -fx-alignment: center;
+    -fx-text-fill: white;
 }
 
-.user-bar {
-    -fx-background-color: #e6e6e6;
-    -fx-min-height: 100px;
-    -fx-pref-height: 100px;
+.title-label {
+    -fx-font-size: 100px;
+    -fx-font-weight: bold;
     -fx-text-fill: black;
-    -fx-alignment: center;
 }
 
-.chats-bar {
+.misc-label {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.reg-field {
+    -fx-font-size: 20px;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 240px;
+}
+
+.login-field {
+    -fx-font-size: 24px;
+    -fx-pref-height: 80px;
+    -fx-pref-width: 320px;
+}
+
+.left-box {
     -fx-background-color: #d9d9d9;
-    -fx-pref-height: 60px;
-    -fx-text-fill: black;
-    -fx-alignment: center;
+    -fx-pref-width: 300px;
 }
 
-.user-label {
-    -fx-font-size: 16px;
-    -fx-text-fill: black;
-    -fx-alignment: center;
-}
-
-.others-label {
-    -fx-font-size: 14px;
-    -fx-text-fill: black;
-    -fx-alignment: center;
-}
-
-.chat-area {
+.user-box {
     -fx-background-color: white;
-    -fx-pref-width: 400px;
-}
-
-.nav-bar {
-    -fx-background-color: #f2f2f2;
-    -fx-pref-height: 60px;
+    -fx-pref-height: 120px;
+    -fx-pref-width: 300px;
 }
 
 .scroll-pane {
+    -fx-background: #d9d9d9;
     -fx-fit-to-width: true;
+    -fx-pref-height: 450px;
+    -fx-border-color: #d9d9d9;
+}
+
+.friend-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.friend-box {
+    -fx-background-color: #d9d9d9;
+    -fx-pref-height: 80px;
+    -fx-pref-width: 300;
+}
+
+.user-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.uid-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: black;
+}
+
+.nav-bar {
+    -fx-background-color: #d9d9d9;
+    -fx-pref-height: 60px;
+    -fx-border-color: #d9d9d9;
+}
+
+.nav-button{
+    -fx-background-color: #d9d9d9;
+    -fx-pref-height: 60px;
+    -fx-pref-width: 200px;
+}
+
+.header {
+    -fx-background-color: white;
+    -fx-pref-height: 100px;
+    -fx-fit-to-width: true;
+}
+
+.friend-name-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.chat-box {
+    -fx-background-color: white;
+    -fx-padding: 10px;
+}
+
+.chat-scroll-pane {
+    -fx-background: white;
+    -fx-border-color: white;
+}
+
+.sent-message {
+    -fx-background-color: #44ad53;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-text-fill: black;
+}
+
+.received-message {
+    -fx-background-color: #d9d9d9;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-text-fill: black;
+}
+
+.message-field {
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+}
+
+.setting-label {
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.setting-header {
+    -fx-background-color: #d9d9d9;
+    -fx-pref-height: 100px;
+    -fx-fit-to-width: true;
+}
+
+
+.tab-box {
+    -fx-background-color: #d9d9d9;
+    -fx-pref-width: 240px;
+}
+
+.tab-button {
+    -fx-background-color: #d9d9d9;
+    -fx-font-size: 24px;
+    -fx-font-weight: normal;
+    -fx-pref-height: 85px;
+    -fx-pref-width: 240px;
+    -fx-text-fill: white;
+}
+
+.setting-content {
+    -fx-background-color: white;
+}
+
+.setting-content-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: normal;
+    -fx-text-fill: black;
+}
+
+.setting-about-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: normal;
+    -fx-text-fill: black;
 }

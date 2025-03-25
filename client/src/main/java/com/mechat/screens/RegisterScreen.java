@@ -1,5 +1,6 @@
 package com.mechat.screens;
 
+import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ScreenInterface;
 
 import javafx.event.ActionEvent;
@@ -25,7 +26,7 @@ public class RegisterScreen implements ScreenInterface {
 
         Label content = new Label("Register");
         content.setAlignment(Pos.CENTER);
-        content.setStyle("-fx-font-size: 80px; -fx-text-fill: #FFFFFF;");
+        content.getStyleClass().add("title-label");
 
         row1.getChildren().addAll(content);
         row1.setAlignment(Pos.CENTER);
@@ -35,7 +36,7 @@ public class RegisterScreen implements ScreenInterface {
 
         usernameField = new TextField();
         usernameField.setPromptText("Username");
-        usernameField.setStyle("text-field");
+        usernameField.getStyleClass().add("reg-field");
 
         row2.getChildren().add(usernameField);
         row2.setAlignment(Pos.CENTER);
@@ -45,17 +46,16 @@ public class RegisterScreen implements ScreenInterface {
 
         passwordField = new PasswordField();
         passwordField.setPromptText("Password");
-        passwordField.setStyle("text-field");
+        passwordField.getStyleClass().add("reg-field");
 
         row3.getChildren().add(passwordField);
         row3.setAlignment(Pos.CENTER);
 
-        // row 4
         HBox row4 = new HBox();
 
         confirmPasswordField = new PasswordField();
-        confirmPasswordField.setPromptText("Confirm Password");
-        confirmPasswordField.setStyle("text-field");
+        confirmPasswordField.setPromptText("Password");
+        confirmPasswordField.getStyleClass().add("reg-field");
 
         row4.getChildren().add(confirmPasswordField);
         row4.setAlignment(Pos.CENTER);
@@ -63,18 +63,35 @@ public class RegisterScreen implements ScreenInterface {
         // row 5
         HBox row5 = new HBox();
 
-        Button registerButton = new Button("Register");
-        registerButton.getStyleClass().add("button");
-        registerButton.setOnAction(e -> registerEvent(e));
+        Button loginButton = new Button("Sign Up");
+        loginButton.getStyleClass().add("button");
+        loginButton.setOnAction(e -> registerEvent(e));
 
-        row5.getChildren().addAll(registerButton);
+        Button backButton = new Button("Back");
+        backButton.getStyleClass().add("button");
+        backButton.setOnAction(e -> backEvent(e));
+
+        row5.getChildren().addAll(backButton, loginButton);
+        row5.setSpacing(80);
         row5.setAlignment(Pos.CENTER);
 
+       
+
         // horizontal layout
+        VBox textFields = new VBox();
+        
+        textFields.getChildren().addAll(row2, row3, row4);
+        textFields.setSpacing(10);
+
+        VBox titleTextField = new VBox();
+
+        titleTextField.getChildren().addAll(row1, textFields);
+        titleTextField.setSpacing(20);
+
         VBox box = new VBox();
 
-        box.getChildren().addAll(row1, row2, row3, row4, row5);
-        box.setSpacing(30);
+        box.getChildren().addAll(titleTextField, row5);
+        box.setSpacing(40);
         box.setAlignment(Pos.CENTER);
 
         return box;
@@ -84,5 +101,9 @@ public class RegisterScreen implements ScreenInterface {
         String username = usernameField.getText();
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
+    }
+
+    private void backEvent(ActionEvent e) {
+        ScreenHandler.setScreen(new MainScreen());
     }
 }
