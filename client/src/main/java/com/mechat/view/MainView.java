@@ -1,4 +1,4 @@
-package com.mechat.screens;
+package com.mechat.view;
 
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ScreenInterface;
@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class MainScreen implements ScreenInterface {
+public class MainView implements ScreenInterface {
 
     @Override
     public Parent createContent() {
@@ -69,10 +69,10 @@ public class MainScreen implements ScreenInterface {
     }
 
     private void registerEvent(ActionEvent e) {
-        ScreenHandler.setScreen(new RegisterScreen());
+        ScreenHandler.setScreen(new RegisterView());
     }
 
     private void loginEvent(ActionEvent e) {
-        ScreenHandler.setScreen(new LoginScreen());
+        ScreenHandler.setScreen(new LoginView());
     }
 }

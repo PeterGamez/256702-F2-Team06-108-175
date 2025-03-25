@@ -1,17 +1,14 @@
-package com.mechat.screens;
+package com.mechat.view;
 
 import java.util.ArrayList;
 
-import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ScreenInterface;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -19,7 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class MainChatScreen implements ScreenInterface {
+public class MainChatView implements ScreenInterface {
 
     private ArrayList<Pane> chats = new ArrayList<>();
 
@@ -27,16 +24,9 @@ public class MainChatScreen implements ScreenInterface {
     public Parent createContent() {
         BorderPane root = new BorderPane();
         root.setLeft(leftBar());
-        root.setBottom(navBar());
+        root.setBottom(TemplateView.navBar());
         root.setCenter(chatBox());
         return root;
-    }
-
-    private ImageView createImageView(String imagePath, double width, double height) {
-        ImageView imageView = new ImageView(new Image(imagePath));
-        imageView.setFitWidth(width);
-        imageView.setFitHeight(height);
-        return imageView;
     }
 
     public void addChat(String avatar, String title) {
@@ -46,7 +36,7 @@ public class MainChatScreen implements ScreenInterface {
         Label label = new Label(title);
         label.getStyleClass().add("friend-label");
 
-        ImageView profile = createImageView("images/profile-icon.png", 50, 50);
+        ImageView profile = TemplateView.createImageView("/images/profile-icon.png", 50, 50);
 
         HBox chatHeader = new HBox();
         HBox.setMargin(profile, new Insets(0, 0, 0, 20));
@@ -61,7 +51,7 @@ public class MainChatScreen implements ScreenInterface {
     }
 
     public Parent userInfo() {
-        ImageView profile = createImageView("images/profile-icon.png", 80, 80);
+        ImageView profile = TemplateView.createImageView("/images/profile-icon.png", 80, 80);
 
         Label userLabel = new Label("User");
         userLabel.getStyleClass().add("user-label");
@@ -109,32 +99,9 @@ public class MainChatScreen implements ScreenInterface {
         return leftBar;
     }
 
-    private Button createImageButton(String imagePath, double width, double height, String styleClass) {
-        Button button = new Button();
-        ImageView imageView = createImageView(imagePath, width, height);
-        button.setGraphic(imageView);
-        button.getStyleClass().add(styleClass);
-        return button;
-    }
-
-    public Parent navBar() {
-        Button addFriendButton = createImageButton("/images/add-friend-icon.png", 30, 30, "nav-button");
-        Button homeButton = createImageButton("/images/home-icon.png", 30, 30, "nav-button");
-        Button settingButton = createImageButton("/images/settings-icon.png", 30, 30, "nav-button");
-        settingButton.setOnMouseClicked(e -> ScreenHandler.setScreen(new SettingScreen()));
-
-        HBox navBar = new HBox();
-        navBar.getStyleClass().add("nav-bar");
-        navBar.getChildren().addAll(addFriendButton, homeButton, settingButton);
-        navBar.setAlignment(Pos.CENTER);
-        HBox.setHgrow(navBar, Priority.ALWAYS);
-
-        return navBar;
-    }
-
     public Parent chatBox() {
         VBox chatBox = new VBox();
-        ImageView logo = createImageView("images/chat-icon.png", 250, 250);
+        ImageView logo = TemplateView.createImageView("/images/chat-icon.png", 250, 250);
         chatBox.getChildren().add(logo);
         chatBox.setAlignment(Pos.CENTER);
 

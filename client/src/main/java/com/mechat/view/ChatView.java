@@ -1,4 +1,4 @@
-package com.mechat.screens;
+package com.mechat.view;
 
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ScreenInterface;
@@ -6,18 +6,17 @@ import com.mechat.interfaces.ScreenInterface;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-public class ChatScreen implements ScreenInterface {
+public class ChatView implements ScreenInterface {
 
     private VBox chatBox;
     private TextField messageField;
@@ -37,15 +36,15 @@ public class ChatScreen implements ScreenInterface {
         header.getStyleClass().add("header");
         header.setAlignment(Pos.CENTER_LEFT);
 
-        ImageView backButton = createImageView("images/back-button.png", 30, 30);
-        backButton.setOnMouseClicked(e -> backEvent(e));
+        Button backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
+        backButton.setOnAction(e ->  ScreenHandler.setScreen(new MainChatView()));
 
-        ImageView profile = createImageView("images/profile-icon.png", 60, 60);
+        ImageView profile = TemplateView.createImageView("/images/profile-icon.png", 60, 60);
 
         Label friendName = new Label("Friend's Name");
         friendName.getStyleClass().add("friend-name-label");
 
-        ImageView information = createImageView("images/info-button.png", 40, 40);
+        ImageView information = TemplateView.createImageView("/images/info-button.png", 40, 40);
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -82,7 +81,7 @@ public class ChatScreen implements ScreenInterface {
         messageField.getStyleClass().add("message-field");
         HBox.setHgrow(messageField, Priority.ALWAYS);
 
-        ImageView attachButton = createImageView("images/attach-button.png", 30, 30);
+        ImageView attachButton = TemplateView.createImageView("/images/attach-button.png", 30, 30);
 
         messageField.setOnAction(e -> {
             String message = messageField.getText();
@@ -97,18 +96,6 @@ public class ChatScreen implements ScreenInterface {
         messageBox.setPadding(new Insets(10, 20, 20, 20));
 
         return messageBox;
-    }
-
-    private void backEvent(MouseEvent e) {
-        ScreenHandler.setScreen(new MainChatScreen());
-    }
-
-    private ImageView createImageView(String imagePath, double width, double height) {
-        ImageView imageView = new ImageView(new Image(imagePath));
-        imageView.setFitWidth(width);
-        imageView.setFitHeight(height);
-
-        return imageView;
     }
 
     private void addReceivedMessage(String message, String time) {

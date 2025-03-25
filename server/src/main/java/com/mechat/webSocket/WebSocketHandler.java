@@ -1,5 +1,9 @@
 package com.mechat.webSocket;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
@@ -14,10 +18,6 @@ import com.mechat.webSocket.events.ChatEvent;
 import com.mechat.webSocket.events.FriendEvent;
 import com.mechat.webSocket.events.MessageEvent;
 import com.mechat.webSocket.interfaces.EventInterface;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {

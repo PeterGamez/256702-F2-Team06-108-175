@@ -1,12 +1,12 @@
 package com.mechat;
 
 import com.mechat.interfaces.ScreenInterface;
-import com.mechat.screens.ChatScreen;
-import com.mechat.screens.LoginScreen;
-import com.mechat.screens.MainChatScreen;
-import com.mechat.screens.MainScreen;
-import com.mechat.screens.RegisterScreen;
-import com.mechat.screens.SettingScreen;
+import com.mechat.view.ChatView;
+import com.mechat.view.LoginView;
+import com.mechat.view.MainChatView;
+import com.mechat.view.MainView;
+import com.mechat.view.RegisterView;
+import com.mechat.view.SettingView;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -46,22 +46,22 @@ public class ScreenHandler {
             if (event.isAltDown()) {
                 switch (event.getCode()) {
                     case DIGIT1, NUMPAD1:
-                        setScreen(new MainScreen());
+                        setScreen(new MainView());
                         break;
                     case DIGIT2, NUMPAD2:
-                        setScreen(new RegisterScreen());
+                        setScreen(new RegisterView());
                         break;
                     case DIGIT3, NUMPAD3:
-                        setScreen(new LoginScreen());
+                        setScreen(new LoginView());
                         break;
                     case DIGIT4, NUMPAD4:
-                        setScreen(new MainChatScreen());
+                        setScreen(new MainChatView());
                         break;
                     case DIGIT5, NUMPAD5:
-                        setScreen(new ChatScreen());
+                        setScreen(new ChatView());
                         break;
                     case DIGIT6, NUMPAD6:
-                        setScreen(new SettingScreen());
+                        setScreen(new SettingView());
                         break;
                     default:
                         break;
