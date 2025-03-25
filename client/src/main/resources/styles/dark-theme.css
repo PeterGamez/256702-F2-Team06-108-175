@@ -172,3 +172,24 @@
     -fx-font-weight: normal;
     -fx-text-fill: white;
 }
+
+.add-friend-button {
+    -fx-background-color: #44ad53;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 30px;
+    -fx-pref-width: 100px;
+    -fx-text-fill: white;
+}
+
+.friend-name-field{
+    -fx-background-radius: 10px;
+    -fx-font-size: 20px;
+    -fx-pref-height: 50px;
+}
+
+.back-button {
+    -fx-background-color: #3A3A3A;
+    -fx-pref-height: 30px;
+    -fx-pref-width: 30px;
+}
