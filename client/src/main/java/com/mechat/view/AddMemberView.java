@@ -44,8 +44,8 @@ public class AddMemberView implements ScreenInterface {
         friendNameField.getStyleClass().add("friend-name-field");
 
         ImageView imageView = new ImageView("/images/profile-icon.png");
-        imageView.setFitWidth(100);
-        imageView.setFitHeight(100);
+        imageView.setFitWidth(140);
+        imageView.setFitHeight(140);
 
         Button addFriendButton = new Button("Add Friend");
         addFriendButton.getStyleClass().add("add-friend-button");

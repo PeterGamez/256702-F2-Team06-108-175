@@ -83,7 +83,7 @@
     -fx-border-color: #2d2e30;
 }
 
-.nav-button{
+.nav-button {
     -fx-background-color: #2d2e30;
     -fx-pref-height: 60px;
     -fx-pref-width: 200px;
@@ -175,14 +175,14 @@
 
 .add-friend-button {
     -fx-background-color: #44ad53;
-    -fx-font-size: 12px;
+    -fx-font-size: 20px;
     -fx-font-weight: bold;
-    -fx-pref-height: 30px;
-    -fx-pref-width: 100px;
+    -fx-pref-height: 60px;
+    -fx-pref-width: 160px;
     -fx-text-fill: white;
 }
 
-.friend-name-field{
+.friend-name-field {
     -fx-background-radius: 10px;
     -fx-font-size: 20px;
     -fx-pref-height: 50px;
@@ -192,4 +192,16 @@
     -fx-background-color: #2d2e30;
     -fx-pref-height: 30px;
     -fx-pref-width: 30px;
+}
+
+.server-field {
+    -fx-font-size: 20px;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 100px;
+}
+
+.server-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
 }
