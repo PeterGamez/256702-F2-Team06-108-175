@@ -15,6 +15,9 @@ import javafx.scene.layout.VBox;
 
 public class ServerView implements ScreenInterface {
 
+    private String ip;
+    private String port;
+
     @Override
     public Parent createContent() {
         Label header = new Label("Select Server");
@@ -23,8 +26,8 @@ public class ServerView implements ScreenInterface {
         // ListView for Servers
         ListView<HBox> serverListView = new ListView<>();
         serverListView.getItems().addAll(
-                createServerItem("Server 1", true),
-                createServerItem("Server 2", false)
+                createServerItem("Server 1", ip + ":" + port, true),
+                createServerItem("Server 2", ip + ":" + port, false)
         );
 
         // Buttons
@@ -48,21 +51,24 @@ public class ServerView implements ScreenInterface {
         return root;
     }
 
-    // Helper method to create an HBox for a server item
-    private HBox createServerItem(String serverName, boolean isOnline) {
+    private HBox createServerItem(String serverName, String serverInfo, boolean isOnline) {
         Label nameLabel = new Label(serverName);
+
+        Label serverInfoLabel = new Label(serverInfo);
+
         Label statusLabel = new Label(isOnline ? "● Online" : "● Offline");
         statusLabel.setStyle(isOnline ? "-fx-text-fill: green;" : "-fx-text-fill: red;");
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        HBox hbox = new HBox(nameLabel, spacer, statusLabel);
+        HBox hbox = new HBox(nameLabel, serverInfoLabel, spacer, statusLabel);
+        hbox.setSpacing(20);
+        hbox.setPadding(new Insets(0, 10, 0, 10));
         hbox.setAlignment(Pos.CENTER_LEFT);
         return hbox;
     }
 
-    // Helper method to create a button with a specific style class
     private Button createButton(String text) {
         Button button = new Button(text);
         button.getStyleClass().add("server-button");
