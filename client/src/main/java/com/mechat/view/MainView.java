@@ -4,6 +4,7 @@ import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ScreenInterface;
 
 import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -31,7 +32,7 @@ public class MainView implements ScreenInterface {
 
         row1.getChildren().addAll(imageView, content);
         row1.setSpacing(20);
-        row1.setAlignment(Pos.CENTER);
+        row1.setAlignment(Pos.TOP_CENTER);
 
         // row 2
         HBox row2 = new HBox();
@@ -42,28 +43,36 @@ public class MainView implements ScreenInterface {
 
         row2.getChildren().add(title);
         row2.setAlignment(Pos.CENTER);
+        row2.setPadding(new Insets(80, 0, 0, 0));
 
         // row 3
         HBox row3 = new HBox();
 
-        Button leftButton = new Button("Register");
-        leftButton.getStyleClass().add("button");
-        leftButton.setOnAction(e -> registerEvent(e));
+        Button serverButton = new Button("Server");
+        serverButton.getStyleClass().add("button");
+        serverButton.setOnAction(e -> serverEvent(e));
 
-        Button rightButton = new Button("Login");
-        rightButton.getStyleClass().add("button");
-        rightButton.setOnAction(e -> loginEvent(e));
+        Button registerButton = new Button("Register");
+        registerButton.getStyleClass().add("button");
+        registerButton.setOnAction(e -> registerEvent(e));
 
-        row3.getChildren().addAll(leftButton, rightButton);
-        row3.setSpacing(80);
+        Button loginButton = new Button("Login");
+        loginButton.getStyleClass().add("button");
+        loginButton.setOnAction(e -> loginEvent(e));
+
+
+        row3.getChildren().addAll(serverButton, registerButton, loginButton);
+        row3.setSpacing(30);
         row3.setAlignment(Pos.CENTER);
+        row3.setPadding(new Insets(100, 0, 0, 0));
 
         // horizontal layout
         VBox box = new VBox();
 
         box.getChildren().addAll(row1, row2, row3);
-        box.setSpacing(93);
-        box.setAlignment(Pos.CENTER);
+        box.setSpacing(20);
+        box.setAlignment(Pos.TOP_CENTER);
+        box.setPadding(new Insets(60, 0, 0, 0));
 
         return box;
     }
@@ -74,5 +83,9 @@ public class MainView implements ScreenInterface {
 
     private void loginEvent(ActionEvent e) {
         ScreenHandler.setScreen(new LoginView());
+    }
+
+    private void serverEvent(ActionEvent e) {
+        ScreenHandler.setScreen(new ServerView());
     }
 }

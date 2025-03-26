@@ -1,5 +1,6 @@
 package com.mechat.view;
 
+import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ScreenInterface;
 
 import javafx.geometry.Insets;
@@ -26,18 +27,26 @@ public class ServerView implements ScreenInterface {
         // ListView for Servers
         ListView<HBox> serverListView = new ListView<>();
         serverListView.getItems().addAll(
-                createServerItem("Server 1", ip + ":" + port, true),
+                createServerItem("Server 1", ip + ":" + port, false),
                 createServerItem("Server 2", ip + ":" + port, false)
         );
 
         // Buttons
         Button joinButton = createButton("Join");
         Button addServerButton = createButton("Add Server");
+        addServerButton.setOnAction(e -> ScreenHandler.setScreen(new EditServerView()));
         Button deleteButton = createButton("Delete");
+        deleteButton.setOnAction(e -> {
+            int selectedIndex = serverListView.getSelectionModel().getSelectedIndex();
+            if (selectedIndex != -1) {
+                serverListView.getItems().remove(selectedIndex);
+            }
+        });
         Button backButton = createButton("Back");
+        backButton.setOnAction(e -> ScreenHandler.setScreen(new MainView()));
 
         HBox buttonBox = new HBox();
-        buttonBox.getChildren().addAll(joinButton, addServerButton, deleteButton, backButton);
+        buttonBox.getChildren().addAll(backButton, addServerButton, deleteButton, joinButton);
         buttonBox.setSpacing(20);
         buttonBox.setAlignment(Pos.CENTER);
 

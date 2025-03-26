@@ -5,10 +5,10 @@
 
 .button {
     -fx-background-color: #44ad53;
-    -fx-font-size: 26px;
+    -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-pref-height: 75px;
-    -fx-pref-width: 200px;
+    -fx-pref-height: 60px;
+    -fx-pref-width: 180px;
     -fx-text-fill: white;
 }
 

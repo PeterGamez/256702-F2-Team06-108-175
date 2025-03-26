@@ -8,7 +8,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -23,8 +22,8 @@ public class EditServerView implements ScreenInterface {
         title.getStyleClass().add("title-label");
 
         //text fields
-        VBox serverNameBox = createLabeledTextField("Server Name", "Enter Server Name", false);
-        VBox serverAdressBox = createLabeledTextField("Server Adress", "Enter Server Adress", true);
+        VBox serverNameBox = createLabeledTextField("Server Name", "Enter Server Name");
+        VBox serverAdressBox = createLabeledTextField("Server Adress", "Enter Server Adress");
 
         //buttons
         HBox buttonLayout = new HBox();
@@ -52,11 +51,11 @@ public class EditServerView implements ScreenInterface {
         return box;
     }
 
-    private VBox createLabeledTextField(String labelText, String promptText, boolean isPasswordField) {
+    private VBox createLabeledTextField(String labelText, String promptText) {
         VBox box = new VBox();
         Label label = new Label(labelText);
         label.getStyleClass().add("server-label");
-        TextField textField = isPasswordField ? new PasswordField() : new TextField();
+        TextField textField = new TextField();
         textField.setPromptText(promptText);
         textField.getStyleClass().add("server-field");
         box.getChildren().addAll(label, textField);

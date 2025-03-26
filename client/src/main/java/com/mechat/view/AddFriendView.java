@@ -58,5 +58,4 @@ public class AddFriendView implements ScreenInterface {
         return box;
     }
 
-    
 }
