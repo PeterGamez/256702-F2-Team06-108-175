@@ -45,7 +45,12 @@ public class ChatView implements ScreenInterface {
         friendName.getStyleClass().add("friend-name-label");
 
         Button information = TemplateView.createImageButton("/images/info-button.png", 30, 30, "back-button");
-        information.setOnAction(eh -> ScreenHandler.setScreen(new GroupInfoView()));
+        // if(ถ้าเป็นกลุ่ม){
+        //     information.setOnAction(e -> ScreenHandler.setScreen(new GroupInfoView()));
+        // }
+        // else{
+        //     information.setOnAction(e -> ScreenHandler.setScreen(new FriendInfoView()));
+        // }
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
