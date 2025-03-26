@@ -5,10 +5,10 @@
 
 .button {
     -fx-background-color: #44ad53;
-    -fx-font-size: 26px;
+    -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-pref-height: 75px;
-    -fx-pref-width: 200px;
+    -fx-pref-height: 60px;
+    -fx-pref-width: 180px;
     -fx-text-fill: white;
 }
 
@@ -83,14 +83,14 @@
     -fx-border-color: #2d2e30;
 }
 
-.nav-button{
+.nav-button {
     -fx-background-color: #2d2e30;
     -fx-pref-height: 60px;
     -fx-pref-width: 200px;
 }
 
 .header {
-    -fx-background-color: #3A3A3A;
+    -fx-background-color: #2d2e30;
     -fx-pref-height: 100px;
     -fx-fit-to-width: true;
 }
@@ -137,19 +137,19 @@
 }
 
 .setting-header {
-    -fx-background-color: #3A3A3A;
+    -fx-background-color: #2d2e30;
     -fx-pref-height: 100px;
     -fx-fit-to-width: true;
 }
 
 
 .tab-box {
-    -fx-background-color: #3A3A3A;
+    -fx-background-color: #2d2e30;
     -fx-pref-width: 240px;
 }
 
 .tab-button {
-    -fx-background-color: #3A3A3A;
+    -fx-background-color: #2d2e30;
     -fx-font-size: 24px;
     -fx-font-weight: normal;
     -fx-pref-height: 85px;
@@ -170,5 +170,47 @@
 .setting-about-label {
     -fx-font-size: 16px;
     -fx-font-weight: normal;
+    -fx-text-fill: white;
+}
+
+.add-friend-button {
+    -fx-background-color: #44ad53;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 60px;
+    -fx-pref-width: 160px;
+    -fx-text-fill: white;
+}
+
+.friend-name-field {
+    -fx-background-radius: 10px;
+    -fx-font-size: 20px;
+    -fx-pref-height: 50px;
+}
+
+.back-button {
+    -fx-background-color: #2d2e30;
+    -fx-pref-height: 30px;
+    -fx-pref-width: 30px;
+}
+
+.server-field {
+    -fx-font-size: 20px;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 100px;
+}
+
+.server-label {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.server-button{
+    -fx-background-color: #44ad53;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 130px;
     -fx-text-fill: white;
 }

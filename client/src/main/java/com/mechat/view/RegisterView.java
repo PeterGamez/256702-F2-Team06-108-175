@@ -1,4 +1,4 @@
-package com.mechat.screens;
+package com.mechat.view;
 
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ScreenInterface;
@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class RegisterScreen implements ScreenInterface {
+public class RegisterView implements ScreenInterface {
 
     private TextField usernameField;
     private PasswordField passwordField;
@@ -69,7 +69,7 @@ public class RegisterScreen implements ScreenInterface {
 
         Button backButton = new Button("Back");
         backButton.getStyleClass().add("button");
-        backButton.setOnAction(e -> backEvent(e));
+        backButton.setOnAction(e -> backToOriginalMainView(e));
 
         row5.getChildren().addAll(backButton, loginButton);
         row5.setSpacing(80);
@@ -103,7 +103,7 @@ public class RegisterScreen implements ScreenInterface {
         String confirmPassword = confirmPasswordField.getText();
     }
 
-    private void backEvent(ActionEvent e) {
-        ScreenHandler.setScreen(new MainScreen());
+    private void backToOriginalMainView(ActionEvent e) {
+        ScreenHandler.setScreen(new RegorLogView());
     }
 }
