@@ -44,7 +44,7 @@ public class ChatView implements ScreenInterface {
         Label friendName = new Label("Friend's Name");
         friendName.getStyleClass().add("friend-name-label");
 
-        ImageView information = TemplateView.createImageView("/images/info-button.png", 40, 40);
+        ImageView information = TemplateView.createImageView("/images/info-button.png", 30, 30);
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);

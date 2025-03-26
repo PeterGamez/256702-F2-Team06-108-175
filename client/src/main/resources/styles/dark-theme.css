@@ -205,3 +205,12 @@
     -fx-font-weight: bold;
     -fx-text-fill: white;
 }
+
+.server-button{
+    -fx-background-color: #44ad53;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 40px;
+    -fx-pref-width: 130px;
+    -fx-text-fill: white;
+}
