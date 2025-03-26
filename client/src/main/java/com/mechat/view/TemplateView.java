@@ -30,6 +30,8 @@ public class TemplateView {
     public static final Parent navBar() {
         Button addFriendButton = createImageButton("/images/add-friend-icon.png", 30, 30, "nav-button");
         addFriendButton.setOnAction(e -> ScreenHandler.setScreen(new AddFriendView()));
+        Button friendList = createImageButton("/images/view-member-icon.png", 30, 30, "nav-button");
+        friendList.setOnAction(e -> ScreenHandler.setScreen(new FriendListView()));
         Button homeButton = createImageButton("/images/home-icon.png", 30, 30, "nav-button");
         homeButton.setOnAction(e -> ScreenHandler.setScreen(new MainChatView()));
         Button settingButton = createImageButton("/images/settings-icon.png", 30, 30, "nav-button");
@@ -37,7 +39,7 @@ public class TemplateView {
 
         HBox navBar = new HBox();
         navBar.getStyleClass().add("nav-bar");
-        navBar.getChildren().addAll(addFriendButton, homeButton, settingButton);
+        navBar.getChildren().addAll(addFriendButton, friendList, homeButton, settingButton);
         navBar.setAlignment(Pos.CENTER);
         HBox.setHgrow(navBar, Priority.ALWAYS);
 

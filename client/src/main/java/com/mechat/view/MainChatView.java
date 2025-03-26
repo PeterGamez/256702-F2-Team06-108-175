@@ -2,6 +2,7 @@ package com.mechat.view;
 
 import java.util.ArrayList;
 
+import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ScreenInterface;
 
 import javafx.geometry.Insets;
@@ -88,6 +89,11 @@ public class MainChatView implements ScreenInterface {
             addChat("", "Friend " + (i + 1));
         }
 
+        for (Pane chat : chats) {
+            chat.setOnMouseClicked(e -> {
+                ScreenHandler.setScreen(new ChatView());
+            });
+        }
         friendList.getChildren().addAll(chats);
 
         ScrollPane scrollPane = new ScrollPane(friendList);

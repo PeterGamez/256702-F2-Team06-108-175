@@ -1,7 +1,7 @@
 package com.mechat;
 
 import com.mechat.interfaces.ScreenInterface;
-import com.mechat.view.AddMemberView;
+import com.mechat.view.MainView;
 
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
@@ -27,7 +27,7 @@ public class App extends Application {
 
         new ScreenHandler(stage, windowWidth, windowHeight);
 
-        ScreenInterface mainScreen = new AddMemberView();
+        ScreenInterface mainScreen = new MainView();
         ScreenHandler.setScreen(mainScreen);
 
         stage.show();

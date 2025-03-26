@@ -12,7 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class EditServerView implements ScreenInterface {
+public class AddServerView implements ScreenInterface {
 
     @Override
     public Parent createContent() {

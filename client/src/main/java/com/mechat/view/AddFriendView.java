@@ -36,7 +36,7 @@ public class AddFriendView implements ScreenInterface {
 
         //content
         root.setTop(header);
-        root.setCenter(createFriendInfo());
+        root.setCenter(createFriendInfo()); //ถ้าไม่มีข้อมูลจะไม่ขึ้น
         root.setBottom(TemplateView.navBar());
         return root;
     }

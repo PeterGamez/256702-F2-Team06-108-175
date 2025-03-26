@@ -44,7 +44,8 @@ public class ChatView implements ScreenInterface {
         Label friendName = new Label("Friend's Name");
         friendName.getStyleClass().add("friend-name-label");
 
-        ImageView information = TemplateView.createImageView("/images/info-button.png", 30, 30);
+        Button information = TemplateView.createImageButton("/images/info-button.png", 30, 30, "back-button");
+        information.setOnAction(eh -> ScreenHandler.setScreen(new MainChatView()));
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
@@ -65,9 +66,6 @@ public class ChatView implements ScreenInterface {
         chatScrollPane.setFitToWidth(true);
         VBox.setVgrow(chatScrollPane, Priority.ALWAYS);
 
-        addReceivedMessage("Who are you?", getCurrentTime());
-        addReceivedMessage("My name is Friend 1", getCurrentTime());
-
         return chatScrollPane;
     }
 
@@ -81,8 +79,6 @@ public class ChatView implements ScreenInterface {
         messageField.getStyleClass().add("message-field");
         HBox.setHgrow(messageField, Priority.ALWAYS);
 
-        ImageView attachButton = TemplateView.createImageView("/images/attach-button.png", 30, 30);
-
         messageField.setOnAction(e -> {
             String message = messageField.getText();
             if (!message.trim().isEmpty()) {
@@ -91,7 +87,7 @@ public class ChatView implements ScreenInterface {
             }
         });
 
-        messageBox.getChildren().addAll(messageField, attachButton);
+        messageBox.getChildren().addAll(messageField);
         messageBox.setSpacing(20);
         messageBox.setPadding(new Insets(10, 20, 20, 20));
 

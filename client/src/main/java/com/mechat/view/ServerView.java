@@ -3,6 +3,7 @@ package com.mechat.view;
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ScreenInterface;
 
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -16,32 +17,28 @@ import javafx.scene.layout.VBox;
 
 public class ServerView implements ScreenInterface {
 
-    private String ip;
-    private String port;
+    private ListView<HBox> serverListView = new ListView<>();
 
     @Override
     public Parent createContent() {
         Label header = new Label("Select Server");
         header.getStyleClass().add("misc-label");
 
-        // ListView for Servers
-        ListView<HBox> serverListView = new ListView<>();
-        serverListView.getItems().addAll(
-                createServerItem("Server 1", ip + ":" + port, false),
-                createServerItem("Server 2", ip + ":" + port, false)
-        );
+        for (int i = 0; i < 10; i++) {
+            serverListView.getItems().add(
+                    createServerItem("Server " + (i + 1), "ip:port", false)
+            );
+        }
 
         // Buttons
         Button joinButton = createButton("Join");
+        joinButton.setOnAction(e -> ScreenHandler.setScreen(new RegorLogView()));
+
         Button addServerButton = createButton("Add Server");
-        addServerButton.setOnAction(e -> ScreenHandler.setScreen(new EditServerView()));
+        addServerButton.setOnAction(e -> ScreenHandler.setScreen(new AddServerView()));
+
         Button deleteButton = createButton("Delete");
-        deleteButton.setOnAction(e -> {
-            int selectedIndex = serverListView.getSelectionModel().getSelectedIndex();
-            if (selectedIndex != -1) {
-                serverListView.getItems().remove(selectedIndex);
-            }
-        });
+        deleteButton.setOnAction(e -> deleteServer(e));
         Button backButton = createButton("Back");
         backButton.setOnAction(e -> ScreenHandler.setScreen(new MainView()));
 
@@ -82,5 +79,12 @@ public class ServerView implements ScreenInterface {
         Button button = new Button(text);
         button.getStyleClass().add("server-button");
         return button;
+    }
+
+    private void deleteServer(ActionEvent e) {
+        int selectedIndex = serverListView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex != -1) {
+            serverListView.getItems().remove(selectedIndex);
+        }
     }
 }

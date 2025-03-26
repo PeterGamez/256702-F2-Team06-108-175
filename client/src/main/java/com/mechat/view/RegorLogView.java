@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class MainView implements ScreenInterface {
+public class RegorLogView implements ScreenInterface {
 
     @Override
     public Parent createContent() {
@@ -48,21 +48,20 @@ public class MainView implements ScreenInterface {
         // row 3
         HBox row3 = new HBox();
 
-        Button serverButton = new Button("Select Server");
-        serverButton.getStyleClass().add("button");
-        serverButton.setOnAction(e -> serverEvent(e));
+        Button backButton = new Button("Back to Server");
+        backButton.getStyleClass().add("button");
+        backButton.setOnAction(e -> serverEvent(e));
 
-        // Button registerButton = new Button("Register");
-        // registerButton.getStyleClass().add("button");
-        // registerButton.setOnAction(e -> registerEvent(e));
+        Button registerButton = new Button("Register");
+        registerButton.getStyleClass().add("button");
+        registerButton.setOnAction(e -> registerEvent(e));
 
-        // Button loginButton = new Button("Login");
-        // loginButton.getStyleClass().add("button");
-        // loginButton.setOnAction(e -> loginEvent(e));
+        Button loginButton = new Button("Login");
+        loginButton.getStyleClass().add("button");
+        loginButton.setOnAction(e -> loginEvent(e));
 
 
-        // row3.getChildren().addAll(serverButton, registerButton, loginButton);
-        row3.getChildren().addAll(serverButton);
+        row3.getChildren().addAll(backButton, registerButton, loginButton);
         row3.setSpacing(30);
         row3.setAlignment(Pos.CENTER);
         row3.setPadding(new Insets(100, 0, 0, 0));

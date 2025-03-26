@@ -1,5 +1,6 @@
 package com.mechat.view;
 
+import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ScreenInterface;
 
 import javafx.geometry.Insets;
@@ -55,12 +56,15 @@ public class SettingView implements ScreenInterface {
 
         Button logOut = new Button("Log Out");
         logOut.getStyleClass().add("tab-button");
+        logOut.setOnAction(e -> {
+            ScreenHandler.setScreen(new MainView());
+        });
 
         Button about = new Button("About");
         about.getStyleClass().add("tab-button");
         about.setOnAction(e -> root.setCenter(createAboutContent()));
 
-        buttonsLayout.getChildren().addAll(general, server, about, logOut);
+        buttonsLayout.getChildren().addAll(general, about, logOut);
 
         tabBox.getChildren().addAll(header, buttonsLayout);
         tabBox.setAlignment(Pos.TOP_CENTER);

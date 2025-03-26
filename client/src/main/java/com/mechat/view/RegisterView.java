@@ -69,7 +69,7 @@ public class RegisterView implements ScreenInterface {
 
         Button backButton = new Button("Back");
         backButton.getStyleClass().add("button");
-        backButton.setOnAction(e -> backEvent(e));
+        backButton.setOnAction(e -> backToOriginalMainView(e));
 
         row5.getChildren().addAll(backButton, loginButton);
         row5.setSpacing(80);
@@ -103,7 +103,7 @@ public class RegisterView implements ScreenInterface {
         String confirmPassword = confirmPasswordField.getText();
     }
 
-    private void backEvent(ActionEvent e) {
-        ScreenHandler.setScreen(new MainView());
+    private void backToOriginalMainView(ActionEvent e) {
+        ScreenHandler.setScreen(new RegorLogView());
     }
 }
