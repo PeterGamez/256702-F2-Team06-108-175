@@ -24,4 +24,5 @@ public class AddMemberView implements ScreenInterface {
         VBox root = new VBox();
 
         return root;
+    }
 }
