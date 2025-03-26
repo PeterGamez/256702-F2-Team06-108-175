@@ -4,8 +4,8 @@ import com.mechat.interfaces.ScreenInterface;
 import com.mechat.view.AddGroupMemberView;
 import com.mechat.view.AddServerView;
 import com.mechat.view.ChatView;
+import com.mechat.view.FriendInfoView;
 import com.mechat.view.GroupMemberView;
-import com.mechat.view.LoginView;
 import com.mechat.view.MainChatView;
 import com.mechat.view.MainView;
 import com.mechat.view.RegisterView;
@@ -56,7 +56,7 @@ public class ScreenHandler {
                         setScreen(new RegisterView());
                         break;
                     case DIGIT3, NUMPAD3:
-                        setScreen(new LoginView());
+                        setScreen(new FriendInfoView());
                         break;
                     case DIGIT4, NUMPAD4:
                         setScreen(new MainChatView());
