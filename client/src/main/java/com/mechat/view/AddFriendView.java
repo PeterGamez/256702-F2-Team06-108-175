@@ -10,9 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class AddFriendView implements ScreenInterface {
@@ -22,43 +19,43 @@ public class AddFriendView implements ScreenInterface {
         BorderPane root = new BorderPane();
 
         //header
-        HBox header = new HBox();
+        VBox header = new VBox();
         header.getStyleClass().add("header");
-        header.setAlignment(Pos.CENTER_LEFT);
-
+        header.setAlignment(Pos.CENTER);
 
         Label title = new Label("Add Friend");
         title.getStyleClass().add("misc-label");
-
-        StackPane titlePane = new StackPane(title);
-        titlePane.setAlignment(Pos.CENTER);
-        HBox.setHgrow(titlePane, Priority.ALWAYS);
-
-        header.getChildren().add(titlePane);
-
-        //content
-        VBox box = new VBox();
 
         TextField friendNameField = new TextField();
         friendNameField.setPromptText("Enter friend's name");
         friendNameField.getStyleClass().add("friend-name-field");
 
+        header.getChildren().addAll(title, friendNameField);
+        header.setSpacing(20);
+        header.setPadding(new Insets(20, 80, 0, 80));
+
+        //content
+        root.setTop(header);
+        root.setCenter(createFriendInfo());
+        root.setBottom(TemplateView.navBar());
+        return root;
+    }
+
+    public Parent createFriendInfo() {
+        VBox box = new VBox();
+
         ImageView imageView = new ImageView("/images/profile-icon.png");
-        imageView.setFitWidth(140);
-        imageView.setFitHeight(140);
+        imageView.setFitWidth(120);
+        imageView.setFitHeight(120);
 
         Button addFriendButton = new Button("Add Friend");
         addFriendButton.getStyleClass().add("add-friend-button");
 
-        box.getChildren().addAll(friendNameField, imageView, addFriendButton);
+        box.getChildren().addAll(imageView, addFriendButton);
         box.setAlignment(Pos.TOP_CENTER);
-        box.setPadding(new Insets(40, 60, 0, 60));
-        box.setSpacing(30);
-
-        root.setTop(header);
-        root.setCenter(box);
-        root.setBottom(TemplateView.navBar());
-        return root;
+        box.setPadding(new Insets(100, 0, 0, 0));
+        box.setSpacing(50);
+        return box;
     }
 
     
