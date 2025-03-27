@@ -2,7 +2,9 @@ package com.mechat.view;
 
 import java.util.ArrayList;
 
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
+import com.mechat.utils.NavbarView;
+import com.mechat.utils.TemplateView;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,9 +18,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class FriendListView implements ScreenInterface {
+public class FriendListView extends NavbarView implements ViewInterface {
 
-    private ArrayList<Pane> friends = new ArrayList<>();
+    private final ArrayList<Pane> friends = new ArrayList<>();
 
     @Override
     public Parent createContent() {
@@ -44,11 +46,12 @@ public class FriendListView implements ScreenInterface {
 
         VBox box = new VBox(title, scrollPane);
         box.setAlignment(Pos.TOP_CENTER);
-        box.setPadding(new Insets(20,100,70,100));
+        box.setPadding(new Insets(20, 100, 70, 100));
         box.setSpacing(30);
-        
+
         root.setCenter(box);
-        root.setBottom(TemplateView.navBar());
+        root.setBottom(super.setNavbar());
+
         return root;
     }
 
@@ -65,11 +68,12 @@ public class FriendListView implements ScreenInterface {
         chatHeader.getChildren().addAll(profile, label);
         chatHeader.setSpacing(20);
         chatHeader.setAlignment(Pos.CENTER_LEFT);
-        chatHeader.setPadding(new Insets(0,0,0,10));
+        chatHeader.setPadding(new Insets(0, 0, 0, 10));
 
         list.getChildren().add(chatHeader);
         list.getStyleClass().add("friend-box");
 
         friends.add(list);
     }
+
 }

@@ -2,7 +2,8 @@ package com.mechat.view;
 
 import java.util.ArrayList;
 
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
+import com.mechat.utils.TemplateView;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,7 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class GroupMemberView implements ScreenInterface {
+public class GroupMemberView implements ViewInterface {
 
     private ArrayList<Pane> friends = new ArrayList<>();
 

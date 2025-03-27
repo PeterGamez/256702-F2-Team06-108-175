@@ -1,32 +1,28 @@
 package com.mechat.view;
 
-import java.util.ArrayList;
-
-import com.mechat.ScreenHandler;
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
+import com.mechat.utils.TemplateView;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class GroupInfoView implements ScreenInterface {
+public class GroupInfoView implements ViewInterface {
 
-    private ArrayList<Pane> friends = new ArrayList<>();
-    private ArrayList<CheckBox> checkBoxes = new ArrayList<>();
+    private Button backButton;
 
     @Override
     public Parent createContent() {
         //header
         HBox header = new HBox();
-        Button backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
-        backButton.setOnAction(e -> ScreenHandler.setScreen(new ChatView()));
+        backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
+        
+        
         header.getChildren().add(backButton);
         header.setAlignment(Pos.CENTER_LEFT);
 
@@ -54,4 +50,7 @@ public class GroupInfoView implements ScreenInterface {
         return box;
     }
 
+    public Button getBackButton() {
+        return backButton;
+    }
 }

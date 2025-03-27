@@ -1,7 +1,6 @@
 package com.mechat;
 
-import com.mechat.interfaces.ScreenInterface;
-import com.mechat.view.MainView;
+import com.mechat.controller.MainController;
 
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
@@ -20,16 +19,14 @@ public class App extends Application {
         double screenWidth = screenBounds.getWidth();
         double screenHeight = screenBounds.getHeight();
 
-        double windowWidth = screenWidth * 0.4;
-        double windowHeight = screenHeight * 0.6;
+        double windowWidth = screenWidth * 0.5;
+        double windowHeight = screenHeight * 0.7;
 
         stage.setTitle("MeChat");
 
         new ScreenHandler(stage, windowWidth, windowHeight);
+        new MakeCache();
 
-        ScreenInterface mainScreen = new MainView();
-        ScreenHandler.setScreen(mainScreen);
-
-        stage.show();
+        MakeCache.getController(MainController.class).load();
     }
 }

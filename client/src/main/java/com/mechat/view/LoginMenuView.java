@@ -1,9 +1,7 @@
 package com.mechat.view;
 
-import com.mechat.ScreenHandler;
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
 
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -14,7 +12,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class RegorLogView implements ScreenInterface {
+public class LoginMenuView implements ViewInterface {
+
+    private Button backButton;
+    private Button registerButton;
+    private Button loginButton;
+
+    public LoginMenuView() {
+        backButton = createButton("Back to Server");
+        registerButton = createButton("Register");
+        loginButton = createButton("Login");
+    }
 
     @Override
     public Parent createContent() {
@@ -48,19 +56,6 @@ public class RegorLogView implements ScreenInterface {
         // row 3
         HBox row3 = new HBox();
 
-        Button backButton = new Button("Back to Server");
-        backButton.getStyleClass().add("button");
-        backButton.setOnAction(e -> serverEvent(e));
-
-        Button registerButton = new Button("Register");
-        registerButton.getStyleClass().add("button");
-        registerButton.setOnAction(e -> registerEvent(e));
-
-        Button loginButton = new Button("Login");
-        loginButton.getStyleClass().add("button");
-        loginButton.setOnAction(e -> loginEvent(e));
-
-
         row3.getChildren().addAll(backButton, registerButton, loginButton);
         row3.setSpacing(30);
         row3.setAlignment(Pos.CENTER);
@@ -77,15 +72,21 @@ public class RegorLogView implements ScreenInterface {
         return box;
     }
 
-    private void registerEvent(ActionEvent e) {
-        ScreenHandler.setScreen(new RegisterView());
+    private Button createButton(String text) {
+        Button button = new Button(text);
+        button.getStyleClass().add("button");
+        return button;
     }
 
-    private void loginEvent(ActionEvent e) {
-        ScreenHandler.setScreen(new LoginView());
+    public Button getBackButton() {
+        return backButton;
     }
 
-    private void serverEvent(ActionEvent e) {
-        ScreenHandler.setScreen(new ServerView());
+    public Button getRegisterButton() {
+        return registerButton;
+    }
+
+    public Button getLoginButton() {
+        return loginButton;
     }
 }

@@ -1,9 +1,7 @@
-package com.mechat.view;
+package com.mechat.utils;
 
-import com.mechat.ScreenHandler;
-
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -11,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 
 public class TemplateView {
 
@@ -29,26 +28,22 @@ public class TemplateView {
         return button;
     }
 
-    public static final Parent navBar() {
+    public static final HBox navBar() {
         Button addFriendButton = createImageButton("/images/add-friend-icon.png", 30, 30, "nav-button");
-        addFriendButton.setOnAction(e -> ScreenHandler.setScreen(new AddFriendView()));
-        Button friendList = createImageButton("/images/view-member-icon.png", 30, 30, "nav-button");
-        friendList.setOnAction(e -> ScreenHandler.setScreen(new FriendListView()));
+        Button friendListButton = createImageButton("/images/view-member-icon.png", 30, 30, "nav-button");
         Button homeButton = createImageButton("/images/home-icon.png", 30, 30, "nav-button");
-        homeButton.setOnAction(e -> ScreenHandler.setScreen(new MainChatView()));
         Button settingButton = createImageButton("/images/settings-icon.png", 30, 30, "nav-button");
-        settingButton.setOnAction(e -> ScreenHandler.setScreen(new SettingView()));
 
         HBox navBar = new HBox();
         navBar.getStyleClass().add("nav-bar");
-        navBar.getChildren().addAll(addFriendButton, friendList, homeButton, settingButton);
+        navBar.getChildren().addAll(addFriendButton, friendListButton, homeButton, settingButton);
         navBar.setAlignment(Pos.CENTER);
         HBox.setHgrow(navBar, Priority.ALWAYS);
 
         return navBar;
     }
 
-    public static VBox createButtonLayout(String imagePath, String labelText) {
+    public static final VBox createButtonLayout(String imagePath, String labelText) {
         VBox buttonLayout = new VBox();
         Button button = TemplateView.createImageButton(imagePath, 40, 40, "nav-button");
         Label label = new Label(labelText);
@@ -56,5 +51,23 @@ public class TemplateView {
         buttonLayout.getChildren().addAll(button, label);
         buttonLayout.setAlignment(Pos.CENTER);
         return buttonLayout;
+    }
+
+    public static final Button createButton(String text, String styleClass) {
+        Button button = new Button(text);
+        button.getStyleClass().add(styleClass);
+        return button;
+    }
+
+    public static final Circle createCircle(ImageView imageView) {
+        return new Circle(imageView.getFitWidth(), imageView.getFitHeight(), 60);
+    }
+
+    public static final void bindImage(ImageView imageView, StringProperty imagePath) {
+        imagePath.addListener((obs, oldImagePath, newImagePath) -> {
+            if (newImagePath != null && !newImagePath.isEmpty()) {
+                imageView.setImage(new Image(newImagePath));
+            }
+        });
     }
 }

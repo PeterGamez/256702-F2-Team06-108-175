@@ -1,7 +1,7 @@
 package com.mechat.view;
 
 import com.mechat.ScreenHandler;
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
@@ -14,7 +14,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class MainView implements ScreenInterface {
+public class MainView implements ViewInterface {
+
+    private Button serverButton;
+
+    public MainView() {
+        serverButton = new Button();
+    }
 
     @Override
     public Parent createContent() {
@@ -48,9 +54,8 @@ public class MainView implements ScreenInterface {
         // row 3
         HBox row3 = new HBox();
 
-        Button serverButton = new Button("Select Server");
+        serverButton.setText("Select Server");
         serverButton.getStyleClass().add("button");
-        serverButton.setOnAction(e -> serverEvent(e));
 
         // Button registerButton = new Button("Register");
         // registerButton.getStyleClass().add("button");
@@ -60,9 +65,8 @@ public class MainView implements ScreenInterface {
         // loginButton.getStyleClass().add("button");
         // loginButton.setOnAction(e -> loginEvent(e));
 
-
         // row3.getChildren().addAll(serverButton, registerButton, loginButton);
-        row3.getChildren().addAll(serverButton);
+        row3.getChildren().add(serverButton);
         row3.setSpacing(30);
         row3.setAlignment(Pos.CENTER);
         row3.setPadding(new Insets(100, 0, 0, 0));
@@ -78,15 +82,7 @@ public class MainView implements ScreenInterface {
         return box;
     }
 
-    private void registerEvent(ActionEvent e) {
-        ScreenHandler.setScreen(new RegisterView());
-    }
-
-    private void loginEvent(ActionEvent e) {
-        ScreenHandler.setScreen(new LoginView());
-    }
-
-    private void serverEvent(ActionEvent e) {
-        ScreenHandler.setScreen(new ServerView());
+    public Button getServerButton() {
+        return serverButton;
     }
 }

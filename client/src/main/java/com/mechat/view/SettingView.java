@@ -1,8 +1,10 @@
 package com.mechat.view;
 
-import com.mechat.ScreenHandler;
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
+import com.mechat.utils.TemplateView;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -15,11 +17,29 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-public class SettingView implements ScreenInterface {
+public class SettingView implements ViewInterface {
 
-    private String user = "USER";
-    private String uid = "0000000001";
+    private Button generalButton;
+    private Button aboutButton;
+    private Button logOutButton;
+
+    private ImageView editButton;
+
+    private StringProperty userProperty;
+    private StringProperty uuidProperty;
+
     private BorderPane root;
+
+    public SettingView() {
+        generalButton = new Button();
+        aboutButton = new Button();
+        logOutButton = new Button();
+
+        editButton = TemplateView.createImageView("/images/edit-icon.png", 20, 20);
+
+        userProperty = new SimpleStringProperty();
+        uuidProperty = new SimpleStringProperty();
+    }
 
     @Override
     public Parent createContent() {
@@ -47,24 +67,16 @@ public class SettingView implements ScreenInterface {
 
         //Buttons
         VBox buttonsLayout = new VBox();
-        Button general = new Button("General");
-        general.getStyleClass().add("tab-button");
-        general.setOnAction(e -> root.setCenter(createGeneralContent()));
+        generalButton.setText("General");
+        generalButton.getStyleClass().add("tab-button");
 
-        Button server = new Button("Server");
-        server.getStyleClass().add("tab-button");
+        logOutButton.setText("Log Out");
+        logOutButton.getStyleClass().add("tab-button");
 
-        Button logOut = new Button("Log Out");
-        logOut.getStyleClass().add("tab-button");
-        logOut.setOnAction(e -> {
-            ScreenHandler.setScreen(new MainView());
-        });
+        aboutButton.setText("About");
+        aboutButton.getStyleClass().add("tab-button");
 
-        Button about = new Button("About");
-        about.getStyleClass().add("tab-button");
-        about.setOnAction(e -> root.setCenter(createAboutContent()));
-
-        buttonsLayout.getChildren().addAll(general, about, logOut);
+        buttonsLayout.getChildren().addAll(generalButton, aboutButton, logOutButton);
 
         tabBox.getChildren().addAll(header, buttonsLayout);
         tabBox.setAlignment(Pos.TOP_CENTER);
@@ -85,20 +97,22 @@ public class SettingView implements ScreenInterface {
         showUser.setAlignment(Pos.CENTER);
         Label displayName = new Label("Display Name");
         displayName.getStyleClass().add("setting-content-label");
-        Label name = new Label(user);
+        Label name = new Label();
         name.getStyleClass().add("setting-content-label");
-        ImageView edit = TemplateView.createImageView("/images/edit-icon.png", 20, 20);
+        name.textProperty().bind(userProperty);
+
         Region spacer1 = new Region();
         HBox.setHgrow(spacer1, Priority.ALWAYS);
-        showUser.getChildren().addAll(displayName, spacer1, name, edit);
+        showUser.getChildren().addAll(displayName, spacer1, name, editButton);
         showUser.setSpacing(5);
 
         HBox showuuid = new HBox();
         showuuid.setAlignment(Pos.CENTER);
         Label displayuuid = new Label("UUID");
         displayuuid.getStyleClass().add("setting-content-label");
-        Label uuid = new Label(uid);
+        Label uuid = new Label();
         uuid.getStyleClass().add("setting-content-label");
+        uuid.textProperty().bind(uuidProperty);
         Region spacer2 = new Region();
         HBox.setHgrow(spacer2, Priority.ALWAYS);
         showuuid.getChildren().addAll(displayuuid, spacer2, uuid);
@@ -108,7 +122,7 @@ public class SettingView implements ScreenInterface {
         return content;
     }
 
-    private Parent createAboutContent() {
+    public Parent createAboutContent() {
         VBox content = new VBox();
         content.getStyleClass().add("setting-content");
         content.setPadding(new Insets(80, 20, 20, 20));
@@ -123,5 +137,17 @@ public class SettingView implements ScreenInterface {
         content.getChildren().addAll(aboutTitle, aboutContent);
 
         return content;
+    }
+
+    public Button getGeneralButton() {
+        return generalButton;
+    }
+
+    public Button getAboutButton() {
+        return aboutButton;
+    }
+
+    public Button getLogOutButton() {
+        return logOutButton;
     }
 }
