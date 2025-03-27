@@ -1,9 +1,9 @@
 package com.mechat.view;
 
-import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ViewInterface;
 
-import javafx.event.ActionEvent;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -15,9 +15,21 @@ import javafx.scene.layout.VBox;
 
 public class RegisterView implements ViewInterface {
 
-    private TextField usernameField;
-    private PasswordField passwordField;
-    private PasswordField confirmPasswordField;
+    private StringProperty usernameProperty;
+    private StringProperty passwordProperty;
+    private StringProperty confirmPasswordProperty;
+
+    Button registerButton;
+    Button backButton;
+
+    public RegisterView() {
+        usernameProperty = new SimpleStringProperty();
+        passwordProperty = new SimpleStringProperty();
+        confirmPasswordProperty = new SimpleStringProperty();
+
+        registerButton = new Button();
+        backButton = new Button();
+    }
 
     @Override
     public Parent createContent() {
@@ -34,9 +46,10 @@ public class RegisterView implements ViewInterface {
         // row 2
         HBox row2 = new HBox();
 
-        usernameField = new TextField();
+        TextField usernameField = new TextField();
         usernameField.setPromptText("Username");
         usernameField.getStyleClass().add("reg-field");
+        usernameField.textProperty().bindBidirectional(usernameProperty);
 
         row2.getChildren().add(usernameField);
         row2.setAlignment(Pos.CENTER);
@@ -44,18 +57,20 @@ public class RegisterView implements ViewInterface {
         // row 3
         HBox row3 = new HBox();
 
-        passwordField = new PasswordField();
+        PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Password");
         passwordField.getStyleClass().add("reg-field");
+        passwordField.textProperty().bindBidirectional(passwordProperty);
 
         row3.getChildren().add(passwordField);
         row3.setAlignment(Pos.CENTER);
 
         HBox row4 = new HBox();
 
-        confirmPasswordField = new PasswordField();
+        PasswordField confirmPasswordField = new PasswordField();
         confirmPasswordField.setPromptText("Password");
         confirmPasswordField.getStyleClass().add("reg-field");
+        confirmPasswordField.textProperty().bindBidirectional(confirmPasswordProperty);
 
         row4.getChildren().add(confirmPasswordField);
         row4.setAlignment(Pos.CENTER);
@@ -63,23 +78,19 @@ public class RegisterView implements ViewInterface {
         // row 5
         HBox row5 = new HBox();
 
-        Button loginButton = new Button("Sign Up");
-        loginButton.getStyleClass().add("button");
-        loginButton.setOnAction(e -> registerEvent(e));
+        registerButton.setText("Sign Up");
+        registerButton.getStyleClass().add("button");
 
-        Button backButton = new Button("Back");
+        backButton.setText("Back");
         backButton.getStyleClass().add("button");
-        backButton.setOnAction(e -> backToOriginalMainView(e));
 
-        row5.getChildren().addAll(backButton, loginButton);
+        row5.getChildren().addAll(backButton, registerButton);
         row5.setSpacing(80);
         row5.setAlignment(Pos.CENTER);
 
-       
-
         // horizontal layout
         VBox textFields = new VBox();
-        
+
         textFields.getChildren().addAll(row2, row3, row4);
         textFields.setSpacing(10);
 
@@ -97,13 +108,23 @@ public class RegisterView implements ViewInterface {
         return box;
     }
 
-    private void registerEvent(ActionEvent e) {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
-        String confirmPassword = confirmPasswordField.getText();
+    public Button getBackButton() {
+        return backButton;
     }
 
-    private void backToOriginalMainView(ActionEvent e) {
-        ScreenHandler.setScreen(new LoginMenuView());
+    public Button getRegisterButton() {
+        return registerButton;
+    }
+
+    public StringProperty getUsernameProperty() {
+        return usernameProperty;
+    }
+
+    public StringProperty getPasswordProperty() {
+        return passwordProperty;
+    }
+
+    public StringProperty getConfirmPasswordProperty() {
+        return confirmPasswordProperty;
     }
 }

@@ -12,13 +12,13 @@ import com.mechat.view.ServerView;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
 
-public class ServerConntroller implements ControllerInterface {
+public class ServerController implements ControllerInterface {
 
-    ServerView serverView = new ServerView();
-    ServerModel serverModel = new ServerModel();
-    ArrayList<Map<String, Object>> serverList;
+    private ServerView serverView = new ServerView();
+    private ServerModel serverModel  = new ServerModel();
+    private ArrayList<Map<String, Object>> serverList;
 
-    public ServerConntroller() {
+    public ServerController() {
         serverView.getJoinButton().setOnAction(this::joinEvent);
         serverView.getAddServerButton().setOnAction(this::addServerEvent);
         serverView.getDeleteButton().setOnAction(this::deleteEvent);
@@ -54,7 +54,7 @@ public class ServerConntroller implements ControllerInterface {
 
         MakeCache.setServer(selectedServer);
 
-        MakeCache.getController(LoginMenuConntroller.class).load();
+        MakeCache.getController(LoginMenuController.class).load();
     }
 
     private void addServerEvent(ActionEvent e) {

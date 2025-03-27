@@ -21,6 +21,6 @@ public class MainController implements ControllerInterface {
     }
 
     private void serverEvent(ActionEvent e) {
-        MakeCache.getController(ServerConntroller.class).load();
+        MakeCache.getController(ServerController.class).load();
     }
 }

@@ -1,23 +1,24 @@
 package com.mechat.controller;
 
+import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
 import com.mechat.view.FriendInfoView;
 
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 
-public class FriendInfoConntroller implements ControllerInterface {
+public class FriendInfoController implements ControllerInterface {
 
-    FriendInfoView friendInfoView = new FriendInfoView();
+    private FriendInfoView friendInfoView = new FriendInfoView();
 
-    public FriendInfoConntroller() {
+    public FriendInfoController() {
         friendInfoView.getBackButton().setOnAction(this::backEvent);
         friendInfoView.geteditNameButtonLayout().setOnMouseClicked(this::editNameEvent);
     }
 
     @Override
     public void load() {
-
+        ScreenHandler.setScreen(friendInfoView);
     }
 
     public void backEvent(ActionEvent e) {

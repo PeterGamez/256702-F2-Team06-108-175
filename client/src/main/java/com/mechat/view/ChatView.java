@@ -1,6 +1,7 @@
 package com.mechat.view;
 
 import com.mechat.interfaces.ViewInterface;
+import com.mechat.utils.TemplateView;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

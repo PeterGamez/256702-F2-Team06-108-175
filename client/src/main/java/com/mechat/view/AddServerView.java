@@ -2,6 +2,7 @@ package com.mechat.view;
 
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ViewInterface;
+import com.mechat.utils.TemplateView;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

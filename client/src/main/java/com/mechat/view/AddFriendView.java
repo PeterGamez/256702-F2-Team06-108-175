@@ -1,7 +1,11 @@
 package com.mechat.view;
 
 import com.mechat.interfaces.ViewInterface;
+import com.mechat.utils.NavbarView;
+import com.mechat.utils.TemplateView;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -12,9 +16,21 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-public class AddFriendView implements ViewInterface {
+public class AddFriendView extends NavbarView implements ViewInterface {
+
+    private StringProperty searchedFriendName;
+    private StringProperty imagePath;
+    private StringProperty showFriendName;
 
     private Button addFriendButton;
+
+    public AddFriendView() {
+        searchedFriendName = new SimpleStringProperty();
+        imagePath = new SimpleStringProperty();
+        showFriendName = new SimpleStringProperty();
+
+        addFriendButton = new Button();
+    }
 
     @Override
     public Parent createContent() {
@@ -31,6 +47,7 @@ public class AddFriendView implements ViewInterface {
         TextField friendNameField = new TextField();
         friendNameField.setPromptText("Enter friend's name");
         friendNameField.getStyleClass().add("friend-name-field");
+        friendNameField.textProperty().bindBidirectional(searchedFriendName);
 
         header.getChildren().addAll(title, friendNameField);
         header.setSpacing(20);
@@ -39,18 +56,24 @@ public class AddFriendView implements ViewInterface {
         //content
         root.setTop(header);
         root.setCenter(createFriendInfo()); //ถ้าไม่มีข้อมูลจะไม่ขึ้น
-        root.setBottom(TemplateView.navBar());
+        root.setBottom(super.setNavbar());
         return root;
     }
 
     public Parent createFriendInfo() {
         VBox box = new VBox();
 
-        ImageView imageView = new ImageView("/images/profile-icon.png");
+        ImageView imageView = new ImageView();
         imageView.setFitWidth(120);
         imageView.setFitHeight(120);
+        imageView.setClip(TemplateView.createCircle(imageView));
 
-        addFriendButton = TemplateView.createButton("Add Friend", "add-friend-button");
+        TemplateView.bindImage(imageView, imagePath);
+        Label friendName = new Label(showFriendName.get());
+        friendName.getStyleClass().add("friend-name-label");
+
+        addFriendButton.setText("Add Friend");
+        addFriendButton.getStyleClass().add("add-friend-button");
 
         box.getChildren().addAll(imageView, addFriendButton);
         box.setAlignment(Pos.TOP_CENTER);
@@ -59,7 +82,20 @@ public class AddFriendView implements ViewInterface {
         return box;
     }
 
+    public StringProperty getSearchedFriendName() {
+        return searchedFriendName;
+    }
+
+    public StringProperty getImagePath() {
+        return imagePath;
+    }
+
+    public StringProperty getShowFriendName() {
+        return showFriendName;
+    }
+
     public Button getAddFriendButton() {
         return addFriendButton;
     }
+
 }

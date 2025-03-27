@@ -3,6 +3,8 @@ package com.mechat.view;
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ViewInterface;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -15,8 +17,19 @@ import javafx.scene.layout.VBox;
 
 public class LoginView implements ViewInterface {
 
-    private TextField usernameField;
-    private PasswordField passwordField;
+    private StringProperty usernameProperty;
+    private StringProperty passwordProperty;
+
+    Button loginButton;
+    Button backButton;
+
+    public LoginView() {
+        usernameProperty = new SimpleStringProperty();
+        passwordProperty = new SimpleStringProperty();
+
+        loginButton = new Button();
+        backButton = new Button();
+    }
 
     @Override
     public Parent createContent() {
@@ -33,7 +46,7 @@ public class LoginView implements ViewInterface {
         // row 2
         HBox row2 = new HBox();
 
-        usernameField = new TextField();
+        TextField usernameField = new TextField();
         usernameField.setPromptText("Username");
         usernameField.getStyleClass().add("login-field");
 
@@ -43,7 +56,7 @@ public class LoginView implements ViewInterface {
         // row 3
         HBox row3 = new HBox();
 
-        passwordField = new PasswordField();
+        PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Password");
         passwordField.getStyleClass().add("login-field");
 
@@ -53,13 +66,11 @@ public class LoginView implements ViewInterface {
         // row 4
         HBox row4 = new HBox();
 
-        Button loginButton = new Button("Sign In");
+        loginButton.setText("Sign In");
         loginButton.getStyleClass().add("button");
-        loginButton.setOnAction(e -> loginEvent(e));
 
-        Button backButton = new Button("Back");
+        backButton.setText("Back");
         backButton.getStyleClass().add("button");
-        backButton.setOnAction(e -> backToOriginalMainView(e));
 
         row4.getChildren().addAll(backButton, loginButton);
         row4.setSpacing(80);
@@ -85,12 +96,19 @@ public class LoginView implements ViewInterface {
         return box;
     }
 
-    private void loginEvent(ActionEvent e) {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+    public Button getLoginButton() {
+        return loginButton;
     }
 
-    private void backToOriginalMainView(ActionEvent e) {
-        ScreenHandler.setScreen(new LoginMenuView());
+    public Button getBackButton() {
+        return backButton;
+    }
+
+    public StringProperty getUsernameProperty() {
+        return usernameProperty;
+    }
+
+    public StringProperty getPasswordProperty() {
+        return passwordProperty;
     }
 }

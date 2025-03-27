@@ -7,11 +7,11 @@ import com.mechat.view.LoginMenuView;
 
 import javafx.event.ActionEvent;
 
-public class LoginMenuConntroller implements ControllerInterface {
+public class LoginMenuController implements ControllerInterface {
 
     private LoginMenuView loginMenuView = new LoginMenuView();
 
-    public LoginMenuConntroller() {
+    public LoginMenuController() {
         loginMenuView.getBackButton().setOnAction(this::backEvent);
         loginMenuView.getRegisterButton().setOnAction(this::registerEvent);
         loginMenuView.getLoginButton().setOnAction(this::loginEvent);
@@ -23,7 +23,7 @@ public class LoginMenuConntroller implements ControllerInterface {
     }
 
     private void backEvent(ActionEvent e) {
-        MakeCache.getController(ServerConntroller.class).load();
+        MakeCache.getController(ServerController.class).load();
     }
 
     private void registerEvent(ActionEvent e) {

@@ -1,10 +1,9 @@
 package com.mechat.view;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import com.mechat.interfaces.ViewInterface;
+import com.mechat.utils.TemplateView;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -23,8 +22,7 @@ import javafx.scene.layout.VBox;
 
 public class AddGroupMemberView implements ViewInterface {
 
-    private ArrayList<Pane> friends = new ArrayList<>();
-    private ArrayList<CheckBox> checkBoxes = new ArrayList<>();
+    private final ArrayList<Pane> friends = new ArrayList<>();
     private Button addGroupMemberButton;
     private Button backButton;
 
@@ -47,10 +45,6 @@ public class AddGroupMemberView implements ViewInterface {
         //content
         VBox friendList = new VBox();
 
-        for (int i = 0; i < 20; i++) {
-            addChat("", "Friend " + (i + 1));
-        }
-
         friendList.getChildren().addAll(friends);
 
         ScrollPane scrollPane = new ScrollPane(friendList);
@@ -58,17 +52,6 @@ public class AddGroupMemberView implements ViewInterface {
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
 
         addGroupMemberButton = TemplateView.createButton("Add Member", "add-friend-button");
-
-        addGroupMemberButton.setOnAction(event -> {
-            List<String> selectedFriends = checkBoxes.stream()
-                    .filter(CheckBox::isSelected)
-                    .map(cb -> ((Label) ((HBox) cb.getParent()).getChildren().get(1)).getText())
-                    .collect(Collectors.toList());
-
-            // Handle the selected friends (e.g., add them to the chat)
-            // Navigate back to ChatView
-            navigateToChatView(selectedFriends);
-        });
 
         VBox box = new VBox(scrollPane, addGroupMemberButton);
         box.setAlignment(Pos.TOP_CENTER);
@@ -105,10 +88,6 @@ public class AddGroupMemberView implements ViewInterface {
         list.getStyleClass().add("friend-box");
 
         friends.add(list);
-    }
-
-    private void navigateToChatView(List<String> selectedFriends) {
-        // Navigate to ChatView
     }
 
     public Button getAddGroupMemberButton() {

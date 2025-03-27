@@ -2,12 +2,13 @@ package com.mechat.view;
 
 import java.util.ArrayList;
 
-import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ViewInterface;
+import com.mechat.utils.TemplateView;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -19,14 +20,28 @@ import javafx.scene.layout.VBox;
 
 public class MainChatView implements ViewInterface {
 
+    private Button addFriendButton;
+    private Button friendListButton;
+    private Button homeButton;
+    private Button settingButton;
+
     private ArrayList<Pane> chats = new ArrayList<>();
 
     @Override
     public Parent createContent() {
         BorderPane root = new BorderPane();
         root.setLeft(leftBar());
-        root.setBottom(TemplateView.navBar());
         root.setCenter(chatBox());
+
+        HBox navBar = TemplateView.navBar();
+
+        addFriendButton = (Button) navBar.getChildren().get(0);
+        friendListButton = (Button) navBar.getChildren().get(1);
+        homeButton = (Button) navBar.getChildren().get(2);
+        settingButton = (Button) navBar.getChildren().get(3);
+
+        root.setBottom(navBar);
+
         return root;
     }
 
@@ -51,7 +66,7 @@ public class MainChatView implements ViewInterface {
         chats.add(chat);
     }
 
-    public Parent userInfo() {
+    private Parent userInfo() {
         ImageView profile = TemplateView.createImageView("/images/profile-icon.png", 80, 80);
 
         Label userLabel = new Label("User");
@@ -73,7 +88,7 @@ public class MainChatView implements ViewInterface {
         return userBox;
     }
 
-    public Parent leftBar() {
+    private Parent leftBar() {
         VBox leftBar = new VBox();
         leftBar.getStyleClass().add("left-box");
 
@@ -85,15 +100,6 @@ public class MainChatView implements ViewInterface {
 
         VBox friendList = new VBox();
 
-        for (int i = 0; i < 20; i++) {
-            addChat("", "Friend " + (i + 1));
-        }
-
-        for (Pane chat : chats) {
-            chat.setOnMouseClicked(e -> {
-                ScreenHandler.setScreen(new ChatView());
-            });
-        }
         friendList.getChildren().addAll(chats);
 
         ScrollPane scrollPane = new ScrollPane(friendList);
@@ -105,12 +111,32 @@ public class MainChatView implements ViewInterface {
         return leftBar;
     }
 
-    public Parent chatBox() {
+    private Parent chatBox() {
         VBox chatBox = new VBox();
         ImageView logo = TemplateView.createImageView("/images/chat-icon.png", 250, 250);
         chatBox.getChildren().add(logo);
         chatBox.setAlignment(Pos.CENTER);
 
         return chatBox;
+    }
+
+    public Button getAddFriendButton() {
+        return addFriendButton;
+    }
+
+    public Button getFriendListButton() {
+        return friendListButton;
+    }
+
+    public Button getHomeButton() {
+        return homeButton;
+    }
+
+    public Button getSettingButton() {
+        return settingButton;
+    }
+
+    public ArrayList<Pane> getChats() {
+        return chats;
     }
 }
