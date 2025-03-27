@@ -1,13 +1,13 @@
 package com.mechat;
 
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.controller.MainController;
+import com.mechat.interfaces.ViewInterface;
 import com.mechat.view.AddGroupMemberView;
 import com.mechat.view.AddServerView;
 import com.mechat.view.ChatView;
 import com.mechat.view.FriendInfoView;
 import com.mechat.view.GroupMemberView;
 import com.mechat.view.MainChatView;
-import com.mechat.view.MainView;
 import com.mechat.view.RegisterView;
 import com.mechat.view.ServerView;
 import com.mechat.view.SettingView;
@@ -29,7 +29,7 @@ public class ScreenHandler {
         ScreenHandler.screenHandler = getClass();
     }
 
-    public static void setScreen(ScreenInterface screen) {
+    public static void setScreen(ViewInterface screen) {
         Scene scene = new Scene(screen.createContent(), windowWidth, windowHeight);
 
         String userTheme = WindowsSettings.getWindowsTheme();
@@ -41,6 +41,11 @@ public class ScreenHandler {
         }
 
         stage.setScene(scene);
+        stage.centerOnScreen();
+
+        if (!stage.isShowing()) {
+            stage.show();
+        }
 
         debug(scene);
     }
@@ -50,7 +55,7 @@ public class ScreenHandler {
             if (event.isAltDown()) {
                 switch (event.getCode()) {
                     case DIGIT1, NUMPAD1:
-                        setScreen(new MainView());
+                        MakeCache.getController(MainController.class).load();
                         break;
                     case DIGIT2, NUMPAD2:
                         setScreen(new RegisterView());

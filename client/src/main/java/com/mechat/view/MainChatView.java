@@ -3,7 +3,7 @@ package com.mechat.view;
 import java.util.ArrayList;
 
 import com.mechat.ScreenHandler;
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -17,7 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class MainChatView implements ScreenInterface {
+public class MainChatView implements ViewInterface {
 
     private ArrayList<Pane> chats = new ArrayList<>();
 

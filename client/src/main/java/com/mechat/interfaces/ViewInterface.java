@@ -2,7 +2,7 @@ package com.mechat.interfaces;
 
 import javafx.scene.Parent;
 
-public interface ScreenInterface {
+public interface ViewInterface {
 
     public Parent createContent();
 }

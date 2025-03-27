@@ -1,9 +1,7 @@
 package com.mechat.view;
 
-import com.mechat.ScreenHandler;
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
 
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -15,32 +13,25 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-public class ServerView implements ScreenInterface {
+public class ServerView implements ViewInterface {
 
+    private Button joinButton;
+    private Button addServerButton;
+    private Button deleteButton;
+    private Button backButton;
     private ListView<HBox> serverListView = new ListView<>();
+
+    public ServerView() {
+        joinButton = TemplateView.createButton("Join", "button");
+        addServerButton = TemplateView.createButton("Add Server", "button");
+        deleteButton = TemplateView.createButton("Delete", "button");
+        backButton = TemplateView.createButton("Back", "button");
+    }
 
     @Override
     public Parent createContent() {
         Label header = new Label("Select Server");
         header.getStyleClass().add("misc-label");
-
-        for (int i = 0; i < 10; i++) {
-            serverListView.getItems().add(
-                    createServerItem("Server " + (i + 1), "ip:port", false)
-            );
-        }
-
-        // Buttons
-        Button joinButton = createButton("Join");
-        joinButton.setOnAction(e -> ScreenHandler.setScreen(new RegorLogView()));
-
-        Button addServerButton = createButton("Add Server");
-        addServerButton.setOnAction(e -> ScreenHandler.setScreen(new AddServerView()));
-
-        Button deleteButton = createButton("Delete");
-        deleteButton.setOnAction(e -> deleteServer(e));
-        Button backButton = createButton("Back");
-        backButton.setOnAction(e -> ScreenHandler.setScreen(new MainView()));
 
         HBox buttonBox = new HBox();
         buttonBox.getChildren().addAll(backButton, addServerButton, deleteButton, joinButton);
@@ -57,7 +48,7 @@ public class ServerView implements ScreenInterface {
         return root;
     }
 
-    private HBox createServerItem(String serverName, String serverInfo, boolean isOnline) {
+    public HBox createServerItem(String serverName, String serverInfo, boolean isOnline) {
         Label nameLabel = new Label(serverName);
 
         Label serverInfoLabel = new Label(serverInfo);
@@ -75,16 +66,23 @@ public class ServerView implements ScreenInterface {
         return hbox;
     }
 
-    private Button createButton(String text) {
-        Button button = new Button(text);
-        button.getStyleClass().add("server-button");
-        return button;
+    public Button getJoinButton() {
+        return joinButton;
     }
 
-    private void deleteServer(ActionEvent e) {
-        int selectedIndex = serverListView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex != -1) {
-            serverListView.getItems().remove(selectedIndex);
-        }
+    public Button getAddServerButton() {
+        return addServerButton;
+    }
+
+    public Button getDeleteButton() {
+        return deleteButton;
+    }
+
+    public Button getBackButton() {
+        return backButton;
+    }
+
+    public ListView<HBox> getServerListView() {
+        return serverListView;
     }
 }

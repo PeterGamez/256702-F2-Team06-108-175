@@ -1,7 +1,7 @@
 package com.mechat.view;
 
 import com.mechat.ScreenHandler;
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,7 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class AddServerView implements ScreenInterface {
+public class AddServerView implements ViewInterface {
+
+    private Button doneButton;
+    private Button cancelButton;
 
     @Override
     public Parent createContent() {
@@ -28,11 +31,8 @@ public class AddServerView implements ScreenInterface {
         //buttons
         HBox buttonLayout = new HBox();
 
-        Button doneButton = new Button("Done");
-        doneButton.getStyleClass().add("button");
-
-        Button cancelButton = new Button("Back");
-        cancelButton.getStyleClass().add("button");
+        doneButton = TemplateView.createButton("Done", "button");
+        cancelButton = TemplateView.createButton("Cancel", "button");
         cancelButton.setOnAction(e -> {
             ScreenHandler.setScreen(new ServerView());
         });
@@ -63,5 +63,13 @@ public class AddServerView implements ScreenInterface {
         box.setSpacing(10);
         box.setPadding(new Insets(0, 100, 0, 100));
         return box;
+    }
+
+    public Button getDoneButton() {
+        return doneButton;
+    }
+
+    public Button getCancelButton() {
+        return cancelButton;
     }
 }

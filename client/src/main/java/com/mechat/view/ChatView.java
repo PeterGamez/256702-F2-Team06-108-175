@@ -1,7 +1,7 @@
 package com.mechat.view;
 
 import com.mechat.ScreenHandler;
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,7 +16,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-public class ChatView implements ScreenInterface {
+public class ChatView implements ViewInterface {
 
     private VBox chatBox;
     private TextField messageField;

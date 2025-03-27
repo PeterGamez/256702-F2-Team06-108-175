@@ -1,6 +1,6 @@
 package com.mechat.view;
 
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,7 +12,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-public class AddFriendView implements ScreenInterface {
+public class AddFriendView implements ViewInterface {
+
+    private Button addFriendButton;
 
     @Override
     public Parent createContent() {
@@ -48,8 +50,7 @@ public class AddFriendView implements ScreenInterface {
         imageView.setFitWidth(120);
         imageView.setFitHeight(120);
 
-        Button addFriendButton = new Button("Add Friend");
-        addFriendButton.getStyleClass().add("add-friend-button");
+        addFriendButton = TemplateView.createButton("Add Friend", "add-friend-button");
 
         box.getChildren().addAll(imageView, addFriendButton);
         box.setAlignment(Pos.TOP_CENTER);
@@ -58,4 +59,7 @@ public class AddFriendView implements ScreenInterface {
         return box;
     }
 
+    public Button getAddFriendButton() {
+        return addFriendButton;
+    }
 }

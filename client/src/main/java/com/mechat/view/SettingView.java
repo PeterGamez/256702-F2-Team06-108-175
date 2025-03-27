@@ -1,7 +1,7 @@
 package com.mechat.view;
 
 import com.mechat.ScreenHandler;
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,7 +15,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-public class SettingView implements ScreenInterface {
+public class SettingView implements ViewInterface {
 
     private String user = "USER";
     private String uid = "0000000001";

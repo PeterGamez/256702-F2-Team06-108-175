@@ -57,4 +57,10 @@ public class TemplateView {
         buttonLayout.setAlignment(Pos.CENTER);
         return buttonLayout;
     }
+
+    public static Button createButton(String text, String styleClass) {
+        Button button = new Button(text);
+        button.getStyleClass().add(styleClass);
+        return button;
+    }
 }

@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.mechat.ScreenHandler;
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -22,17 +21,19 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-public class AddGroupMemberView implements ScreenInterface {
+public class AddGroupMemberView implements ViewInterface {
 
     private ArrayList<Pane> friends = new ArrayList<>();
     private ArrayList<CheckBox> checkBoxes = new ArrayList<>();
+    private Button addGroupMemberButton;
+    private Button backButton;
 
     @Override
     public Parent createContent() {
         BorderPane root = new BorderPane();
 
         //header
-        Button backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
+        backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
 
         Label title = new Label("Add Member");
         title.setAlignment(Pos.CENTER);
@@ -56,10 +57,9 @@ public class AddGroupMemberView implements ScreenInterface {
         scrollPane.getStyleClass().add("scroll-pane");
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
 
-        Button addFriendButton = new Button("Add Member");
-        addFriendButton.getStyleClass().add("add-friend-button");
+        addGroupMemberButton = TemplateView.createButton("Add Member", "add-friend-button");
 
-        addFriendButton.setOnAction(event -> {
+        addGroupMemberButton.setOnAction(event -> {
             List<String> selectedFriends = checkBoxes.stream()
                     .filter(CheckBox::isSelected)
                     .map(cb -> ((Label) ((HBox) cb.getParent()).getChildren().get(1)).getText())
@@ -70,7 +70,7 @@ public class AddGroupMemberView implements ScreenInterface {
             navigateToChatView(selectedFriends);
         });
 
-        VBox box = new VBox(scrollPane, addFriendButton);
+        VBox box = new VBox(scrollPane, addGroupMemberButton);
         box.setAlignment(Pos.TOP_CENTER);
         box.setPadding(new Insets(20, 100, 70, 100));
         box.setSpacing(30);
@@ -108,7 +108,14 @@ public class AddGroupMemberView implements ScreenInterface {
     }
 
     private void navigateToChatView(List<String> selectedFriends) {
-        // Implement the logic to navigate back to ChatView
-        // and pass the selected friends if necessary
+        // Navigate to ChatView
+    }
+
+    public Button getAddGroupMemberButton() {
+        return addGroupMemberButton;
+    }
+
+    public Button getBackButton() {
+        return backButton;
     }
 }

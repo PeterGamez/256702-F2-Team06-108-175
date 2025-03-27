@@ -1,7 +1,7 @@
 package com.mechat.view;
 
 import com.mechat.ScreenHandler;
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class RegisterView implements ScreenInterface {
+public class RegisterView implements ViewInterface {
 
     private TextField usernameField;
     private PasswordField passwordField;
@@ -104,6 +104,6 @@ public class RegisterView implements ScreenInterface {
     }
 
     private void backToOriginalMainView(ActionEvent e) {
-        ScreenHandler.setScreen(new RegorLogView());
+        ScreenHandler.setScreen(new LoginMenuView());
     }
 }

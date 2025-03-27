@@ -3,7 +3,7 @@ package com.mechat.view;
 import java.util.ArrayList;
 
 import com.mechat.ScreenHandler;
-import com.mechat.interfaces.ScreenInterface;
+import com.mechat.interfaces.ViewInterface;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,7 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class FriendInfoView implements ScreenInterface {
+public class FriendInfoView implements ViewInterface {
 
     private ArrayList<Pane> friends = new ArrayList<>();
     private ArrayList<CheckBox> checkBoxes = new ArrayList<>();
