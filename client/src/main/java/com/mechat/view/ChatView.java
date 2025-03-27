@@ -1,6 +1,5 @@
 package com.mechat.view;
 
-import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ViewInterface;
 
 import javafx.geometry.Insets;
@@ -20,6 +19,8 @@ public class ChatView implements ViewInterface {
 
     private VBox chatBox;
     private TextField messageField;
+    private Button informationButton;
+    private Button backButton;
 
     @Override
     public Parent createContent() {
@@ -36,15 +37,14 @@ public class ChatView implements ViewInterface {
         header.getStyleClass().add("header");
         header.setAlignment(Pos.CENTER_LEFT);
 
-        Button backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
-        backButton.setOnAction(e ->  ScreenHandler.setScreen(new MainChatView()));
+        backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
 
         ImageView profile = TemplateView.createImageView("/images/profile-icon.png", 60, 60);
 
         Label friendName = new Label("Friend's Name");
         friendName.getStyleClass().add("friend-name-label");
 
-        Button information = TemplateView.createImageButton("/images/info-button.png", 30, 30, "back-button");
+        informationButton = TemplateView.createImageButton("/images/info-button.png", 30, 30, "back-button");
         // if(ถ้าเป็นกลุ่ม){
         //     information.setOnAction(e -> ScreenHandler.setScreen(new GroupInfoView()));
         // }
@@ -55,7 +55,7 @@ public class ChatView implements ViewInterface {
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        header.getChildren().addAll(backButton, profile, friendName, spacer, information);
+        header.getChildren().addAll(backButton, profile, friendName, spacer, informationButton);
         header.setSpacing(20);
         header.setPadding(new Insets(10, 20, 20, 20));
 
@@ -133,5 +133,13 @@ public class ChatView implements ViewInterface {
 
     private String getCurrentTime() {
         return java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
+    }
+
+    public Button getInformationButton() {
+        return informationButton;
+    }
+
+    public Button getBackButton() {
+        return backButton;
     }
 }
