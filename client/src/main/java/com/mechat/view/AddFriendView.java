@@ -21,6 +21,7 @@ public class AddFriendView extends NavbarView implements ViewInterface {
     private StringProperty searchedFriendName;
     private StringProperty imagePath;
     private StringProperty showFriendName;
+    private StringProperty showErrorProperty;
 
     private Button addFriendButton;
 
@@ -30,6 +31,7 @@ public class AddFriendView extends NavbarView implements ViewInterface {
         showFriendName = new SimpleStringProperty();
 
         addFriendButton = new Button();
+        addFriendButton.setVisible(false);
     }
 
     @Override
@@ -44,12 +46,23 @@ public class AddFriendView extends NavbarView implements ViewInterface {
         Label title = new Label("Add Friend");
         title.getStyleClass().add("misc-label");
 
+        //Error
+        HBox errorBox = new HBox();
+
+        Label error = new Label("");
+        error.textProperty().bindBidirectional(showErrorProperty);
+        error.getStyleClass().add("error-label");
+
+        errorBox.getChildren().add(error);
+        errorBox.setAlignment(Pos.CENTER);
+
+        //Search friend
         TextField friendNameField = new TextField();
         friendNameField.setPromptText("Enter friend's name");
         friendNameField.getStyleClass().add("friend-name-field");
         friendNameField.textProperty().bindBidirectional(searchedFriendName);
 
-        header.getChildren().addAll(title, friendNameField);
+        header.getChildren().addAll(title, errorBox, friendNameField);
         header.setSpacing(20);
         header.setPadding(new Insets(20, 80, 0, 80));
 
@@ -98,4 +111,7 @@ public class AddFriendView extends NavbarView implements ViewInterface {
         return addFriendButton;
     }
 
+    public StringProperty getShowErrorProperty() {
+        return showErrorProperty;
+    }
 }

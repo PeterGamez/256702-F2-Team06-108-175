@@ -18,6 +18,7 @@ public class AddServerView implements ViewInterface {
 
     private StringProperty serverNameProperty;
     private StringProperty serverAddressProperty;
+    private StringProperty showErrorProperty;
 
     private Button doneButton;
     private Button cancelButton;
@@ -25,6 +26,7 @@ public class AddServerView implements ViewInterface {
     public AddServerView() {
         serverNameProperty = new SimpleStringProperty();
         serverAddressProperty = new SimpleStringProperty();
+        showErrorProperty = new SimpleStringProperty();
 
         doneButton = TemplateView.createButton("Done", "button");
         cancelButton = TemplateView.createButton("Cancel", "button");
@@ -36,6 +38,16 @@ public class AddServerView implements ViewInterface {
         Label title = new Label("Server Info");
         title.setAlignment(Pos.CENTER);
         title.getStyleClass().add("title-label");
+
+        // error label
+        HBox errorBox = new HBox();
+
+        Label error = new Label("");
+        error.textProperty().bindBidirectional(showErrorProperty);
+        error.getStyleClass().add("error-label");
+
+        errorBox.getChildren().add(error);
+        errorBox.setAlignment(Pos.CENTER);
 
         // text fields
         VBox serverNameBox = createLabeledTextField("Server Name", "Enter Server Name", serverNameProperty);
@@ -51,7 +63,7 @@ public class AddServerView implements ViewInterface {
 
         // main layout
         VBox box = new VBox();
-        box.getChildren().addAll(title, serverNameBox, serverAdressBox, buttonLayout);
+        box.getChildren().addAll(title, errorBox, serverNameBox, serverAdressBox, buttonLayout);
         box.setAlignment(Pos.TOP_CENTER);
         box.setSpacing(20);
         box.setPadding(new Insets(40, 0, 0, 0));
@@ -90,5 +102,9 @@ public class AddServerView implements ViewInterface {
 
     public Button getCancelButton() {
         return cancelButton;
+    }
+
+    public StringProperty getShowErrorProperty() {
+        return showErrorProperty;
     }
 }

@@ -18,6 +18,7 @@ public class RegisterView implements ViewInterface {
     private StringProperty usernameProperty;
     private StringProperty passwordProperty;
     private StringProperty confirmPasswordProperty;
+    private StringProperty showErrorProperty;
 
     Button registerButton;
     Button backButton;
@@ -26,6 +27,7 @@ public class RegisterView implements ViewInterface {
         usernameProperty = new SimpleStringProperty();
         passwordProperty = new SimpleStringProperty();
         confirmPasswordProperty = new SimpleStringProperty();
+        showErrorProperty = new SimpleStringProperty();
 
         registerButton = new Button();
         backButton = new Button();
@@ -42,6 +44,16 @@ public class RegisterView implements ViewInterface {
 
         row1.getChildren().addAll(content);
         row1.setAlignment(Pos.CENTER);
+
+        //Error
+        HBox errorBox = new HBox();
+
+        Label error = new Label("");
+        error.textProperty().bindBidirectional(showErrorProperty);
+        error.getStyleClass().add("error-label");
+
+        errorBox.getChildren().add(error);
+        errorBox.setAlignment(Pos.CENTER);
 
         // row 2
         HBox row2 = new HBox();
@@ -91,7 +103,7 @@ public class RegisterView implements ViewInterface {
         // horizontal layout
         VBox textFields = new VBox();
 
-        textFields.getChildren().addAll(row2, row3, row4);
+        textFields.getChildren().addAll(errorBox, row2, row3, row4);
         textFields.setSpacing(10);
 
         VBox titleTextField = new VBox();
@@ -126,5 +138,9 @@ public class RegisterView implements ViewInterface {
 
     public StringProperty getConfirmPasswordProperty() {
         return confirmPasswordProperty;
+    }
+
+    public StringProperty getShowErrorProperty() {
+        return showErrorProperty;
     }
 }

@@ -36,6 +36,7 @@ public class LoginController implements ControllerInterface {
         loginView.getPasswordProperty().set(null);
 
         if (username == null || password == null) {
+            loginView.getShowErrorProperty().set("Please fill all fields");
             return;
         }
 
@@ -52,20 +53,24 @@ public class LoginController implements ControllerInterface {
             });
 
             if (respond.get("status").toString().equals("success") == false) {
+                loginView.getShowErrorProperty().set(respond.get("message").toString());
                 return;
             }
 
             String accessToken = String.valueOf(respond.get("accessToken"));
             if (accessToken == null) {
+                loginView.getShowErrorProperty().set("Server error");
                 return;
             }
 
             MakeCache.setAuthToken(accessToken);
 
         } catch (Exception ex) {
+            loginView.getShowErrorProperty().set("Server error");
             return;
         }
 
+        loginView.getShowErrorProperty().set(null);
         loginView.getUsernameProperty().set(null);
 
         MakeCache.getController(MainChatController.class).load();

@@ -38,10 +38,12 @@ public class RegisterController implements ControllerInterface {
         registerView.getConfirmPasswordProperty().set(null);
 
         if (username == null || password == null || confirmPassword == null) {
+            registerView.getShowErrorProperty().set("Please fill all fields");
             return;
         }
 
-        if (!password.equals(confirmPassword)) {
+        if (password.equals(confirmPassword) == false) {
+            registerView.getShowErrorProperty().set("Password and confirm password must be the same");
             return;
         }
 
@@ -58,17 +60,16 @@ public class RegisterController implements ControllerInterface {
             });
 
             if (respond.get("status").toString().equals("success") == false) {
+                registerView.getShowErrorProperty().set(respond.get("message").toString());
                 return;
             }
 
-            String token = String.valueOf(respond.get("token"));
-
-            MakeCache.setAuthToken(token);
-
         } catch (Exception ex) {
+            registerView.getShowErrorProperty().set("Server error");
             return;
         }
 
+        registerView.getShowErrorProperty().set(null);
         registerView.getUsernameProperty().set(null);
 
         MakeCache.getController(LoginController.class).load();
