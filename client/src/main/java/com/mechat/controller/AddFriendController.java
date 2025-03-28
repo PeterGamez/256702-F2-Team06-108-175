@@ -16,20 +16,17 @@ public class AddFriendController extends NavbarController implements ControllerI
         addFriendView.getHomeNavbarButton().setOnAction(this::homeNavbarEvent);
         addFriendView.getSettingNavbarButton().setOnAction(this::settingNavbarEvent);
 
-        // Add listener to the searchedFriendName property
         addFriendView.getSearchedFriendName().addListener((obs, oldVal, newVal) -> {
             if (newVal == null || newVal.trim().isEmpty()) {
-                // Clear fields and show error message
                 addFriendView.getImagePath().set("");
                 addFriendView.getShowFriendName().set("");
                 addFriendView.getShowErrorProperty().set("Invalid friend name");
-                addFriendView.getAddFriendButton().setVisible(false); // Hide button
+                addFriendView.getAddFriendButton().setVisible(false);
             } else {
-                // Set valid friend details
                 addFriendView.getImagePath().set("/images/default-profile.png");
                 addFriendView.getShowFriendName().set(newVal);
-                addFriendView.getShowErrorProperty().set(""); // Clear error message
-                addFriendView.getAddFriendButton().setVisible(true); // Show button
+                addFriendView.getShowErrorProperty().set("");
+                addFriendView.getAddFriendButton().setVisible(true);
             }
         });
     }

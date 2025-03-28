@@ -27,15 +27,13 @@ public class AddFriendView extends NavbarView implements ViewInterface {
     private Button addFriendButton;
 
     public AddFriendView() {
-        // Initialize properties
         searchedFriendName = new SimpleStringProperty();
         imagePath = new SimpleStringProperty();
         showFriendName = new SimpleStringProperty();
         showErrorProperty = new SimpleStringProperty();
 
-        // Initialize button
         addFriendButton = new Button();
-        addFriendButton.setVisible(false); // Initially hidden
+        addFriendButton.setVisible(false);
     }
 
     @Override
@@ -52,9 +50,11 @@ public class AddFriendView extends NavbarView implements ViewInterface {
 
         // Error message
         HBox errorBox = new HBox();
+
         Label error = new Label("");
-        error.textProperty().bindBidirectional(showErrorProperty); // Bind error property
+        error.textProperty().bindBidirectional(showErrorProperty);
         error.getStyleClass().add("error-label");
+
         errorBox.getChildren().add(error);
         errorBox.setAlignment(Pos.CENTER);
 
@@ -85,7 +85,7 @@ public class AddFriendView extends NavbarView implements ViewInterface {
 
         TemplateView.bindImage(imageView, imagePath);
         Label friendName = new Label();
-        friendName.textProperty().bind(showFriendName); // Bind friend name property
+        friendName.textProperty().bind(showFriendName);
         friendName.getStyleClass().add("friend-name-label");
 
         addFriendButton.setText("Add Friend");
