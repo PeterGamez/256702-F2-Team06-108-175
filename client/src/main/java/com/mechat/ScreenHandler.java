@@ -84,6 +84,10 @@ public class ScreenHandler {
                     case DIGIT0, NUMPAD0:
                         setScreen(new AddGroupMemberView());
                         break;
+                    case D:
+                        System.out.println(MakeCache.getServer());
+                        System.out.println(MakeCache.getAuthToken());
+                        break;
                     default:
                         break;
                 }
