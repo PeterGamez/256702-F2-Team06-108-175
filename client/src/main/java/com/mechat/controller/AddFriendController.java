@@ -10,11 +10,13 @@ public class AddFriendController extends NavbarController implements ControllerI
     private AddFriendView addFriendView = new AddFriendView();
 
     public AddFriendController() {
+        // Set up navbar button actions
         addFriendView.getAddFriendNavbarButton().setOnAction(this::addFriendNavbarEvent);
         addFriendView.getFriendListNavbarButton().setOnAction(this::friendListNavbarEvent);
         addFriendView.getHomeNavbarButton().setOnAction(this::homeNavbarEvent);
         addFriendView.getSettingNavbarButton().setOnAction(this::settingNavbarEvent);
 
+        // Add listener to the searchedFriendName property
         addFriendView.getSearchedFriendName().addListener((obs, oldVal, newVal) -> {
             if (newVal == null || newVal.trim().isEmpty()) {
                 // Clear fields and show error message
