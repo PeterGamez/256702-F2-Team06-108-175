@@ -8,11 +8,15 @@ import org.reflections.Reflections;
 
 import com.mechat.interfaces.ControllerInterface;
 
+import jakarta.websocket.Session;
+
 public class MakeCache {
 
     private static ArrayList<ControllerInterface> controllers;
     private static Map<String, Object> server;
     private static String authToken;
+    private static Session session;
+    private static Map<String, Object> user;
 
     public MakeCache() {
         controllers = new ArrayList<>();
@@ -56,5 +60,21 @@ public class MakeCache {
 
     public static void setAuthToken(String authToken) {
         MakeCache.authToken = authToken;
+    }
+
+    public static Session getSession() {
+        return session;
+    }
+
+    public static void setSession(Session session) {
+        MakeCache.session = session;
+    }
+
+    public static Map<String, Object> getUser() {
+        return user;
+    }
+
+    public static void setUser(Map<String, Object> user) {
+        MakeCache.user = user;
     }
 }

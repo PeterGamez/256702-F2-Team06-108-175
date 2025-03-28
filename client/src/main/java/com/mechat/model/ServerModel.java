@@ -7,7 +7,7 @@ import java.util.Map;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mechat.service.ApiService;
+import com.mechat.service.RestApiService;
 import com.mechat.utils.AppDataStorage;
 
 public class ServerModel {
@@ -36,9 +36,9 @@ public class ServerModel {
                 String serverIp = String.valueOf(server.get("serverIp"));
                 String serverPort = String.valueOf(server.get("serverPort"));
 
-                ApiService apiService = new ApiService(serverIp, serverPort);
+                RestApiService restApiService = new RestApiService(serverIp, serverPort);
 
-                String payload = apiService.getConnection().block();
+                String payload = restApiService.getConnection().block();
 
                 if (payload != null) {
                     JsonNode jsonNode = objectMapper.readTree(payload);
