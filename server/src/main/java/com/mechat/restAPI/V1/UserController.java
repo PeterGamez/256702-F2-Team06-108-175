@@ -29,7 +29,7 @@ public class UserController {
             response.put("status", "error");
             response.put("message", "User not found");
 
-            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(response, HttpStatus.OK);
 
         } else {
             return new ResponseEntity<>(user, HttpStatus.OK);

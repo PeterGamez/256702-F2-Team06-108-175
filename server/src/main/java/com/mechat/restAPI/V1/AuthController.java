@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mechat.dto.UserDTO;
 import com.mechat.entity.User;
 import com.mechat.service.UserService;
-import com.mechat.utils.Crypt;
 import com.mechat.utils.JWT;
 
 @RestController
@@ -30,7 +29,7 @@ public class AuthController {
             Map<String, Object> response = new LinkedHashMap<>();
             response.put("status", "error");
             response.put("message", "Invalid request");
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
 
         String username = payload.get("username").toString();
@@ -41,7 +40,7 @@ public class AuthController {
             Map<String, Object> response = new LinkedHashMap<>();
             response.put("status", "error");
             response.put("message", "Invalid username or password");
-            return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
 
         Map<String, Object> claims = new LinkedHashMap<>();
@@ -65,7 +64,7 @@ public class AuthController {
             Map<String, Object> response = new LinkedHashMap<>();
             response.put("status", "error");
             response.put("message", "Invalid request");
-            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
 
         String username = payload.get("username").toString();
@@ -76,7 +75,7 @@ public class AuthController {
             Map<String, Object> response = new LinkedHashMap<>();
             response.put("status", "error");
             response.put("message", "Username already exists");
-            return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
 
         User user = new User();
@@ -88,6 +87,6 @@ public class AuthController {
         Map<String, Object> response = new LinkedHashMap<>();
         response.put("status", "success");
 
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
