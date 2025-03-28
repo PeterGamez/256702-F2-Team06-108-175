@@ -18,8 +18,10 @@ public class FriendListController extends NavbarController implements Controller
 
     @Override
     public void load() {
+        friendListView.getFriends().clear();
+
         for (int i = 0; i < 20; i++) {
-            friendListView.addChat("", "Friend " + (i + 1));
+            friendListView.addFriends("", "Friend " + (i + 1));
         }
 
         ScreenHandler.setScreen(friendListView);

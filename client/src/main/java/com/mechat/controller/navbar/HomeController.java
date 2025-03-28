@@ -22,6 +22,8 @@ public class HomeController extends NavbarController implements ControllerInterf
 
     @Override
     public void load() {
+        homeView.getChats().clear();
+
         for (int i = 0; i < 20; i++) {
             homeView.addChat("", "Friend " + (i + 1));
         }
