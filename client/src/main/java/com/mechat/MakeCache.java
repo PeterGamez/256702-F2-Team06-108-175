@@ -12,6 +12,7 @@ public class MakeCache {
 
     private static ArrayList<ControllerInterface> controllers;
     private static Map<String, Object> server;
+    private static String authToken;
 
     public MakeCache() {
         controllers = new ArrayList<>();
@@ -48,5 +49,12 @@ public class MakeCache {
     public static void setServer(Map<String, Object> server) {
         MakeCache.server = server;
     }
-    
+
+    public static String getAuthToken() {
+        return authToken;
+    }
+
+    public static void setAuthToken(String authToken) {
+        MakeCache.authToken = authToken;
+    }
 }

@@ -79,11 +79,9 @@ public class AuthController {
             return new ResponseEntity<>(response, HttpStatus.CONFLICT);
         }
 
-        String hash = Crypt.encrypt(password);
-
         User user = new User();
         user.setUsername(username);
-        user.setPassword(hash);
+        user.setPassword(password);
 
         userService.createUser(user);
 

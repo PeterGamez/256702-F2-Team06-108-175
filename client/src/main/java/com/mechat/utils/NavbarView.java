@@ -5,35 +5,38 @@ import javafx.scene.layout.HBox;
 
 public abstract class NavbarView {
 
-    protected Button addFriendButton;
-    protected Button friendListButton;
-    protected Button homeButton;
-    protected Button settingButton;
+    private HBox navBar;
+    protected Button addFriendNavbarButton;
+    protected Button friendListNavbarButton;
+    protected Button homeNavbarButton;
+    protected Button settingNavbarButton;
+
+    public NavbarView() {
+        navBar = TemplateView.navBar();
+
+        addFriendNavbarButton = (Button) navBar.getChildren().get(0);
+        friendListNavbarButton = (Button) navBar.getChildren().get(1);
+        homeNavbarButton = (Button) navBar.getChildren().get(2);
+        settingNavbarButton = (Button) navBar.getChildren().get(3);
+    }
 
     protected HBox setNavbar() {
-        HBox navBar = TemplateView.navBar();
-
-        addFriendButton = (Button) navBar.getChildren().get(0);
-        friendListButton = (Button) navBar.getChildren().get(1);
-        homeButton = (Button) navBar.getChildren().get(2);
-        settingButton = (Button) navBar.getChildren().get(3);
-
         return navBar;
     }
 
-    public Button getAddFriendButton() {
-        return addFriendButton;
+    public Button getAddFriendNavbarButton() {
+        return addFriendNavbarButton;
     }
 
-    public Button getFriendListButton() {
-        return friendListButton;
+    public Button getFriendListNavbarButton() {
+        return friendListNavbarButton;
     }
 
-    public Button getHomeButton() {
-        return homeButton;
+    public Button getHomeNavbarButton() {
+        return homeNavbarButton;
     }
 
-    public Button getSettingButton() {
-        return settingButton;
+    public Button getSettingNavbarButton() {
+        return settingNavbarButton;
     }
 }

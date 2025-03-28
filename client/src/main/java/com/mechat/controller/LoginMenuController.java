@@ -27,10 +27,10 @@ public class LoginMenuController implements ControllerInterface {
     }
 
     private void registerEvent(ActionEvent e) {
-        // MakeCache.getController(RegisterMenuController.class).load();
+        MakeCache.getController(RegisterController.class).load();
     }
 
     private void loginEvent(ActionEvent e) {
-        // MakeCache.getController(LoginController.class).load();
+        MakeCache.getController(LoginController.class).load();
     }
 }

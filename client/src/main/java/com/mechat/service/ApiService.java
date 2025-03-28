@@ -1,9 +1,12 @@
 package com.mechat.service;
 
+import java.time.Duration;
+
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 public class ApiService {
+
     private final WebClient webClient;
 
     public ApiService(String serverIp, String serverPort) {
@@ -14,6 +17,41 @@ public class ApiService {
         return webClient.get()
                 .uri("/v1/connection")
                 .retrieve()
-                .bodyToMono(String.class);
+                .bodyToMono(String.class)
+                .timeout(Duration.ofSeconds(5))
+                .doOnError(error -> System.err.println(error.getMessage()))
+                .onErrorReturn("{\"message\": \"Offline\"}");
+    }
+
+    public Mono<String> login(String username, String password) throws Exception {
+        String body = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
+
+        return webClient.post()
+                .uri("/v1/auth/login")
+                .header("Content-Type", "application/json")
+                .bodyValue(body)
+                .retrieve()
+                .bodyToMono(String.class)
+                .timeout(Duration.ofSeconds(5))
+                .doOnError(error -> {
+                    System.err.println(username + " " + password);
+                    System.err.println(error.getMessage());
+                });
+    }
+
+    public Mono<String> register(String username, String password) throws Exception {
+        String body = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
+
+        return webClient.post()
+                .uri("/v1/auth/register")
+                .header("Content-Type", "application/json")
+                .bodyValue(body)
+                .retrieve()
+                .bodyToMono(String.class)
+                .timeout(Duration.ofSeconds(5))
+                .doOnError(error -> {
+                    System.err.println(username + " " + password);
+                    System.err.println(error.getMessage());
+                });
     }
 }

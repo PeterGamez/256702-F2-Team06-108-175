@@ -1,56 +1,91 @@
 package com.mechat.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mechat.service.ApiService;
+import com.mechat.utils.AppDataStorage;
 
 public class ServerModel {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    public ArrayList<Map<String, Object>> getServerList() {
-        ArrayList<Map<String, Object>> serverList = new ArrayList<>();
+    public List<Map<String, Object>> getServerList() {
+        List<Map<String, Object>> serverList = new ArrayList<>();
 
-        Map<String, Object> server1 = new HashMap<>();
-        server1.put("serverId", 1);
-        server1.put("serverName", "Server 1");
-        server1.put("serverIp", "127.0.0.1");
-        server1.put("serverPort", 8080);
-        serverList.add(server1);
+        String appDataStorage = AppDataStorage.loadData("serverList.json");
+        if (appDataStorage == null) {
+            AppDataStorage.saveData("serverList.json", "[]");
+            appDataStorage = AppDataStorage.loadData("serverList.json");
+        }
 
-        Map<String, Object> server2 = new HashMap<>();
-        server2.put("serverId", 2);
-        server2.put("serverName", "Server 2");
-        server2.put("serverIp", "127.0.0.1");
-        server2.put("serverPort", 8081);
-        serverList.add(server2);
-
-        Map<String, Object> server3 = new HashMap<>();
-        server3.put("serverId", 3);
-        server3.put("serverName", "Server 3");
-        server3.put("serverIp", "127.0.0.1");
-        server3.put("serverPort", 8082);
-        serverList.add(server3);
+        try {
+            JsonNode jsonNode = objectMapper.readTree(appDataStorage);
+            serverList = objectMapper.convertValue(jsonNode, new TypeReference<List<Map<String, Object>>>() {
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         serverList.forEach(server -> {
-            ApiService apiService = new ApiService(server.get("serverIp").toString(), server.get("serverPort").toString());
-
             try {
+                String serverIp = String.valueOf(server.get("serverIp"));
+                String serverPort = String.valueOf(server.get("serverPort"));
+
+                ApiService apiService = new ApiService(serverIp, serverPort);
+
                 String payload = apiService.getConnection().block();
-                JsonNode jsonNode = objectMapper.readTree(payload);
 
-                String message = jsonNode.get("message").asText();
+                if (payload != null) {
+                    JsonNode jsonNode = objectMapper.readTree(payload);
+                    Map<String, Object> respond = objectMapper.convertValue(jsonNode, new TypeReference<Map<String, Object>>() {
+                    });
+                    boolean isOnline = respond.get("message").toString().equals("Online");
 
-                server.put("isOnline", message.equals("Online"));
+                    server.put("isOnline", isOnline);
+                } else {
+                    server.put("isOnline", false);
+                }
             } catch (Exception e) {
                 server.put("isOnline", false);
+                e.printStackTrace();
             }
         });
 
         return serverList;
+    }
+
+    public void addServer(String serverName, String serverIp, String serverPort) {
+        List<Map<String, Object>> serverList = getServerList();
+
+        Map<String, Object> newServer = Map.of(
+                "serverName", serverName,
+                "serverIp", serverIp,
+                "serverPort", serverPort);
+
+        serverList.add(newServer);
+
+        try {
+            String jsonString = objectMapper.writeValueAsString(serverList);
+            AppDataStorage.saveData("serverList.json", jsonString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteServer(Map<String, Object> server) {
+        List<Map<String, Object>> serverList = getServerList();
+        serverList.remove(server);
+
+        try {
+            String jsonString = objectMapper.writeValueAsString(serverList);
+            AppDataStorage.saveData("serverList.json", jsonString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

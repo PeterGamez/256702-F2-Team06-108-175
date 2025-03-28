@@ -31,7 +31,7 @@ public class UserController {
 
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 
-        } else {          
+        } else {
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
     }

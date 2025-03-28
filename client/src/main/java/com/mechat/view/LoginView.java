@@ -1,11 +1,9 @@
 package com.mechat.view;
 
-import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ViewInterface;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -49,6 +47,7 @@ public class LoginView implements ViewInterface {
         TextField usernameField = new TextField();
         usernameField.setPromptText("Username");
         usernameField.getStyleClass().add("login-field");
+        usernameField.textProperty().bindBidirectional(usernameProperty);
 
         row2.getChildren().add(usernameField);
         row2.setAlignment(Pos.CENTER);
@@ -59,6 +58,7 @@ public class LoginView implements ViewInterface {
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Password");
         passwordField.getStyleClass().add("login-field");
+        passwordField.textProperty().bindBidirectional(passwordProperty);
 
         row3.getChildren().add(passwordField);
         row3.setAlignment(Pos.CENTER);

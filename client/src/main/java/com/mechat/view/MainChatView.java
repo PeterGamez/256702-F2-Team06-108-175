@@ -3,6 +3,7 @@ package com.mechat.view;
 import java.util.ArrayList;
 
 import com.mechat.interfaces.ViewInterface;
+import com.mechat.utils.NavbarView;
 import com.mechat.utils.TemplateView;
 
 import javafx.geometry.Insets;
@@ -18,12 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class MainChatView implements ViewInterface {
-
-    private Button addFriendButton;
-    private Button friendListButton;
-    private Button homeButton;
-    private Button settingButton;
+public class MainChatView extends NavbarView implements ViewInterface {
 
     private ArrayList<Pane> chats = new ArrayList<>();
 
@@ -32,15 +28,7 @@ public class MainChatView implements ViewInterface {
         BorderPane root = new BorderPane();
         root.setLeft(leftBar());
         root.setCenter(chatBox());
-
-        HBox navBar = TemplateView.navBar();
-
-        addFriendButton = (Button) navBar.getChildren().get(0);
-        friendListButton = (Button) navBar.getChildren().get(1);
-        homeButton = (Button) navBar.getChildren().get(2);
-        settingButton = (Button) navBar.getChildren().get(3);
-
-        root.setBottom(navBar);
+        root.setBottom(super.setNavbar());
 
         return root;
     }
@@ -118,22 +106,6 @@ public class MainChatView implements ViewInterface {
         chatBox.setAlignment(Pos.CENTER);
 
         return chatBox;
-    }
-
-    public Button getAddFriendButton() {
-        return addFriendButton;
-    }
-
-    public Button getFriendListButton() {
-        return friendListButton;
-    }
-
-    public Button getHomeButton() {
-        return homeButton;
-    }
-
-    public Button getSettingButton() {
-        return settingButton;
     }
 
     public ArrayList<Pane> getChats() {

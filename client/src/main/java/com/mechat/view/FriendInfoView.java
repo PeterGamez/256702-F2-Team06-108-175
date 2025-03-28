@@ -23,21 +23,24 @@ public class FriendInfoView implements ViewInterface {
     private Button backButton;
     private VBox editNameButtonLayout;
 
+    public FriendInfoView() {
+        backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
+        editNameButtonLayout = TemplateView.createButtonLayout("/images/edit-nickname-icon.png", "Nickname");
+    }
+
     @Override
     public Parent createContent() {
-        //header
+        // header
         HBox header = new HBox();
-        backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
+
         header.getChildren().add(backButton);
         header.setAlignment(Pos.CENTER_LEFT);
 
-        //body
+        // body
         VBox body = new VBox();
         ImageView groupImage = TemplateView.createImageView("/images/profile-icon.png", 100, 100);
         Label groupName = new Label("Friend's Name");
         groupName.getStyleClass().add("misc-label");
-
-        editNameButtonLayout = TemplateView.createButtonLayout("/images/edit-nickname-icon.png", "Nickname");
 
         HBox buttonLayout = new HBox(editNameButtonLayout);
         buttonLayout.setAlignment(Pos.CENTER);

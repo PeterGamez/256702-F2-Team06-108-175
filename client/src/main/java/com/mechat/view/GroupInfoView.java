@@ -16,17 +16,19 @@ public class GroupInfoView implements ViewInterface {
 
     private Button backButton;
 
+    public GroupInfoView() {
+        backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
+    }
+
     @Override
     public Parent createContent() {
-        //header
+        // header
         HBox header = new HBox();
-        backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
-        
-        
+
         header.getChildren().add(backButton);
         header.setAlignment(Pos.CENTER_LEFT);
 
-        //body
+        // body
         VBox body = new VBox();
         ImageView groupImage = TemplateView.createImageView("/images/profile-icon.png", 100, 100);
         Label groupName = new Label("Group's Name");

@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox;
 
 public class FriendListView extends NavbarView implements ViewInterface {
 
-    private final ArrayList<Pane> friends = new ArrayList<>();
+    private ArrayList<Pane> friends = new ArrayList<>();
 
     @Override
     public Parent createContent() {
