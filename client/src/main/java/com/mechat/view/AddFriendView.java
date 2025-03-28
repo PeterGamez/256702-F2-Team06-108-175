@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class AddFriendView extends NavbarView implements ViewInterface {
@@ -29,6 +30,7 @@ public class AddFriendView extends NavbarView implements ViewInterface {
         searchedFriendName = new SimpleStringProperty();
         imagePath = new SimpleStringProperty();
         showFriendName = new SimpleStringProperty();
+        showErrorProperty = new SimpleStringProperty(); // Initialize showErrorProperty
 
         addFriendButton = new Button();
         addFriendButton.setVisible(false);
@@ -50,7 +52,7 @@ public class AddFriendView extends NavbarView implements ViewInterface {
         HBox errorBox = new HBox();
 
         Label error = new Label("");
-        error.textProperty().bindBidirectional(showErrorProperty);
+        error.textProperty().bindBidirectional(showErrorProperty); // Bind showErrorProperty
         error.getStyleClass().add("error-label");
 
         errorBox.getChildren().add(error);
@@ -68,7 +70,7 @@ public class AddFriendView extends NavbarView implements ViewInterface {
 
         //content
         root.setTop(header);
-        root.setCenter(createFriendInfo()); //ถ้าไม่มีข้อมูลจะไม่ขึ้น
+        root.setCenter(createFriendInfo());
         root.setBottom(super.setNavbar());
         return root;
     }
