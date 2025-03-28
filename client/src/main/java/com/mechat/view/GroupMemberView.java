@@ -21,14 +21,16 @@ import javafx.scene.layout.VBox;
 public class GroupMemberView implements ViewInterface {
 
     private ArrayList<Pane> friends = new ArrayList<>();
+    private Button backButton;
 
+    public GroupMemberView() {
+        backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
+    }
     @Override
     public Parent createContent() {
         BorderPane root = new BorderPane();
 
         //header
-        Button backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
-
         Label title = new Label("Group Member");
         title.setAlignment(Pos.CENTER);
         title.getStyleClass().add("misc-label");
@@ -37,7 +39,6 @@ public class GroupMemberView implements ViewInterface {
         header.setAlignment(Pos.CENTER_LEFT);
         header.setSpacing(20);
         header.getStyleClass().add("header");
-
 
         //content
         VBox friendList = new VBox();
@@ -80,5 +81,9 @@ public class GroupMemberView implements ViewInterface {
         list.getStyleClass().add("friend-box");
 
         friends.add(list);
+    }
+
+    public Button getBackButton() {
+        return backButton;
     }
 }

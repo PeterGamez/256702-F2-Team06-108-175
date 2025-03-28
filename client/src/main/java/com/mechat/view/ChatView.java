@@ -19,9 +19,13 @@ import javafx.scene.layout.VBox;
 public class ChatView implements ViewInterface {
 
     private VBox chatBox;
-    private TextField messageField;
     private Button informationButton;
     private Button backButton;
+
+    public ChatView() {
+        informationButton = TemplateView.createImageButton("/images/info-button.png", 30, 30, "back-button");
+        backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
+    }
 
     @Override
     public Parent createContent() {
@@ -38,19 +42,16 @@ public class ChatView implements ViewInterface {
         header.getStyleClass().add("header");
         header.setAlignment(Pos.CENTER_LEFT);
 
-        backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
-
         ImageView profile = TemplateView.createImageView("/images/profile-icon.png", 60, 60);
 
         Label friendName = new Label("Friend's Name");
         friendName.getStyleClass().add("friend-name-label");
 
-        informationButton = TemplateView.createImageButton("/images/info-button.png", 30, 30, "back-button");
         // if(ถ้าเป็นกลุ่ม){
-        //     information.setOnAction(e -> ScreenHandler.setScreen(new GroupInfoView()));
+        // information.setOnAction(e -> ScreenHandler.setScreen(new GroupInfoView()));
         // }
         // else{
-        //     information.setOnAction(e -> ScreenHandler.setScreen(new FriendInfoView()));
+        // information.setOnAction(e -> ScreenHandler.setScreen(new FriendInfoView()));
         // }
 
         Region spacer = new Region();
@@ -80,7 +81,7 @@ public class ChatView implements ViewInterface {
         messageBox.getStyleClass().add("message-box");
         messageBox.setAlignment(Pos.CENTER);
 
-        messageField = new TextField();
+        TextField messageField = new TextField();
         messageField.setPromptText("Message @Friend 1");
         messageField.getStyleClass().add("message-field");
         HBox.setHgrow(messageField, Priority.ALWAYS);

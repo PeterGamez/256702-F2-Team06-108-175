@@ -2,21 +2,21 @@ package com.mechat.controller;
 
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
+import com.mechat.utils.NavbarController;
 import com.mechat.view.ChatView;
 import com.mechat.view.MainChatView;
 
-import javafx.event.ActionEvent;
 import javafx.scene.layout.Pane;
 
-public class MainChatController implements ControllerInterface {
+public class MainChatController extends NavbarController implements ControllerInterface {
 
     private MainChatView mainChatView = new MainChatView();
 
     public MainChatController() {
-        mainChatView.getAddFriendButton().setOnAction(this::addFriendEvent);
-        mainChatView.getFriendListButton().setOnAction(this::friendListEvent);
-        mainChatView.getHomeButton().setOnAction(this::homeEvent);
-        mainChatView.getSettingButton().setOnAction(this::settingEvent);
+        mainChatView.getAddFriendNavbarButton().setOnAction(this::addFriendNavbarEvent);
+        mainChatView.getFriendListNavbarButton().setOnAction(this::friendListNavbarEvent);
+        mainChatView.getHomeNavbarButton().setOnAction(this::homeNavbarEvent);
+        mainChatView.getSettingNavbarButton().setOnAction(this::settingNavbarEvent);
     }
 
     @Override
@@ -32,20 +32,5 @@ public class MainChatController implements ControllerInterface {
                 ScreenHandler.setScreen(new ChatView());
             });
         }
-    }
-
-    private void addFriendEvent(ActionEvent e) {
-
-    }
-
-    private void friendListEvent(ActionEvent e) {
-    }
-
-    private void homeEvent(ActionEvent e) {
-
-    }
-
-    private void settingEvent(ActionEvent e) {
-
     }
 }

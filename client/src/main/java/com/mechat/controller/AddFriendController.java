@@ -2,19 +2,18 @@ package com.mechat.controller;
 
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
+import com.mechat.utils.NavbarController;
 import com.mechat.view.AddFriendView;
 
-import javafx.event.ActionEvent;
-
-public class AddFriendController implements ControllerInterface {
+public class AddFriendController extends NavbarController implements ControllerInterface {
 
     private AddFriendView addFriendView = new AddFriendView();
 
     public AddFriendController() {
-        addFriendView.getAddFriendButton().setOnAction(this::addFriendEvent);
-        addFriendView.getFriendListButton().setOnAction(this::friendListEvent);
-        addFriendView.getHomeButton().setOnAction(this::homeEvent);
-        addFriendView.getSettingButton().setOnAction(this::settingEvent);
+        addFriendView.getAddFriendNavbarButton().setOnAction(this::addFriendNavbarEvent);
+        addFriendView.getFriendListNavbarButton().setOnAction(this::friendListNavbarEvent);
+        addFriendView.getHomeNavbarButton().setOnAction(this::homeNavbarEvent);
+        addFriendView.getSettingNavbarButton().setOnAction(this::settingNavbarEvent);
 
         addFriendView.getSearchedFriendName().addListener((obs, oldVal, newVal) -> {
             if (newVal.length() > 0) {
@@ -30,23 +29,5 @@ public class AddFriendController implements ControllerInterface {
     @Override
     public void load() {
         ScreenHandler.setScreen(addFriendView);
-
     }
-
-    private void addFriendEvent(ActionEvent e) {
-
-    }
-
-    private void friendListEvent(ActionEvent e) {
-
-    }
-
-    private void homeEvent(ActionEvent e) {
-
-    }
-
-    private void settingEvent(ActionEvent e) {
-
-    }
-
 }

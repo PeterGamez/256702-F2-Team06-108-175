@@ -26,13 +26,16 @@ public class AddGroupMemberView implements ViewInterface {
     private Button addGroupMemberButton;
     private Button backButton;
 
+    public AddGroupMemberView() {
+        addGroupMemberButton = TemplateView.createButton("Add Member", "add-friend-button");
+        backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
+    }
+
     @Override
     public Parent createContent() {
         BorderPane root = new BorderPane();
 
-        //header
-        backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
-
+        // header
         Label title = new Label("Add Member");
         title.setAlignment(Pos.CENTER);
         title.getStyleClass().add("misc-label");
@@ -42,7 +45,7 @@ public class AddGroupMemberView implements ViewInterface {
         header.setSpacing(20);
         header.getStyleClass().add("header");
 
-        //content
+        // content
         VBox friendList = new VBox();
 
         friendList.getChildren().addAll(friends);
@@ -50,8 +53,6 @@ public class AddGroupMemberView implements ViewInterface {
         ScrollPane scrollPane = new ScrollPane(friendList);
         scrollPane.getStyleClass().add("scroll-pane");
         VBox.setVgrow(scrollPane, Priority.ALWAYS);
-
-        addGroupMemberButton = TemplateView.createButton("Add Member", "add-friend-button");
 
         VBox box = new VBox(scrollPane, addGroupMemberButton);
         box.setAlignment(Pos.TOP_CENTER);

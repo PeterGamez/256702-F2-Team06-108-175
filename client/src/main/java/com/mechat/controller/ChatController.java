@@ -10,7 +10,7 @@ public class ChatController implements ControllerInterface {
 
     private ChatView chatView = new ChatView();
 
-    public ChatController(ChatView view) {
+    public ChatController() {
         chatView.getInformationButton().setOnAction(this::informationEvent);
         chatView.getBackButton().setOnAction(this::backEvent);
     }

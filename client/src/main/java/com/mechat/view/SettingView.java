@@ -1,6 +1,7 @@
 package com.mechat.view;
 
 import com.mechat.interfaces.ViewInterface;
+import com.mechat.utils.NavbarView;
 import com.mechat.utils.TemplateView;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -17,7 +18,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-public class SettingView implements ViewInterface {
+public class SettingView extends NavbarView implements ViewInterface {
 
     private Button generalButton;
     private Button aboutButton;
@@ -47,7 +48,7 @@ public class SettingView implements ViewInterface {
 
         root.setLeft(createTabBox());
         root.setCenter(createGeneralContent());
-        root.setBottom(TemplateView.navBar());
+        root.setBottom(super.setNavbar());
 
         return root;
     }
@@ -56,7 +57,7 @@ public class SettingView implements ViewInterface {
         VBox tabBox = new VBox();
         tabBox.getStyleClass().add("tab-box");
 
-        //Header
+        // Header
         Label settings = new Label("Settings");
         settings.getStyleClass().add("setting-label");
 
@@ -65,7 +66,7 @@ public class SettingView implements ViewInterface {
         header.getStyleClass().add("setting-header");
         header.setAlignment(Pos.CENTER);
 
-        //Buttons
+        // Buttons
         VBox buttonsLayout = new VBox();
         generalButton.setText("General");
         generalButton.getStyleClass().add("tab-button");

@@ -48,6 +48,6 @@ public class AddGroupMemberController implements ControllerInterface {
     }
 
     private void navigateToChatView(List<String> selectedFriends) {
-
+        MakeCache.getController(ChatController.class).load();
     }
 }
