@@ -51,7 +51,7 @@ public class FriendListView extends NavbarView implements ViewInterface {
         return root;
     }
 
-    public void addChat(String avatar, String title) {
+    public void addFriends(String avatar, String title) {
         VBox list = new VBox();
         list.setAlignment(Pos.CENTER);
 
@@ -70,5 +70,9 @@ public class FriendListView extends NavbarView implements ViewInterface {
         list.getStyleClass().add("friend-box");
 
         friends.add(list);
+    }
+
+    public ArrayList<Pane> getFriends() {
+        return friends;
     }
 }
