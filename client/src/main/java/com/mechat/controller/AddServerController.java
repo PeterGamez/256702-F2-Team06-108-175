@@ -27,6 +27,7 @@ public class AddServerController implements ControllerInterface {
         String serverAddress = addServerView.getServerAddressProperty().get();
 
         if (serverName == null || serverAddress == null) {
+            serverModel.getShowErrorProperty().set("Please fill all fields");
             return;
         }
 
@@ -38,13 +39,16 @@ public class AddServerController implements ControllerInterface {
             serverIp = serverAddressParts[0];
             serverPort = serverAddressParts[1];
         } catch (Exception ex) {
+            addServerView.getShowErrorProperty().set("Invalid server address format");
             return;
         }
 
         if (serverIp == null || serverPort == null) {
+            addServerView.getShowErrorProperty().set("Invalid server IP or Port");
             return;
         }
 
+        serverModel.getShowErrorProperty().set(null);
         serverModel.addServer(serverName, serverIp, serverPort);
 
         MakeCache.getController(ServerController.class).load();

@@ -17,6 +17,7 @@ public class LoginView implements ViewInterface {
 
     private StringProperty usernameProperty;
     private StringProperty passwordProperty;
+    private StringProperty showErrorProperty;
 
     Button loginButton;
     Button backButton;
@@ -24,6 +25,7 @@ public class LoginView implements ViewInterface {
     public LoginView() {
         usernameProperty = new SimpleStringProperty();
         passwordProperty = new SimpleStringProperty();
+        showErrorProperty = new SimpleStringProperty();
 
         loginButton = new Button();
         backButton = new Button();
@@ -32,7 +34,9 @@ public class LoginView implements ViewInterface {
     @Override
     public Parent createContent() {
         // row 1
-        HBox row1 = new HBox();
+        VBox row1 = new VBox();
+
+        
 
         Label content = new Label("Login");
         content.setAlignment(Pos.CENTER);
@@ -40,6 +44,16 @@ public class LoginView implements ViewInterface {
 
         row1.getChildren().addAll(content);
         row1.setAlignment(Pos.CENTER);
+
+        //Error
+        HBox errorBox = new HBox();
+
+        Label error = new Label("");
+        error.textProperty().bindBidirectional(showErrorProperty);
+        error.getStyleClass().add("error-label");
+
+        errorBox.getChildren().add(error);
+        errorBox.setAlignment(Pos.CENTER);
 
         // row 2
         HBox row2 = new HBox();
@@ -49,7 +63,7 @@ public class LoginView implements ViewInterface {
         usernameField.getStyleClass().add("login-field");
         usernameField.textProperty().bindBidirectional(usernameProperty);
 
-        row2.getChildren().add(usernameField);
+        row2.getChildren().addAll(usernameField);
         row2.setAlignment(Pos.CENTER);
 
         // row 3
@@ -79,7 +93,7 @@ public class LoginView implements ViewInterface {
         // horizontal layout
         VBox textFields = new VBox();
 
-        textFields.getChildren().addAll(row2, row3);
+        textFields.getChildren().addAll(errorBox, row2, row3);
         textFields.setSpacing(10);
 
         VBox titleTextField = new VBox();
@@ -110,5 +124,9 @@ public class LoginView implements ViewInterface {
 
     public StringProperty getPasswordProperty() {
         return passwordProperty;
+    }
+
+    public StringProperty getShowErrorProperty() {
+        return showErrorProperty;
     }
 }
