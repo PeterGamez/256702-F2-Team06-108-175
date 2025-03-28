@@ -26,7 +26,6 @@ public class WebSocketClient {
 
         WebSocketContainer container = ContainerProvider.getWebSocketContainer();
 
-        // Set custom headers
         ClientEndpointConfig.Configurator configurator = new ClientEndpointConfig.Configurator() {
 
             @Override
@@ -40,7 +39,7 @@ public class WebSocketClient {
                 .build();
 
         try {
-            container.connectToServer(new WebsocketEndpoint(), config, new URI(uri));
+            container.connectToServer(new WebSocketEndpoint(), config, new URI(uri));
         } catch (Exception e) {
             e.printStackTrace();
         }

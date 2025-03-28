@@ -17,9 +17,9 @@ import jakarta.websocket.OnError;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
 
-public class WebsocketEndpoint extends Endpoint {
+public class WebSocketEndpoint extends Endpoint {
 
-    private static Logger logger = Logger.getLogger(WebsocketEndpoint.class.getName());
+    private static Logger logger = Logger.getLogger(WebSocketEndpoint.class.getName());
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
@@ -51,13 +51,10 @@ public class WebsocketEndpoint extends Endpoint {
 
             @Override
             public void onMessage(String message) {
-                handleReceivedMessage(message);
+                logger.info("Received message: " + message);
+                WebSocketMessage.handle(message);
             }
         });
-    }
-
-    private void handleReceivedMessage(String message) {
-        logger.info("Received message: " + message);
     }
 
     @OnClose
