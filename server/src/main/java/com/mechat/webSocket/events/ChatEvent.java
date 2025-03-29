@@ -99,7 +99,22 @@ public class ChatEvent implements EventInterface {
         }
         chat.setType(chatType);
 
-        chat = chatService.saveChat(chat, userIds);
+        chat = chatService.addChat(chat, userIds);
+        Chat chatA = chat;
+
+        sessions.stream()
+                .filter(s -> s.isOpen() && s.getAttributes().get("user") != null)
+                .filter(s -> {
+                    UserDTO user = (UserDTO) s.getAttributes().get("user");
+                    return !user.getId().equals(this.user.getId()) && userIds.contains(user.getId());
+                })
+                .forEach(s -> {
+                    ResponseMessage response = new ResponseMessage(s, responseOp, responseType);
+
+                    response.put("chat_id", chatA.getId());
+
+                    response.send();
+                });
 
         ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
 

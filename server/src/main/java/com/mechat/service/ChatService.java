@@ -40,7 +40,7 @@ public class ChatService {
         return chatRepository.findByUserId(senderId, receiverId).orElse(null);
     }
 
-    public Chat saveChat(Chat chat, List<Long> userIds) {
+    public Chat addChat(Chat chat, List<Long> userIds) {
         Chat chatD = chatRepository.save(chat);
 
         List<ChatMember> chatMembers = new ArrayList<>();
