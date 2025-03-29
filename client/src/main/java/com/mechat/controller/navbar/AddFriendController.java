@@ -89,6 +89,11 @@ public class AddFriendController extends NavbarController implements ControllerI
     }
 
     private void addFriendEvent(ActionEvent e) {
+        if (userId == null) {
+            addFriendView.getShowErrorProperty().set("Please search for a user first.");
+            return;
+        }
+
         if (MakeCache.getUser().get("id").toString().equals(userId)) {
             addFriendView.getShowErrorProperty().set("You cannot add yourself as a friend.");
             return;

@@ -13,7 +13,7 @@ public class MessageEvent {
 
     private static RequestMessage request;
 
-    // private static ObjectMapper objectMapper = new ObjectMapper();
+    private static ObjectMapper objectMapper = new ObjectMapper();
 
     public static void handle(RequestMessage request) {
         MessageEvent.request = request;
