@@ -9,6 +9,7 @@ import jakarta.persistence.Table;
 public class Chat extends BaseEntity {
 
     public enum Type {
+
         PRIVATE(0), GROUP(1);
 
         private final int value;
@@ -32,13 +33,14 @@ public class Chat extends BaseEntity {
         }
 
         public static Type fromValue(String value) {
-            for (Type status : Type.values()) {
-                if (status.name().equals(value)) {
-                    return status;
-                }
+            int intValue = 0;
+            try {
+                intValue = Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                return null;
             }
 
-            return null;
+            return fromValue(intValue);
         }
     }
 

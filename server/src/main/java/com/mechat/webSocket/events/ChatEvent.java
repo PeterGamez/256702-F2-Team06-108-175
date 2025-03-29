@@ -79,23 +79,31 @@ public class ChatEvent implements EventInterface {
 
         List<String> chatUserList = new ArrayList<>();
 
+        Chat chat = new Chat();
         if (chatType == Chat.Type.PRIVATE) {
+            if (userIds.size() != 2) {
+                ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
+                response.put("status", "error");
+                response.put("message", "PRIVATE chat must have exactly 2 users");
+                response.send();
+                return;
+            }
+        } else if (chatType == Chat.Type.GROUP) {
             userIds.forEach(u -> {
                 UserDTO user = userService.getUserById(u);
                 chatUserList.add(user.getDisplayName() != null ? user.getDisplayName() : user.getUsername());
             });
+
+            String chatName = chatUserList.size() > 0 ? String.join(", ", chatUserList) : null;
+            chat.setName(chatName);
         }
-
-        String chatName = chatUserList.size() > 0 ? String.join(", ", chatUserList) : null;
-
-        Chat chat = new Chat();
-        chat.setName(chatName);
         chat.setType(chatType);
 
         chat = chatService.saveChat(chat, userIds);
 
         ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
 
+        response.put("status", "success");
         response.put("chat_id", chat.getId());
 
         response.send();
