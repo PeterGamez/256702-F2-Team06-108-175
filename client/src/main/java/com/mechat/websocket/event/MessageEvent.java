@@ -13,7 +13,7 @@ public class MessageEvent {
 
     private static RequestMessage request;
 
-    private static ObjectMapper objectMapper = new ObjectMapper();
+    // private static ObjectMapper objectMapper = new ObjectMapper();
 
     public static void handle(RequestMessage request) {
         MessageEvent.request = request;
@@ -42,34 +42,19 @@ public class MessageEvent {
     }
 
     private static void sendToGroupChat(int responseType) {
-        Object status = request.getD().get("status");
-        if (status.equals("error")) {
-            return;
-        }
-
-        Object chatId = request.getD().get("chat_id");
-        Object senderId = request.getD().get("sender_id");
-        Object message = request.getD().get("message");
+        // Object chatId = request.getD().get("chat_id");
+        // Object senderId = request.getD().get("sender_id");
+        // Object message = request.getD().get("message");
     }
 
     private static void updateMessage(int responseType) {
-        Object status = request.getD().get("status");
-        if (status.equals("error")) {
-            return;
-        }
-
-        Object chatId = request.getD().get("chat_id");
-        Object messageId = request.getD().get("message_id");
-        Object message = request.getD().get("message");
+        // Object chatId = request.getD().get("chat_id");
+        // Object messageId = request.getD().get("message_id");
+        // Object message = request.getD().get("message");
     }
 
     private static void deleteMessage(int responseType) {
-        Object status = request.getD().get("status");
-        if (status.equals("error")) {
-            return;
-        }
-
-        Object chatId = request.getD().get("chat_id");
-        Object messageId = request.getD().get("message_id");
+        // Object chatId = request.getD().get("chat_id");
+        // Object messageId = request.getD().get("message_id");
     }
 }

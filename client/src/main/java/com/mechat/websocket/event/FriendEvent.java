@@ -8,13 +8,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mechat.MakeCache;
-import com.mechat.controller.navbar.AddFriendController;
 import com.mechat.service.RequestMessage;
 import com.mechat.service.ResponseMessage;
 import com.mechat.service.RestApiService;
 import com.mechat.websocket.WebSocketClient;
-
-import javafx.application.Platform;
 
 public class FriendEvent {
 
@@ -33,14 +30,6 @@ public class FriendEvent {
     }
 
     private static void addFriend(int responseType) {
-        Object status = request.getD().get("status");
-        if (status.equals("error")) {
-            String message = Objects.toString(request.getD().get("message"));
-            Platform.runLater(() -> {
-                MakeCache.getController(AddFriendController.class).errorMessage(message);
-            });
-            return;
-        }
         String userId = Objects.toString(request.getD().get("user_id"));
 
         Map<String, Object> friend = null;
@@ -83,12 +72,7 @@ public class FriendEvent {
     }
 
     private static void updateFriend(int responseType) {
-        Object status = request.getD().get("status");
-        if (status.equals("error")) {
-            return;
-        }
-
-        Object userId = request.getD().get("user_id");
-        Object type = request.getD().get("type");
+        // Object userId = request.getD().get("user_id");
+        // Object type = request.getD().get("type");
     }
 }
