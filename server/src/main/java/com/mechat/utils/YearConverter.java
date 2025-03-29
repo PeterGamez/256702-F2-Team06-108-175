@@ -1,8 +1,6 @@
 package com.mechat.utils;
 
 import java.time.LocalDateTime;
-import java.time.chrono.IsoChronology;
-import java.time.chrono.ThaiBuddhistChronology;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
@@ -10,23 +8,19 @@ import jakarta.persistence.Converter;
 @Converter
 public class YearConverter implements AttributeConverter<LocalDateTime, LocalDateTime> {
 
+    private static final int THAI_BUDDHIST_OFFSET = 543;
+
     public LocalDateTime convertToDatabaseColumn(LocalDateTime attribute) {
         if (attribute == null) {
             return null;
         }
-        if (attribute.getChronology().equals(ThaiBuddhistChronology.INSTANCE)) {
-            return attribute.minusYears(543);
-        }
-        return attribute;
+        return attribute.minusYears(THAI_BUDDHIST_OFFSET);
     }
 
     public LocalDateTime convertToEntityAttribute(LocalDateTime dbData) {
         if (dbData == null) {
             return null;
         }
-        if (dbData.getChronology().equals(IsoChronology.INSTANCE)) {
-            return dbData.plusYears(543);
-        }
-        return dbData;
+        return dbData.plusYears(THAI_BUDDHIST_OFFSET);
     }
 }
