@@ -52,7 +52,7 @@ public class MessageEvent {
 
         Object status = request.getD().get("status");
         if (!status.equals("success")) {
-            Notification.showNotification("คุณได้รับข้อความใหม่", message);
+            Notification.showNotification("You've got a new message.", message);
         }
     }
 
