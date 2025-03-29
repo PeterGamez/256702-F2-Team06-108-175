@@ -11,6 +11,7 @@ import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
 import com.mechat.controller.navbar.HomeController;
 import com.mechat.interfaces.ControllerInterface;
+import com.mechat.model.chat.ChatModel;
 import com.mechat.service.ResponseMessage;
 import com.mechat.service.RestApiService;
 import com.mechat.utils.Time;
@@ -22,6 +23,7 @@ import javafx.event.ActionEvent;
 public class ChatController implements ControllerInterface {
 
     private ChatView chatView = new ChatView();
+    private ChatModel chatModel = new ChatModel();
 
     private String chatId;
 

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
+import com.mechat.model.home.RegisterModel;
 import com.mechat.service.RestApiService;
 import com.mechat.view.home.RegisterView;
 
@@ -17,6 +18,7 @@ import javafx.event.ActionEvent;
 public class RegisterController implements ControllerInterface {
 
     private RegisterView registerView = new RegisterView();
+    private RegisterModel registerModel = new RegisterModel();
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
@@ -66,7 +68,6 @@ public class RegisterController implements ControllerInterface {
                 return;
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
             registerView.getShowErrorProperty().set("Server error");
             return;
         }

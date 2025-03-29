@@ -3,7 +3,7 @@ package com.mechat.controller.home;
 import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
-import com.mechat.model.ServerModel;
+import com.mechat.model.home.AddServerModel;
 import com.mechat.view.home.AddServerView;
 
 import javafx.event.ActionEvent;
@@ -11,7 +11,7 @@ import javafx.event.ActionEvent;
 public class AddServerController implements ControllerInterface {
 
     private AddServerView addServerView = new AddServerView();
-    private ServerModel serverModel = new ServerModel();
+    private AddServerModel addServerModel = new AddServerModel();
 
     public AddServerController() {
         addServerView.getDoneButton().setOnAction(this::doneEvent);
@@ -55,7 +55,7 @@ public class AddServerController implements ControllerInterface {
         }
 
         addServerView.getShowErrorProperty().set(null);
-        serverModel.addServer(serverName, serverIp, serverPort);
+        addServerModel.addServer(serverName, serverIp, serverPort);
 
         MakeCache.getController(ServerController.class).load();
     }

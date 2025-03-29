@@ -10,6 +10,7 @@ import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
 import com.mechat.controller.navbar.HomeController;
 import com.mechat.interfaces.ControllerInterface;
+import com.mechat.model.home.LoginModel;
 import com.mechat.service.RestApiService;
 import com.mechat.view.home.LoginView;
 import com.mechat.websocket.WebSocketClient;
@@ -19,6 +20,7 @@ import javafx.event.ActionEvent;
 public class LoginController implements ControllerInterface {
 
     private LoginView loginView = new LoginView();
+    private LoginModel loginModel = new LoginModel();
 
     private ObjectMapper objectMapper = new ObjectMapper();
 

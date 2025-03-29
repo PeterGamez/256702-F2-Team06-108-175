@@ -10,10 +10,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
+import com.mechat.controller.NavbarController;
 import com.mechat.controller.chat.ChatController;
 import com.mechat.interfaces.ControllerInterface;
+import com.mechat.model.navbar.HomeModel;
 import com.mechat.service.RestApiService;
-import com.mechat.utils.NavbarController;
 import com.mechat.view.navbar.HomeView;
 
 import javafx.scene.layout.Pane;
@@ -21,9 +22,11 @@ import javafx.scene.layout.Pane;
 public class HomeController extends NavbarController implements ControllerInterface {
 
     private HomeView homeView = new HomeView();
-    private List<String> chatIds = new ArrayList<>();
+    private HomeModel homeModel = new HomeModel();
 
     private ObjectMapper objectMapper = new ObjectMapper();
+
+    private List<String> chatIds = new ArrayList<>();
 
     public HomeController() {
         homeView.getAddFriendNavbarButton().setOnAction(this::addFriendNavbarEvent);
@@ -45,7 +48,7 @@ public class HomeController extends NavbarController implements ControllerInterf
 
     public void loadChats() {
         homeView.getChats().clear();
-        
+
         @SuppressWarnings("unchecked")
         List<Map<String, Object>> chats = (List<Map<String, Object>>) MakeCache.getData("chats");
         if (chats == null) {
@@ -80,7 +83,6 @@ public class HomeController extends NavbarController implements ControllerInterf
                         chatIcon = Objects.toString(user.get("avatar"));
                     }
                 } catch (Exception e) {
-                    e.printStackTrace();
                 }
             } else {
                 chatName = Objects.toString(chat.get("name"));

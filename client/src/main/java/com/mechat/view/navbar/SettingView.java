@@ -1,8 +1,8 @@
 package com.mechat.view.navbar;
 
 import com.mechat.interfaces.ViewInterface;
-import com.mechat.utils.NavbarView;
-import com.mechat.utils.TemplateView;
+import com.mechat.view.NavbarView;
+import com.mechat.view.TemplateView;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

@@ -3,7 +3,7 @@ package com.mechat.view.chat;
 import java.util.ArrayList;
 
 import com.mechat.interfaces.ViewInterface;
-import com.mechat.utils.TemplateView;
+import com.mechat.view.TemplateView;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
