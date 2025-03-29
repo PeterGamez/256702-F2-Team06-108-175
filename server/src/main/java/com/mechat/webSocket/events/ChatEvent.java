@@ -34,7 +34,7 @@ public class ChatEvent implements EventInterface {
     private Set<WebSocketSession> sessions;
     private WebSocketSession session;
     private RequestMessage request;
-    // private UserDTO user;
+    private UserDTO user;
 
     private ObjectMapper mapper = new ObjectMapper();
 
@@ -50,7 +50,7 @@ public class ChatEvent implements EventInterface {
         this.sessions = sessions;
         this.session = session;
         this.request = request;
-        // this.user = user;
+        this.user = user;
 
         if (request.getT() == 1) {
             createChat(1);
