@@ -35,8 +35,10 @@ public class ChatController implements ControllerInterface {
 
     @Override
     public void load() {
+
+        chatView.getChatBox().getChildren().clear();
+
         ScreenHandler.setScreen(chatView);
-        // chatView.addReceivedMessage("Hello, how are you?", Time.getCurrentTime());
 
         chatId = MakeCache.getChatId();
         try {
@@ -68,10 +70,43 @@ public class ChatController implements ControllerInterface {
 
             chatView.getFriendNameProperty().set(friendName);
             chatView.getFriendImageProperty().set(friendImage);
-
         } catch (Exception e) {
         }
 
+        try {
+            String payload = RestApiService.getChatHistory(chatId).block();
+
+            JsonNode jsonNode = objectMapper.readTree(payload);
+            Map<String, Object> respond = objectMapper.convertValue(jsonNode, new TypeReference<Map<String, Object>>() {
+            });
+
+            List<Map<String, Object>> histories = objectMapper.convertValue(respond.get("histories"), new TypeReference<List<Map<String, Object>>>() {
+            });
+
+            String MyId = Objects.toString(MakeCache.getUser().get("id"));
+
+            histories.forEach(history -> {
+                String message = Objects.toString(history.get("message"));
+                String senderId = Objects.toString(history.get("sender_id"));
+                boolean edited = (boolean) history.get("edited");
+                boolean deleted = (boolean) history.get("deleted");
+                String createdAt = Objects.toString(history.get("createdAt"));
+                String updatedAt = Objects.toString(history.get("updatedAt"));
+
+                if (deleted) {
+                    return;
+                }
+
+                if (senderId.equals(MyId)) {
+                    chatView.addSentMessage(message, Time.getFormatTime(createdAt));
+                } else {
+                    chatView.addReceivedMessage(message, Time.getFormatTime(createdAt));
+                }
+            });
+        } catch (Exception e) {
+        }
+
+        // chatView.getChatScrollPane().setContent(chatView.getChatBox());
     }
 
     // private void informationEvent(ActionEvent e) {

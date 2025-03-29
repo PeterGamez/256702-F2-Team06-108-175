@@ -116,4 +116,17 @@ public class RestApiService {
                     System.err.println(error.getMessage());
                 });
     }
+
+    public static Mono<String> getChatHistory(String chatId) throws Exception {
+        log.info("Get chat history: " + chatId);
+        return webClient.get()
+                .uri("/v1/chat/" + chatId + "/history")
+                .retrieve()
+                .bodyToMono(String.class)
+                .timeout(Duration.ofSeconds(5))
+                .doOnError(error -> {
+                    System.err.println(chatId);
+                    System.err.println(error.getMessage());
+                });
+    }
 }

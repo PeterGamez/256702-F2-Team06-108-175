@@ -50,7 +50,10 @@ public class MessageEvent {
             });
         }
 
-        Notification.showNotification("คุณได้รับข้อความใหม่", message);
+        Object status = request.getD().get("status");
+        if (!status.equals("success")) {
+            Notification.showNotification("คุณได้รับข้อความใหม่", message);
+        }
     }
 
     private static void sendToGroupChat(int responseType) {

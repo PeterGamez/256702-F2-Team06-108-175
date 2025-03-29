@@ -30,6 +30,8 @@ public class ChatView implements ViewInterface {
 
     private VBox chatBox;
 
+    // private ScrollPane chatScrollPane;
+
     public ChatView() {
         friendNameProperty = new SimpleStringProperty();
         friendImageProperty = new SimpleStringProperty();
@@ -41,6 +43,8 @@ public class ChatView implements ViewInterface {
         messageField = new TextField();
 
         chatBox = new VBox();
+
+        // chatScrollPane = new ScrollPane(chatBox);
     }
 
     @Override
@@ -80,7 +84,7 @@ public class ChatView implements ViewInterface {
     private Parent createChatBox() {
         chatBox.getStyleClass().add("chat-box");
 
-        ScrollPane chatScrollPane = new ScrollPane(chatBox);
+        ScrollPane chatScrollPane =new ScrollPane(chatBox);
         chatScrollPane.getStyleClass().add("chat-scroll-pane");
         chatScrollPane.setFitToWidth(true);
         VBox.setVgrow(chatScrollPane, Priority.ALWAYS);
@@ -155,4 +159,12 @@ public class ChatView implements ViewInterface {
     public TextField getMessageField() {
         return messageField;
     }
+
+    public VBox getChatBox() {
+        return chatBox;
+    }
+
+    // public ScrollPane getChatScrollPane() {
+    // return chatScrollPane;
+    // }
 }

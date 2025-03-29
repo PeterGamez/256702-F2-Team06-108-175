@@ -6,6 +6,14 @@ public class Time {
         return java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
     }
 
+    public static String getFormatTime(String dateTime) {
+        String[] dateTimeParts = dateTime.split("T");
+        String date = dateTimeParts[0];
+        String time = dateTimeParts[1].substring(0, 5);
+        String[] timeParts = time.split(":");
+        return getFormatTime(timeParts[0], timeParts[1]);
+    }
+
     public static String getFormatTime(String hour, String minute) {
         StringBuilder time = new StringBuilder();
         if (hour.length() == 1) {
