@@ -3,6 +3,8 @@ package com.mechat.restAPI.V1;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +22,14 @@ import com.mechat.utils.JWT;
 @RequestMapping("/v1/auth")
 public class AuthController {
 
+    private static final Logger log = LoggerFactory.getLogger(AuthController.class);
+
     @Autowired
     private UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, Object> payload) {
+        log.info("Login endpoint called with payload: " + payload.toString());
         if (!payload.containsKey("username") || !payload.containsKey("password")) {
             Map<String, Object> response = new LinkedHashMap<>();
             response.put("status", "error");
@@ -60,6 +65,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, Object> payload) {
+        log.info("Register endpoint called with payload: " + payload.toString());
         if (!payload.containsKey("username") || !payload.containsKey("password")) {
             Map<String, Object> response = new LinkedHashMap<>();
             response.put("status", "error");

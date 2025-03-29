@@ -1,5 +1,8 @@
 package com.mechat.websocket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.mechat.MakeCache;
 import com.mechat.controller.navbar.HomeController;
 import com.mechat.service.RequestMessage;
@@ -11,9 +14,11 @@ import javafx.application.Platform;
 
 public class WebSocketMessage {
 
+    private static final Logger log = LoggerFactory.getLogger(WebSocketMessage.class);
+
     public static void handle(String payload) {
         try {
-            System.out.println("WebSocketMessage: " + payload);
+            log.info("WebSocketMessage: " + payload);
 
             RequestMessage request = new RequestMessage(payload);
 

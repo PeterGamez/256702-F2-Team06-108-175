@@ -11,10 +11,15 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.mechat.MakeCache;
 
 @ClientEndpoint
 public class WebSocketClient {
+
+    private static final Logger log = LoggerFactory.getLogger(WebSocketClient.class);
 
     private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
@@ -47,6 +52,7 @@ public class WebSocketClient {
 
     public static void reconnect() {
         scheduler.scheduleAtFixedRate(() -> {
+            log.info("WebSocket Reconnecting...");
             try {
                 Session session = MakeCache.getSession();
                 if (session == null || !session.isOpen()) {
@@ -55,12 +61,13 @@ public class WebSocketClient {
                     scheduler.shutdown();
                 }
             } catch (Exception e) {
-                System.err.println("Failed to reconnect");
+                log.error("Failed to reconnect: " + e.getMessage());
             }
         }, 0, 5, TimeUnit.SECONDS);
     }
 
     public static void close() {
+        log.info("WebSocket Closing connection");
         try {
             Session session = MakeCache.getSession();
             session.close();
@@ -70,6 +77,7 @@ public class WebSocketClient {
     }
 
     public static void sendMessage(String message) {
+        log.info("WebSocket Sending message: " + message);
         try {
             Session session = MakeCache.getSession();
             session.getBasicRemote().sendText(message);

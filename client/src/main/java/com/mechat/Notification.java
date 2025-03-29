@@ -9,7 +9,12 @@ import java.net.URL;
 
 import javax.swing.ImageIcon;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Notification {
+
+    private static final Logger log = LoggerFactory.getLogger(Notification.class);
 
     public static void showNotification(String caption, String text) {
         SystemTray tray = SystemTray.getSystemTray();
@@ -23,9 +28,9 @@ public class Notification {
             Thread.sleep(10 * 1000);
             tray.remove(trayIcon);
         } catch (AWTException e) {
-            System.err.println("TrayIcon could not be added.");
+            log.error("TrayIcon could not be added.", e);
         } catch (InterruptedException e) {
-            System.err.println("Thread interrupted.");
+            log.error("Thread interrupted.", e);
         }
     }
 }

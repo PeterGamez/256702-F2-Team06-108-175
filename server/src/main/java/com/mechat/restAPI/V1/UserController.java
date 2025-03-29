@@ -3,6 +3,8 @@ package com.mechat.restAPI.V1;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +20,14 @@ import com.mechat.service.UserService;
 @RequestMapping("/v1/user")
 public class UserController {
 
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserService userService;
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getUser(@PathVariable("id") Long id) {
+        log.info("Get user endpoint called with ID: " + id);
         UserDTO user = userService.getUserById(id);
         if (user == null) {
             Map<String, Object> response = new LinkedHashMap<>();
@@ -42,6 +47,7 @@ public class UserController {
 
     @GetMapping("/search/{username}")
     public ResponseEntity<?> getUserByUsername(@PathVariable("username") String username) {
+        log.info("Get user by username endpoint called with username: " + username);
         UserDTO user = userService.getUserByUsername(username);
         if (user == null) {
             Map<String, Object> response = new LinkedHashMap<>();

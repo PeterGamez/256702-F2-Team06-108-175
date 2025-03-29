@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "chat_history")
+@Table(name = "chat_histories")
 public class ChatHistory extends BaseEntity {
 
     @ManyToOne

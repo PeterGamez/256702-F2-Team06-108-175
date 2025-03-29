@@ -2,6 +2,9 @@ package com.mechat.websocket;
 
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -18,13 +21,15 @@ import jakarta.websocket.Session;
 
 public class WebSocketEndpoint extends Endpoint {
 
+    private static final Logger log = LoggerFactory.getLogger(WebSocketEndpoint.class);
+
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @OnOpen
     public void onOpen(Session session, EndpointConfig config) {
         MakeCache.setSession(session);
 
-        System.out.println("WebSocket connection opened: " + session.getId());
+        log.info("WebSocket connection opened: " + session.getId());
 
         addMessageHandler(session);
 
