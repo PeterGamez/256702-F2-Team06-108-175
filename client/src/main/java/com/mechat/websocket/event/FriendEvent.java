@@ -69,13 +69,16 @@ public class FriendEvent {
 
         MakeCache.setData("friends", friends);
 
-        ResponseMessage respond = new ResponseMessage(13, 1);
+        Object status = request.getD().get("status");
+        if (status.equals("success")) {
+            ResponseMessage respond = new ResponseMessage(13, 1);
 
-        String myId = Objects.toString(MakeCache.getUser().get("id"));
-        respond.put("user_ids", List.of(myId, userId));
-        respond.put("type", 0);
+            String myId = Objects.toString(MakeCache.getUser().get("id"));
+            respond.put("user_ids", List.of(myId, userId));
+            respond.put("type", 0);
 
-        WebSocketClient.sendMessage(respond.raw());
+            WebSocketClient.sendMessage(respond.raw());
+        }
     }
 
     private static void updateFriend(int responseType) {
