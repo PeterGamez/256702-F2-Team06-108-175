@@ -1,4 +1,4 @@
-package com.mechat.service;
+package com.mechat.websocket;
 
 import java.util.Map;
 import java.util.logging.Logger;

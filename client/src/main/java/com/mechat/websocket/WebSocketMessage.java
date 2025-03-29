@@ -1,7 +1,13 @@
-package com.mechat.service;
+package com.mechat.websocket;
+
+import java.util.Objects;
 
 import com.mechat.MakeCache;
+import com.mechat.controller.navbar.AddFriendController;
 import com.mechat.controller.navbar.HomeController;
+import com.mechat.service.RequestMessage;
+import com.mechat.service.RestApiService;
+import com.mechat.websocket.event.FriendEvent;
 
 import javafx.application.Platform;
 
@@ -24,7 +30,7 @@ public class WebSocketMessage {
                     MakeCache.getController(HomeController.class).loadChats();
                 });
             } else if (request.getOp() == 2) {
-                Object users = request.getD().get("chat");
+                Object users = request.getD().get("users");
 
                 MakeCache.setData("userOnline", users);
             } else if (request.getOp() == 12) {
@@ -52,12 +58,7 @@ public class WebSocketMessage {
                     Object users = request.getD().get("users");
                 }
             } else if (request.getOp() == 17) {
-                if (request.getT() == 1) {
-                    Object userId = request.getD().get("user_id");
-                } else if (request.getT() == 2) {
-                    Object userId = request.getD().get("user_id");
-                    Object type = request.getD().get("type");
-                }
+                FriendEvent.handle(request);
             }
         } catch (Exception e) {
             System.err.println("WebSocketError: " + e.getMessage());

@@ -1,4 +1,4 @@
-package com.mechat.service;
+package com.mechat.websocket;
 
 import jakarta.websocket.*;
 
@@ -46,18 +46,18 @@ public class WebSocketClient {
     }
 
     public static void reconnect() {
-        try {
-            scheduler.scheduleAtFixedRate(() -> {
+        scheduler.scheduleAtFixedRate(() -> {
+            try {
                 Session session = MakeCache.getSession();
                 if (session == null || !session.isOpen()) {
                     connect();
                 } else {
                     scheduler.shutdown();
                 }
-            }, 0, 5, TimeUnit.SECONDS);
-        } catch (Exception e) {
-            System.err.println("Failed to reconnect");
-        }
+            } catch (Exception e) {
+                System.err.println("Failed to reconnect");
+            }
+        }, 0, 5, TimeUnit.SECONDS);
     }
 
     public static void close() {
