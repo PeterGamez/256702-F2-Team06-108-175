@@ -83,7 +83,6 @@ public class AddFriendView extends NavbarView implements ViewInterface {
         ImageView imageView = new ImageView();
         imageView.setFitWidth(120);
         imageView.setFitHeight(120);
-        imageView.setClip(TemplateView.createCircle(imageView));
 
         TemplateView.bindImage(imageView, imagePath);
         Label friendName = new Label();
