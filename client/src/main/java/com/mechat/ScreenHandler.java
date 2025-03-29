@@ -32,7 +32,13 @@ public class ScreenHandler {
         }
 
         stage.setScene(scene);
-        stage.centerOnScreen();
+
+        if (MakeCache.isFullScreen()) {
+            stage.setMaximized(true);
+        } else {
+            stage.setMaximized(false);
+            stage.centerOnScreen();
+        }
 
         if (!stage.isShowing()) {
             stage.show();
@@ -53,7 +59,13 @@ public class ScreenHandler {
         }
 
         stage.setScene(scene);
-        stage.centerOnScreen();
+
+        if (MakeCache.isFullScreen()) {
+            stage.setMaximized(true);
+        } else {
+            stage.setMaximized(false);
+            stage.centerOnScreen();
+        }
 
         if (!stage.isShowing()) {
             stage.show();
@@ -64,6 +76,19 @@ public class ScreenHandler {
 
     private static void debug(Scene scene) {
         scene.setOnKeyPressed(event -> {
+            switch (event.getCode()) {
+                case F11:
+                    if (stage.isFullScreen()) {
+                        stage.setMaximized(false);
+                        MakeCache.setFullScreen(false);
+                    } else {
+                        stage.setMaximized(true);
+                        MakeCache.setFullScreen(true);
+                    }
+                    break;
+                default:
+                    break;
+            }
             if (event.isAltDown()) {
                 switch (event.getCode()) {
                     case D:
@@ -71,6 +96,8 @@ public class ScreenHandler {
                         System.out.println("Token: " + MakeCache.getAuthToken());
                         System.out.println("Session: " + MakeCache.getSession().getId());
                         System.out.println("User: " + MakeCache.getUser());
+                        System.out.println("Data: " + MakeCache.getDatas());
+                        System.out.println("Chat Id: " + MakeCache.getChatId());
                         break;
                     default:
                         break;

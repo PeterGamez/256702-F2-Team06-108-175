@@ -1,6 +1,7 @@
 package com.mechat;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,15 +13,20 @@ import jakarta.websocket.Session;
 
 public class MakeCache {
 
+    private static boolean isFullScreen = false;
     private static ArrayList<ControllerInterface> controllers;
     private static Map<String, Object> server;
     private static String authToken;
     private static Session session;
     private static Map<String, Object> user;
+    private static List<Map<String, Object>> data;
+    private static String chatId;
 
     public MakeCache() {
         controllers = new ArrayList<>();
         loadControllers();
+
+        data = new ArrayList<>();
     }
 
     private void loadControllers() {
@@ -35,6 +41,14 @@ public class MakeCache {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean isFullScreen() {
+        return isFullScreen;
+    }
+
+    public static void setFullScreen(boolean isFullScreen) {
+        MakeCache.isFullScreen = isFullScreen;
     }
 
     public static <T extends ControllerInterface> T getController(Class<T> controllerClass) {
@@ -76,5 +90,38 @@ public class MakeCache {
 
     public static void setUser(Map<String, Object> user) {
         MakeCache.user = user;
+    }
+
+    public static List<Map<String, Object>> getDatas() {
+        return data;
+    }
+
+    public static Object getData(String key) {
+        for (Map<String, Object> item : data) {
+            if (item.containsKey(key)) {
+                return item.get(key);
+            }
+        }
+        return null;
+    }
+
+    public static void setData(String key, Object value) {
+        for (Map<String, Object> item : data) {
+            if (item.containsKey(key)) {
+                item.put(key, value);
+                return;
+            }
+        }
+        Map<String, Object> newItem = new java.util.HashMap<>();
+        newItem.put(key, value);
+        data.add(newItem);
+    }
+
+    public static String getChatId() {
+        return chatId;
+    }
+
+    public static void setChatId(String chatId) {
+        MakeCache.chatId = chatId;
     }
 }
