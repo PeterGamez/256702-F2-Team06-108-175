@@ -70,6 +70,26 @@ public class FriendEvent implements EventInterface {
         }
 
         UserDTO friend = userService.getUserById(userId);
+        if (friend == null) {
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
+
+            response.put("status", "error");
+            response.put("message", "User not found");
+
+            response.send();
+            return;
+        }
+
+        boolean isFriend = friendService.getFriends(user.getId(), friend.getId()) != null;
+        if (isFriend) {
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
+
+            response.put("status", "error");
+            response.put("message", "Already friends");
+
+            response.send();
+            return;
+        }
 
         friendService.addFriend(user, friend);
 
@@ -77,7 +97,7 @@ public class FriendEvent implements EventInterface {
                 .filter(s -> s.isOpen() && s.getAttributes().get("user") != null)
                 .filter(s -> {
                     UserDTO user = (UserDTO) s.getAttributes().get("user");
-                    return user.getId() == friend.getId();
+                    return user.getId().equals(friend.getId());
                 })
                 .forEach(s -> {
                     ResponseMessage response = new ResponseMessage(s, responseOp, responseType);
@@ -90,6 +110,7 @@ public class FriendEvent implements EventInterface {
         ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
 
         response.put("status", "success");
+        response.put("user_id", friend.getId());
 
         response.send();
     }
@@ -115,6 +136,26 @@ public class FriendEvent implements EventInterface {
         Friend.Status type = Friend.Status.fromValue(typeStr);
 
         UserDTO friend = userService.getUserById(userId);
+        if (friend == null) {
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
+
+            response.put("status", "error");
+            response.put("message", "User not found");
+
+            response.send();
+            return;
+        }
+
+        boolean isFriend = friendService.getFriends(user.getId(), friend.getId()) != null;
+        if (!isFriend) {
+            ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
+
+            response.put("status", "error");
+            response.put("message", "Not friends");
+
+            response.send();
+            return;
+        }
 
         friendService.updateFriend(user, friend, type);
 
@@ -122,7 +163,7 @@ public class FriendEvent implements EventInterface {
                 .filter(s -> s.isOpen() && s.getAttributes().get("user") != null)
                 .filter(s -> {
                     UserDTO user = (UserDTO) s.getAttributes().get("user");
-                    return user.getId() == friend.getId();
+                    return user.getId().equals(friend.getId());
                 })
                 .forEach(s -> {
                     ResponseMessage response = new ResponseMessage(s, responseOp, responseType);
@@ -136,6 +177,7 @@ public class FriendEvent implements EventInterface {
         ResponseMessage response = new ResponseMessage(session, responseOp, responseType);
 
         response.put("status", "success");
+        response.put("user_id", friend.getId());
 
         response.send();
     }
