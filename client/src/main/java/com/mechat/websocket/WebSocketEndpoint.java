@@ -62,7 +62,9 @@ public class WebSocketEndpoint extends Endpoint {
     public void onClose(Session session, CloseReason closeReason) {
         MakeCache.setSession(null);
 
-        WebSocketClient.reconnect();
+        if (!closeReason.getCloseCode().equals(CloseReason.CloseCodes.NORMAL_CLOSURE)) {
+            WebSocketClient.reconnect();
+        }
 
         log.info("Session closed: " + closeReason.getCloseCode() + " - " + closeReason.getReasonPhrase());
     }
