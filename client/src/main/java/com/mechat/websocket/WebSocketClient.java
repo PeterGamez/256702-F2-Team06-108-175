@@ -61,7 +61,7 @@ public class WebSocketClient {
                     scheduler.shutdown();
                 }
             } catch (Exception e) {
-                System.err.println("Failed to reconnect");
+                log.error("Failed to reconnect: " + e.getMessage());
             }
         }, 0, 5, TimeUnit.SECONDS);
     }
