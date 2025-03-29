@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mechat.MakeCache;
+import com.mechat.Notification;
 import com.mechat.controller.chat.ChatController;
 import com.mechat.service.RequestMessage;
 
@@ -48,6 +49,8 @@ public class MessageEvent {
                 MakeCache.getController(ChatController.class).reciveMessage(message);
             });
         }
+
+        Notification.showNotification("คุณได้รับข้อความใหม่", message);
     }
 
     private static void sendToGroupChat(int responseType) {
