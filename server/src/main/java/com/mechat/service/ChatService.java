@@ -74,6 +74,10 @@ public class ChatService {
         chatRepository.save(chat);
     }
 
+    public List<ChatHistory> getChatHistory(Chat chat) {
+        return chatHistoryRepository.findAllByChatId(chat.getId());
+    }
+
     public void saveChatHistory(Chat chat, UserDTO user, String message) {
         ChatHistory chatHistory = new ChatHistory();
         chatHistory.setChat(chat);
