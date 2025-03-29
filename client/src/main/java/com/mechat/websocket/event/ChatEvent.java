@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,6 +17,8 @@ import com.mechat.service.RestApiService;
 
 public class ChatEvent {
 
+    private static final Logger log = LoggerFactory.getLogger(ChatEvent.class);
+
     private static RequestMessage request;
 
     private static ObjectMapper objectMapper = new ObjectMapper();
@@ -22,8 +27,10 @@ public class ChatEvent {
         ChatEvent.request = request;
 
         if (request.getT() == 1) {
+            log.info("Create chat: " + request.getD().toString());
             createChat(1);
         } else if (request.getT() == 2) {
+            log.info("Update chat: " + request.getD().toString());
             updateChat(2);
         }
     }
