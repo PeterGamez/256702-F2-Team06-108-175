@@ -69,6 +69,11 @@ public class ChatEvent {
     }
 
     private static void updateChat(int responseType) {
+        Object status = request.getD().get("status");
+        if (status.equals("error")) {
+            return;
+        }
+
         Object chatId = request.getD().get("chat_id");
         Object chat = request.getD().get("chat");
         Object users = request.getD().get("users");

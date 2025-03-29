@@ -1,7 +1,13 @@
 package com.mechat.websocket.event;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mechat.MakeCache;
+import com.mechat.controller.chat.ChatController;
 import com.mechat.service.RequestMessage;
+
+import javafx.application.Platform;
 
 public class MessageEvent {
 
@@ -24,23 +30,50 @@ public class MessageEvent {
     }
 
     private static void sendToPrivateChat(int responseType) {
-        Object chatId = request.getD().get("chat_id");
-        Object message = request.getD().get("message");
+        Object status = request.getD().get("status");
+        if (status.equals("error")) {
+            return;
+        }
+
+        String chatId = Objects.toString(request.getD().get("chat_id"));
+        String message = Objects.toString(request.getD().get("message"));
+
+        String currentChatId = MakeCache.getChatId();
+        if (chatId.equals(currentChatId)) {
+            Platform.runLater(() -> {
+                MakeCache.getController(ChatController.class).reciveMessage(message);
+            });
+        }
     }
 
     private static void sendToGroupChat(int responseType) {
+        Object status = request.getD().get("status");
+        if (status.equals("error")) {
+            return;
+        }
+
         Object chatId = request.getD().get("chat_id");
         Object senderId = request.getD().get("sender_id");
         Object message = request.getD().get("message");
     }
 
     private static void updateMessage(int responseType) {
+        Object status = request.getD().get("status");
+        if (status.equals("error")) {
+            return;
+        }
+
         Object chatId = request.getD().get("chat_id");
         Object messageId = request.getD().get("message_id");
         Object message = request.getD().get("message");
     }
 
     private static void deleteMessage(int responseType) {
+        Object status = request.getD().get("status");
+        if (status.equals("error")) {
+            return;
+        }
+
         Object chatId = request.getD().get("chat_id");
         Object messageId = request.getD().get("message_id");
     }

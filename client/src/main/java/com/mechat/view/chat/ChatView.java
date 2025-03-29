@@ -3,6 +3,8 @@ package com.mechat.view.chat;
 import com.mechat.interfaces.ViewInterface;
 import com.mechat.utils.TemplateView;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -18,16 +20,27 @@ import javafx.scene.layout.VBox;
 
 public class ChatView implements ViewInterface {
 
-    private VBox chatBox;
+    private StringProperty friendNameProperty;
+    private StringProperty friendImageProperty;
+
     // private Button informationButton;
     private Button backButton;
+
     private TextField messageField;
 
+    private VBox chatBox;
+
     public ChatView() {
-        // informationButton = TemplateView.createImageButton("/images/info-button.png", 30, 30, "back-button");
+        friendNameProperty = new SimpleStringProperty();
+        friendImageProperty = new SimpleStringProperty();
+
+        // informationButton = TemplateView.createImageButton("/images/info-button.png",
+        // 30, 30, "back-button");
         backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
 
         messageField = new TextField();
+
+        chatBox = new VBox();
     }
 
     @Override
@@ -46,14 +59,17 @@ public class ChatView implements ViewInterface {
         header.setAlignment(Pos.CENTER_LEFT);
 
         ImageView profile = TemplateView.createImageView("/images/profile-icon.png", 60, 60);
+        TemplateView.bindImage(profile, friendImageProperty);
 
-        Label friendName = new Label("Friend's Name");
+        Label friendName = new Label();
         friendName.getStyleClass().add("friend-name-label");
+        friendName.textProperty().bind(friendNameProperty);
 
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        // header.getChildren().addAll(backButton, profile, friendName, spacer, informationButton);
+        // header.getChildren().addAll(backButton, profile, friendName, spacer,
+        // informationButton);
         header.getChildren().addAll(backButton, profile, friendName, spacer);
         header.setSpacing(20);
         header.setPadding(new Insets(10, 20, 20, 20));
@@ -62,7 +78,6 @@ public class ChatView implements ViewInterface {
     }
 
     private Parent createChatBox() {
-        chatBox = new VBox();
         chatBox.getStyleClass().add("chat-box");
 
         ScrollPane chatScrollPane = new ScrollPane(chatBox);
@@ -122,8 +137,16 @@ public class ChatView implements ViewInterface {
     }
 
     // public Button getInformationButton() {
-    //     return informationButton;
+    // return informationButton;
     // }
+
+    public StringProperty getFriendNameProperty() {
+        return friendNameProperty;
+    }
+
+    public StringProperty getFriendImageProperty() {
+        return friendImageProperty;
+    }
 
     public Button getBackButton() {
         return backButton;

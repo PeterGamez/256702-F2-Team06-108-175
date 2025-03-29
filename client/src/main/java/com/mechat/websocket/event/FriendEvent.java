@@ -83,6 +83,11 @@ public class FriendEvent {
     }
 
     private static void updateFriend(int responseType) {
+        Object status = request.getD().get("status");
+        if (status.equals("error")) {
+            return;
+        }
+
         Object userId = request.getD().get("user_id");
         Object type = request.getD().get("type");
     }
