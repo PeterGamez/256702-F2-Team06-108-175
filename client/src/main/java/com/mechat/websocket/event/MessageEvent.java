@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mechat.MakeCache;
+import com.mechat.Notification;
 import com.mechat.controller.chat.ChatController;
 import com.mechat.service.RequestMessage;
 
@@ -47,6 +48,11 @@ public class MessageEvent {
             Platform.runLater(() -> {
                 MakeCache.getController(ChatController.class).reciveMessage(message);
             });
+        }
+
+        Object status = request.getD().get("status");
+        if (!status.equals("success")) {
+            Notification.showNotification("You've got a new message.", message);
         }
     }
 

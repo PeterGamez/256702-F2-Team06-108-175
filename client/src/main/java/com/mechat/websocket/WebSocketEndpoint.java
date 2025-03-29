@@ -64,11 +64,11 @@ public class WebSocketEndpoint extends Endpoint {
 
         WebSocketClient.reconnect();
 
-        System.out.println("Session closed: " + closeReason.getCloseCode() + " - " + closeReason.getReasonPhrase());
+        log.info("Session closed: " + closeReason.getCloseCode() + " - " + closeReason.getReasonPhrase());
     }
 
     @OnError
     public void onError(Session session, Throwable throwable) {
-        System.out.println("Error occurred: " + throwable.getMessage());
+        log.error("Error occurred: " + throwable.getMessage());
     }
 }

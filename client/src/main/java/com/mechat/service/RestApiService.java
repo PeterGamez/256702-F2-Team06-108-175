@@ -56,8 +56,8 @@ public class RestApiService {
                 .bodyToMono(String.class)
                 .timeout(Duration.ofSeconds(5))
                 .doOnError(error -> {
-                    System.err.println(username + " " + password);
-                    System.err.println(error.getMessage());
+                    log.error("Login error: " + username + " " + password);
+                    log.error(error.getMessage());
                 });
     }
 
@@ -73,8 +73,8 @@ public class RestApiService {
                 .bodyToMono(String.class)
                 .timeout(Duration.ofSeconds(5))
                 .doOnError(error -> {
-                    System.err.println(username + " " + password);
-                    System.err.println(error.getMessage());
+                    log.error("Register error: " + username + " " + password);
+                    log.error(error.getMessage());
                 });
     }
 
@@ -86,8 +86,8 @@ public class RestApiService {
                 .bodyToMono(String.class)
                 .timeout(Duration.ofSeconds(5))
                 .doOnError(error -> {
-                    System.err.println(userId);
-                    System.err.println(error.getMessage());
+                    log.error("Get user error: " + userId);
+                    log.error(error.getMessage());
                 });
     }
 
@@ -99,8 +99,8 @@ public class RestApiService {
                 .bodyToMono(String.class)
                 .timeout(Duration.ofSeconds(5))
                 .doOnError(error -> {
-                    System.err.println(username);
-                    System.err.println(error.getMessage());
+                    log.error("Get user by username error: " + username);
+                    log.error(error.getMessage());
                 });
     }
 
@@ -112,8 +112,21 @@ public class RestApiService {
                 .bodyToMono(String.class)
                 .timeout(Duration.ofSeconds(5))
                 .doOnError(error -> {
-                    System.err.println(chatId);
-                    System.err.println(error.getMessage());
+                    log.error("Get chat error: " + chatId);
+                    log.error(error.getMessage());
+                });
+    }
+
+    public static Mono<String> getChatHistory(String chatId) throws Exception {
+        log.info("Get chat history: " + chatId);
+        return webClient.get()
+                .uri("/v1/chat/" + chatId + "/history")
+                .retrieve()
+                .bodyToMono(String.class)
+                .timeout(Duration.ofSeconds(5))
+                .doOnError(error -> {
+                    log.error("Get chat history error: " + chatId);
+                    log.error(error.getMessage());
                 });
     }
 }
