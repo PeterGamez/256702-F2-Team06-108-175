@@ -1,7 +1,6 @@
 package com.mechat.websocket;
 
 import java.util.Map;
-import java.util.logging.Logger;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;

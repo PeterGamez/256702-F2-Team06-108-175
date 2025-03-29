@@ -1,13 +1,11 @@
 package com.mechat.websocket;
 
-import java.util.Objects;
-
 import com.mechat.MakeCache;
-import com.mechat.controller.navbar.AddFriendController;
 import com.mechat.controller.navbar.HomeController;
 import com.mechat.service.RequestMessage;
-import com.mechat.service.RestApiService;
+import com.mechat.websocket.event.ChatEvent;
 import com.mechat.websocket.event.FriendEvent;
+import com.mechat.websocket.event.MessageEvent;
 
 import javafx.application.Platform;
 
@@ -34,29 +32,9 @@ public class WebSocketMessage {
 
                 MakeCache.setData("userOnline", users);
             } else if (request.getOp() == 12) {
-                if (request.getT() == 1) {
-                    Object chatId = request.getD().get("chat_id");
-                    Object message = request.getD().get("message");
-                } else if (request.getT() == 2) {
-                    Object chatId = request.getD().get("chat_id");
-                    Object senderId = request.getD().get("sender_id");
-                    Object message = request.getD().get("message");
-                } else if (request.getT() == 6) {
-                    Object chatId = request.getD().get("chat_id");
-                    Object messageId = request.getD().get("message_id");
-                    Object message = request.getD().get("message");
-                } else if (request.getT() == 7) {
-                    Object chatId = request.getD().get("chat_id");
-                    Object messageId = request.getD().get("message_id");
-                }
+                MessageEvent.handle(request);
             } else if (request.getOp() == 14) {
-                if (request.getT() == 1) {
-                    Object chatId = request.getD().get("chat_id");
-                } else if (request.getT() == 2) {
-                    Object chatId = request.getD().get("chat_id");
-                    Object chat = request.getD().get("chat");
-                    Object users = request.getD().get("users");
-                }
+                ChatEvent.handle(request);
             } else if (request.getOp() == 17) {
                 FriendEvent.handle(request);
             }

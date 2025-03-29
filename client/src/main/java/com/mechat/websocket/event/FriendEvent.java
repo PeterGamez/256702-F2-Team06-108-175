@@ -10,7 +10,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mechat.MakeCache;
 import com.mechat.controller.navbar.AddFriendController;
 import com.mechat.service.RequestMessage;
+import com.mechat.service.ResponseMessage;
 import com.mechat.service.RestApiService;
+import com.mechat.websocket.WebSocketClient;
 
 import javafx.application.Platform;
 
@@ -67,6 +69,12 @@ public class FriendEvent {
         friends.add(friend);
 
         MakeCache.setData("friends", friends);
+
+        ResponseMessage respond = new ResponseMessage(13, 1);
+        respond.put("user_ids", List.of(userId));
+        respond.put("type", 0);
+
+        WebSocketClient.sendMessage(respond.raw());
     }
 
     private static void updateFriend(int responseType) {
