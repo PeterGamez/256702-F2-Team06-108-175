@@ -76,19 +76,6 @@ public class ScreenHandler {
 
     private static void debug(Scene scene) {
         scene.setOnKeyPressed(event -> {
-            switch (event.getCode()) {
-                case F11:
-                    if (stage.isFullScreen()) {
-                        stage.setMaximized(false);
-                        MakeCache.setFullScreen(false);
-                    } else {
-                        stage.setMaximized(true);
-                        MakeCache.setFullScreen(true);
-                    }
-                    break;
-                default:
-                    break;
-            }
             if (event.isAltDown()) {
                 switch (event.getCode()) {
                     case D:

@@ -24,9 +24,6 @@ public class Time {
         String time = dateTimeParts[1].substring(0, 5);
         String[] timeParts = time.split(":");
 
-        System.out.println(parsedDate + " " + today + " " + yesterday);
-        System.out.println(year + " " + month + " " + day);
-
         if (parsedDate.equals(today)) {
             return getFormatTime(timeParts[0], timeParts[1]);
         } else if (parsedDate.equals(yesterday)) {
