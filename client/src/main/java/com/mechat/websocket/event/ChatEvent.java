@@ -8,11 +8,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mechat.MakeCache;
-import com.mechat.controller.navbar.AddFriendController;
 import com.mechat.service.RequestMessage;
 import com.mechat.service.RestApiService;
 
-import javafx.application.Platform;
 
 public class ChatEvent {
 
