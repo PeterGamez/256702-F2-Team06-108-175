@@ -26,6 +26,8 @@ public class AddFriendView extends NavbarView implements ViewInterface {
 
     private Button addFriendButton;
 
+    private TextField searchField;
+
     public AddFriendView() {
         searchedFriendName = new SimpleStringProperty();
         imagePath = new SimpleStringProperty();
@@ -34,6 +36,8 @@ public class AddFriendView extends NavbarView implements ViewInterface {
 
         addFriendButton = new Button();
         addFriendButton.setVisible(false);
+
+        searchField = new TextField();
     }
 
     @Override
@@ -59,12 +63,10 @@ public class AddFriendView extends NavbarView implements ViewInterface {
         errorBox.setAlignment(Pos.CENTER);
 
         // Search friend field
-        TextField friendNameField = new TextField();
-        friendNameField.setPromptText("Enter friend's name");
-        friendNameField.getStyleClass().add("friend-name-field");
-        friendNameField.textProperty().bindBidirectional(searchedFriendName);
+        searchField.setPromptText("Enter friend's name");
+        searchField.getStyleClass().add("friend-name-field");
 
-        header.getChildren().addAll(title, errorBox, friendNameField);
+        header.getChildren().addAll(title, errorBox, searchField);
         header.setSpacing(20);
         header.setPadding(new Insets(20, 80, 0, 80));
 
@@ -116,5 +118,9 @@ public class AddFriendView extends NavbarView implements ViewInterface {
 
     public StringProperty getShowErrorProperty() {
         return showErrorProperty;
+    }
+
+    public TextField getSearchField() {
+        return searchField;
     }
 }

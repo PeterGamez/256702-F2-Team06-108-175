@@ -19,12 +19,15 @@ import javafx.scene.layout.VBox;
 public class ChatView implements ViewInterface {
 
     private VBox chatBox;
-    private Button informationButton;
+    // private Button informationButton;
     private Button backButton;
+    private TextField messageField;
 
     public ChatView() {
-        informationButton = TemplateView.createImageButton("/images/info-button.png", 30, 30, "back-button");
+        // informationButton = TemplateView.createImageButton("/images/info-button.png", 30, 30, "back-button");
         backButton = TemplateView.createImageButton("/images/back-button.png", 30, 30, "back-button");
+
+        messageField = new TextField();
     }
 
     @Override
@@ -47,17 +50,11 @@ public class ChatView implements ViewInterface {
         Label friendName = new Label("Friend's Name");
         friendName.getStyleClass().add("friend-name-label");
 
-        // if(ถ้าเป็นกลุ่ม){
-        // information.setOnAction(e -> ScreenHandler.setScreen(new GroupInfoView()));
-        // }
-        // else{
-        // information.setOnAction(e -> ScreenHandler.setScreen(new FriendInfoView()));
-        // }
-
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        header.getChildren().addAll(backButton, profile, friendName, spacer, informationButton);
+        // header.getChildren().addAll(backButton, profile, friendName, spacer, informationButton);
+        header.getChildren().addAll(backButton, profile, friendName, spacer);
         header.setSpacing(20);
         header.setPadding(new Insets(10, 20, 20, 20));
 
@@ -81,18 +78,9 @@ public class ChatView implements ViewInterface {
         messageBox.getStyleClass().add("message-box");
         messageBox.setAlignment(Pos.CENTER);
 
-        TextField messageField = new TextField();
         messageField.setPromptText("Message @Friend 1");
         messageField.getStyleClass().add("message-field");
         HBox.setHgrow(messageField, Priority.ALWAYS);
-
-        messageField.setOnAction(e -> {
-            String message = messageField.getText();
-            if (!message.trim().isEmpty()) {
-                addSentMessage(message, getCurrentTime());
-                messageField.clear();
-            }
-        });
 
         messageBox.getChildren().addAll(messageField);
         messageBox.setSpacing(20);
@@ -101,7 +89,7 @@ public class ChatView implements ViewInterface {
         return messageBox;
     }
 
-    private void addReceivedMessage(String message, String time) {
+    public void addReceivedMessage(String message, String time) {
         HBox messageBox = new HBox();
         messageBox.setAlignment(Pos.CENTER_LEFT);
         messageBox.setPadding(new Insets(5, 10, 5, 10));
@@ -117,7 +105,7 @@ public class ChatView implements ViewInterface {
         chatBox.getChildren().add(messageBox);
     }
 
-    private void addSentMessage(String message, String time) {
+    public void addSentMessage(String message, String time) {
         HBox messageBox = new HBox();
         messageBox.setAlignment(Pos.CENTER_RIGHT);
         messageBox.setPadding(new Insets(5, 10, 5, 10));
@@ -133,15 +121,15 @@ public class ChatView implements ViewInterface {
         chatBox.getChildren().add(messageBox);
     }
 
-    private String getCurrentTime() {
-        return java.time.LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
-    }
-
-    public Button getInformationButton() {
-        return informationButton;
-    }
+    // public Button getInformationButton() {
+    //     return informationButton;
+    // }
 
     public Button getBackButton() {
         return backButton;
+    }
+
+    public TextField getMessageField() {
+        return messageField;
     }
 }
