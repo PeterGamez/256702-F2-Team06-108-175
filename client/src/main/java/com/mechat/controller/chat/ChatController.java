@@ -31,6 +31,7 @@ public class ChatController implements ControllerInterface {
         // chatView.getInformationButton().setOnAction(this::informationEvent);
         chatView.getBackButton().setOnAction(this::backEvent);
         chatView.getMessageField().setOnAction(this::chatEvent);
+        // chatView.getChatBox().setOnMouseClicked(this::rightClickEvent);
     }
 
     @Override
@@ -48,11 +49,13 @@ public class ChatController implements ControllerInterface {
             Map<String, Object> respond = objectMapper.convertValue(jsonNode, new TypeReference<Map<String, Object>>() {
             });
 
-            Map<String, Object> chat = objectMapper.convertValue(respond.get("chat"), new TypeReference<Map<String, Object>>() {
-            });
+            Map<String, Object> chat = objectMapper.convertValue(respond.get("chat"),
+                    new TypeReference<Map<String, Object>>() {
+                    });
 
-            List<Map<String, Object>> users = objectMapper.convertValue(respond.get("users"), new TypeReference<List<Map<String, Object>>>() {
-            });
+            List<Map<String, Object>> users = objectMapper.convertValue(respond.get("users"),
+                    new TypeReference<List<Map<String, Object>>>() {
+                    });
 
             boolean isGroup = (boolean) chat.get("type").equals("GROUP");
             if (isGroup) {
@@ -63,7 +66,8 @@ public class ChatController implements ControllerInterface {
 
             String MyId = Objects.toString(MakeCache.getUser().get("id"));
 
-            Map<String, Object> friend = users.stream().filter(user -> !user.get("id").toString().equals(MyId)).findFirst().orElse(null);
+            Map<String, Object> friend = users.stream().filter(user -> !user.get("id").toString().equals(MyId))
+                    .findFirst().orElse(null);
 
             String friendName = Objects.toString(friend.get("displayName"), Objects.toString(friend.get("username")));
             String friendImage = Objects.toString(friend.get("avatar"), "/images/profile-icon.png");
@@ -80,8 +84,9 @@ public class ChatController implements ControllerInterface {
             Map<String, Object> respond = objectMapper.convertValue(jsonNode, new TypeReference<Map<String, Object>>() {
             });
 
-            List<Map<String, Object>> histories = objectMapper.convertValue(respond.get("histories"), new TypeReference<List<Map<String, Object>>>() {
-            });
+            List<Map<String, Object>> histories = objectMapper.convertValue(respond.get("histories"),
+                    new TypeReference<List<Map<String, Object>>>() {
+                    });
 
             String MyId = Objects.toString(MakeCache.getUser().get("id"));
 
@@ -145,4 +150,13 @@ public class ChatController implements ControllerInterface {
     public void reciveMessage(String message) {
         chatView.addReceivedMessage(message, Time.getCurrentTime());
     }
+
+    // private void rightClickEvent(MouseEvent e) {
+    //     if (chatView.getSenderRightClickMenu().isShowing()) {
+    //         chatView.getSenderRightClickMenu().hide();
+    //     }
+    //     if (chatView.getReceiverRightClickMenu().isShowing()) {
+    //         chatView.getReceiverRightClickMenu().hide();
+    //     }
+    // }
 }
