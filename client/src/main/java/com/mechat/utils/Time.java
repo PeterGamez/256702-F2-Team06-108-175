@@ -12,7 +12,7 @@ public class Time {
         String[] dateTimeParts = dateTime.split("T");
         String date = dateTimeParts[0];
 
-        LocalDate parsedDate = YearConverter.convertIso(LocalDate.parse(date));
+        LocalDate parsedDate = LocalDate.parse(date);
         LocalDate today = LocalDate.now();
         LocalDate yesterday = today.minusDays(1);
 
