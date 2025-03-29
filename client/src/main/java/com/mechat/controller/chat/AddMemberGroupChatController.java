@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
+import com.mechat.model.chat.AddMemberGroupChatModel;
 import com.mechat.view.chat.AddMemberGroupChatView;
 
 import javafx.event.ActionEvent;
@@ -17,6 +18,7 @@ import javafx.scene.layout.HBox;
 public class AddMemberGroupChatController implements ControllerInterface {
 
     private AddMemberGroupChatView addMemberGroupChatView = new AddMemberGroupChatView();
+    private AddMemberGroupChatModel addMemberGroupChatModel = new AddMemberGroupChatModel();
 
     private ArrayList<CheckBox> checkBoxes = new ArrayList<>();
 

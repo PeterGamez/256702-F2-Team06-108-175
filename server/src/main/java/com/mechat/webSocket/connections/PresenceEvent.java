@@ -35,7 +35,6 @@ public class PresenceEvent implements ConnectionInterface {
             try {
                 s.sendMessage(response.json());
             } catch (IOException e) {
-                e.printStackTrace();
             }
         });
     }

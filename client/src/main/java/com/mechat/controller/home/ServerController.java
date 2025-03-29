@@ -7,7 +7,7 @@ import java.util.Objects;
 import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
-import com.mechat.model.ServerModel;
+import com.mechat.model.home.ServerModel;
 import com.mechat.service.RestApiService;
 import com.mechat.view.home.ServerView;
 
@@ -18,6 +18,7 @@ public class ServerController implements ControllerInterface {
 
     private ServerView serverView = new ServerView();
     private ServerModel serverModel = new ServerModel();
+
     private List<Map<String, Object>> serverList;
 
     public ServerController() {

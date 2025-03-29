@@ -186,7 +186,6 @@ public class ChatEvent implements EventInterface {
         try {
             usersJson = mapper.writeValueAsString(users);
         } catch (Exception e) {
-            e.printStackTrace();
         }
         final String usersData = usersJson;
 

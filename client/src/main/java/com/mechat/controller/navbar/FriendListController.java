@@ -6,13 +6,15 @@ import java.util.Objects;
 
 import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
+import com.mechat.controller.NavbarController;
 import com.mechat.interfaces.ControllerInterface;
-import com.mechat.utils.NavbarController;
+import com.mechat.model.navbar.FriendListModel;
 import com.mechat.view.navbar.FriendListView;
 
 public class FriendListController extends NavbarController implements ControllerInterface {
 
     private FriendListView friendListView = new FriendListView();
+    private FriendListModel friendListModel = new FriendListModel();
 
     public FriendListController() {
         friendListView.getAddFriendNavbarButton().setOnAction(this::addFriendNavbarEvent);

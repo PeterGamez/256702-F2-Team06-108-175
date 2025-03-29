@@ -4,9 +4,10 @@ import java.util.Objects;
 
 import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
+import com.mechat.controller.NavbarController;
 import com.mechat.controller.home.LoginController;
 import com.mechat.interfaces.ControllerInterface;
-import com.mechat.utils.NavbarController;
+import com.mechat.model.navbar.SettingModel;
 import com.mechat.view.navbar.SettingView;
 import com.mechat.websocket.WebSocketClient;
 
@@ -15,6 +16,7 @@ import javafx.event.ActionEvent;
 public class SettingController extends NavbarController implements ControllerInterface {
 
     private SettingView settingView = new SettingView();
+    private SettingModel settingModel = new SettingModel();
 
     public SettingController() {
         settingView.getAddFriendNavbarButton().setOnAction(this::addFriendNavbarEvent);

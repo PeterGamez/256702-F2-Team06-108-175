@@ -8,10 +8,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
+import com.mechat.controller.NavbarController;
 import com.mechat.interfaces.ControllerInterface;
+import com.mechat.model.navbar.AddFriendModel;
 import com.mechat.service.ResponseMessage;
 import com.mechat.service.RestApiService;
-import com.mechat.utils.NavbarController;
 import com.mechat.view.navbar.AddFriendView;
 import com.mechat.websocket.WebSocketClient;
 
@@ -20,6 +21,7 @@ import javafx.event.ActionEvent;
 public class AddFriendController extends NavbarController implements ControllerInterface {
 
     private AddFriendView addFriendView = new AddFriendView();
+    private AddFriendModel addFriendModel = new AddFriendModel();
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
@@ -84,7 +86,6 @@ public class AddFriendController extends NavbarController implements ControllerI
             addFriendView.getShowErrorProperty().set(null);
             addFriendView.getAddFriendButton().setVisible(true);
         } catch (Exception ex) {
-            ex.printStackTrace();
         }
     }
 
