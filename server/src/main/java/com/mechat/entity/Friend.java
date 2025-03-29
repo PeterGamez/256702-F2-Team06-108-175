@@ -58,7 +58,7 @@ public class Friend extends BaseEntity {
     @JoinColumn(name = "friend_id")
     private User friend;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private Status status;
 
     @Column(name = "accepted_at", columnDefinition = "DATETIME")

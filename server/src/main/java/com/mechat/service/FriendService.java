@@ -26,6 +26,7 @@ public class FriendService {
         Friend friendD = new Friend();
         friendD.setUser(userService.convertToEntity(user));
         friendD.setFriend(userService.convertToEntity(friend));
+        friendD.setStatus(Friend.Status.ACCEPTED);
 
         friendRepository.save(friendD);
     }

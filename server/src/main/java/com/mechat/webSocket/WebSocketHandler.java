@@ -19,6 +19,8 @@ import com.mechat.webSocket.events.FriendEvent;
 import com.mechat.webSocket.events.MessageEvent;
 import com.mechat.webSocket.interfaces.EventInterface;
 
+import jakarta.annotation.PostConstruct;
+
 @Component
 public class WebSocketHandler extends TextWebSocketHandler {
 
@@ -40,7 +42,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Autowired
     MessageEvent messageEvent;
 
-    public WebSocketHandler() {
+    @PostConstruct
+    private void initEvents() {
         events.add(chatEvent);
         events.add(friendEvent);
         events.add(messageEvent);
@@ -52,7 +55,6 @@ public class WebSocketHandler extends TextWebSocketHandler {
         UserDTO user = (UserDTO) session.getAttributes().get("user");
 
         connectionEvent.handle(sessions, session, user);
-
         presenceEvent.handle(sessions, session, user);
     }
 

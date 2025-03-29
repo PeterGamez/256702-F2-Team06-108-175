@@ -9,6 +9,7 @@ import org.springframework.web.socket.WebSocketSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class ResponseMessage {
 
@@ -17,7 +18,11 @@ public class ResponseMessage {
     private int t;
     private Map<String, Object> d = new LinkedHashMap<>();
 
+    private ObjectMapper objectMapper = new ObjectMapper();
+
     public ResponseMessage(WebSocketSession session, int op, int t) {
+        objectMapper.registerModule(new JavaTimeModule());
+        
         this.session = session;
         this.op = op;
         this.t = t;
@@ -46,7 +51,6 @@ public class ResponseMessage {
 
     public void send() {
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
             String responseMessage = objectMapper.writeValueAsString(this);
 
             TextMessage textMessage = new TextMessage(responseMessage);
@@ -58,7 +62,6 @@ public class ResponseMessage {
 
     public TextMessage json() {
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
             String responseMessage = objectMapper.writeValueAsString(this);
 
             return new TextMessage(responseMessage);

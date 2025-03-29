@@ -1,5 +1,6 @@
 package com.mechat.webSocket.connections;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -36,8 +37,18 @@ public class ConnectionEvent implements ConnectionInterface {
         List<Chat> chats = chatService.getChatsByUserId(user.getId());
         List<Friend> friends = friendService.getFriends(user.getId());
 
+        List<UserDTO> userDTOs = new ArrayList<>();
+        friends.forEach(d-> {
+            UserDTO userDTO = new UserDTO();
+            userDTO.setId(d.getFriend().getId());
+            userDTO.setUsername(d.getFriend().getUsername());
+            userDTO.setDisplayName(d.getFriend().getDisplayName());
+            userDTO.setAvatar(d.getFriend().getAvatar());
+            userDTOs.add(userDTO);
+        });
+
         response.put("chats", chats);
-        response.put("friends", friends);
+        response.put("friends", userDTOs);
 
         response.send();
     }
