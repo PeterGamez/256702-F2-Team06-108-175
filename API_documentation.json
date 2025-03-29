@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "5f3d5610-a2ec-470d-9ca7-1cdbf6158057",
+		"_postman_id": "606d37c6-b23a-4283-b4ee-301becd9eb3f",
 		"name": "API documentation",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21260330"
+		"_exporter_id": "42559759"
 	},
 	"item": [
 		{
@@ -13,7 +13,7 @@
 					"name": "Authentication",
 					"item": [
 						{
-							"name": "Login",
+							"name": "Post Login",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -162,7 +162,7 @@
 							]
 						},
 						{
-							"name": "Register",
+							"name": "Post Register",
 							"request": {
 								"method": "POST",
 								"header": [],
@@ -311,6 +311,85 @@
 					]
 				},
 				{
+					"name": "Chat",
+					"item": [
+						{
+							"name": "Get Chat",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/chat/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"chat",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get History",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/chat/:id/history",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"chat",
+										":id",
+										"history"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Connection",
+					"item": [
+						{
+							"name": "Get Connection",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/connection",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"connection"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "User",
 					"item": [
 						{
@@ -403,9 +482,44 @@
 									"body": "{\n    \"id\": 1,\n    \"createdAt\": \"\",\n    \"updatedAt\": \"\",\n    \"username\": \"\",\n    \"displayName\": \"\",\n    \"avatar\": \"\"\n}"
 								}
 							]
+						},
+						{
+							"name": "Search User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": ""
+								}
+							},
+							"response": []
 						}
 					],
 					"description": "The `/me` endpoints let you manage information about the authenticated user."
+				},
+				{
+					"name": "Get Image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/images/:imageName",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"images",
+								":imageName"
+							],
+							"variable": [
+								{
+									"key": "imageName",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
