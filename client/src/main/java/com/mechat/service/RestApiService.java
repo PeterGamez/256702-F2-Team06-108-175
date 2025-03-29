@@ -66,6 +66,18 @@ public class RestApiService {
                 });
     }
 
+    public static Mono<String> getUserId(String userId) throws Exception {
+        return webClient.get()
+                .uri("/v1/user/" + userId)
+                .retrieve()
+                .bodyToMono(String.class)
+                .timeout(Duration.ofSeconds(5))
+                .doOnError(error -> {
+                    System.err.println(userId);
+                    System.err.println(error.getMessage());
+                });
+    }
+
     public static Mono<String> getUserByUsername(String username) throws Exception {
         return webClient.get()
                 .uri("/v1/user/search/" + username)
