@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
@@ -21,6 +23,8 @@ import com.mechat.webSocket.interfaces.EventInterface;
 
 @Component
 public class ChatEvent implements EventInterface {
+
+    private static final Logger log = LoggerFactory.getLogger(ChatEvent.class);
 
     @Autowired
     private ChatService chatService;
@@ -53,8 +57,10 @@ public class ChatEvent implements EventInterface {
         this.user = user;
 
         if (request.getT() == 1) {
+            log.info("Creating chat: " + request.getD().toString());
             createChat(1);
         } else if (request.getT() == 2) {
+            log.info("Updating chat: " + request.getD().toString());
             updateChat(2);
         }
     }

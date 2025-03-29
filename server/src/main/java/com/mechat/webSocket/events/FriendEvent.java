@@ -2,6 +2,8 @@ package com.mechat.webSocket.events;
 
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
@@ -16,6 +18,8 @@ import com.mechat.webSocket.interfaces.EventInterface;
 
 @Component
 public class FriendEvent implements EventInterface {
+
+    private static final Logger log = LoggerFactory.getLogger(FriendEvent.class);
 
     @Autowired
     private FriendService friendService;
@@ -46,8 +50,10 @@ public class FriendEvent implements EventInterface {
         this.user = user;
 
         if (request.getT() == 1) {
+            log.info("Adding friend: " + request.getD().toString());
             addFriend(1);
         } else if (request.getT() == 2) {
+            log.info("Updating friend: " + request.getD().toString());
             updateFriend(2);
         }
     }

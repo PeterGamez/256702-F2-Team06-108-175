@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketSession;
@@ -17,6 +19,8 @@ import com.mechat.webSocket.interfaces.EventInterface;
 
 @Component
 public class MessageEvent implements EventInterface {
+
+    private static final Logger log = LoggerFactory.getLogger(MessageEvent.class);
 
     @Autowired
     private ChatService chatService;
@@ -44,12 +48,16 @@ public class MessageEvent implements EventInterface {
         this.user = user;
 
         if (request.getT() == 1) {
+            log.info("Sending message to private chat: " + request.getD().toString());
             sendToPrivateChat(1);
         } else if (request.getT() == 2) {
+            log.info("Sending message to group chat: " + request.getD().toString());
             sendToGroupChat(2);
         } else if (request.getT() == 6) {
+            log.info("Updating message: " + request.getD().toString());
             updateMessage(3);
         } else if (request.getT() == 7) {
+            log.info("Deleting message: " + request.getD().toString());
             deleteMessage(4);
         }
     }
