@@ -14,9 +14,10 @@ public class RequestMessage {
     private int t;
     private Map<String, Object> d = new LinkedHashMap<>();
 
+    private ObjectMapper objectMapper = new ObjectMapper();
+
     public RequestMessage(String payload) {
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
             JsonNode jsonNode = objectMapper.readTree(payload);
 
             this.op = jsonNode.get("op").asInt();

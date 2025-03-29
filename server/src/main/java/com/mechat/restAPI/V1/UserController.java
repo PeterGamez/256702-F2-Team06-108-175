@@ -29,10 +29,34 @@ public class UserController {
             response.put("status", "error");
             response.put("message", "User not found");
 
-            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(response, HttpStatus.OK);
 
         } else {
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            Map<String, Object> response = new LinkedHashMap<>();
+            response.put("status", "success");
+            response.put("user", user);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
+    }
+
+    @GetMapping("/search/{username}")
+    public ResponseEntity<?> getUserByUsername(@PathVariable("username") String username) {
+        UserDTO user = userService.getUserByUsername(username);
+        if (user == null) {
+            Map<String, Object> response = new LinkedHashMap<>();
+            response.put("status", "error");
+            response.put("message", "User not found");
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+
+        } else {
+            Map<String, Object> response = new LinkedHashMap<>();
+            response.put("status", "success");
+            response.put("user", user);
+
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+
     }
 }

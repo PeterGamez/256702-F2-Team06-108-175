@@ -40,13 +40,14 @@ public class Friend extends BaseEntity {
         }
 
         public static Status fromValue(String value) {
-            for (Status status : Status.values()) {
-                if (status.name().equals(value)) {
-                    return status;
-                }
+            int intValue = 0;
+            try {
+                intValue = Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                return null;
             }
 
-            return null;
+            return fromValue(intValue);
         }
     }
 

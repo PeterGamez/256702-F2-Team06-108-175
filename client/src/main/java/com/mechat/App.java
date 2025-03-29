@@ -1,7 +1,6 @@
 package com.mechat;
 
-import com.mechat.controller.MainController;
-
+import com.mechat.controller.home.MainController;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.stage.Screen;

@@ -22,16 +22,21 @@ public class FriendService {
         return friendRepository.findAllFriendsByUserId(userId);
     }
 
+    public Friend getFriends(Long userId, Long friendId) {
+        return friendRepository.findFriendsByUserId(userId, friendId);
+    }
+
     public void addFriend(UserDTO user, UserDTO friend) {
         Friend friendD = new Friend();
         friendD.setUser(userService.convertToEntity(user));
         friendD.setFriend(userService.convertToEntity(friend));
+        friendD.setStatus(Friend.Status.ACCEPTED);
 
         friendRepository.save(friendD);
     }
 
     public void updateFriend(UserDTO user, UserDTO friend, Friend.Status status) {
-        Friend friendD = friendRepository.findByUserAndFriend(user, friend);
+        Friend friendD = friendRepository.findByUserAndFriend(user.getId(), friend.getId());
 
         friendD.setStatus(status);
 

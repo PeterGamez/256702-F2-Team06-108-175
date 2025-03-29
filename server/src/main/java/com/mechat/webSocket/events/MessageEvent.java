@@ -91,7 +91,7 @@ public class MessageEvent implements EventInterface {
                 .filter(s -> s.isOpen() && s.getAttributes().get("user") != null)
                 .filter(s -> {
                     UserDTO user = (UserDTO) s.getAttributes().get("user");
-                    return user.getId() == chatUser.getId();
+                    return user.getId().equals(chatUser.getId());
                 })
                 .findFirst();
 
@@ -148,7 +148,7 @@ public class MessageEvent implements EventInterface {
                 .filter(s -> s.isOpen() && s.getAttributes().get("user") != null)
                 .filter(s -> {
                     UserDTO user = (UserDTO) s.getAttributes().get("user");
-                    return chatUsers.stream().anyMatch(u -> u.getId() == user.getId());
+                    return chatUsers.stream().anyMatch(u -> u.getId().equals(user.getId()));
                 })
                 .forEach(s -> {
                     ResponseMessage response = new ResponseMessage(s, responseOp, responseType);
@@ -219,7 +219,7 @@ public class MessageEvent implements EventInterface {
                 .filter(s -> s.isOpen() && s.getAttributes().get("user") != null)
                 .filter(s -> {
                     UserDTO user = (UserDTO) s.getAttributes().get("user");
-                    return chatUsers.stream().anyMatch(u -> u.getId() == user.getId());
+                    return chatUsers.stream().anyMatch(u -> u.getId().equals(user.getId()));
                 })
                 .forEach(s -> {
                     ResponseMessage response = new ResponseMessage(s, responseOp, responseType);
@@ -289,7 +289,7 @@ public class MessageEvent implements EventInterface {
                 .filter(s -> s.isOpen() && s.getAttributes().get("user") != null)
                 .filter(s -> {
                     UserDTO user = (UserDTO) s.getAttributes().get("user");
-                    return chatUsers.stream().anyMatch(u -> u.getId() == user.getId());
+                    return chatUsers.stream().anyMatch(u -> u.getId().equals(user.getId()));
                 })
                 .forEach(s -> {
                     ResponseMessage response = new ResponseMessage(s, responseOp, responseType);

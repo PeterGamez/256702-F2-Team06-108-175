@@ -219,7 +219,7 @@ Sender
 	t: 2,
 	d: {
 		user_id: Number,
-		type: 1 | 2
+		type: 0 | 1
 	}
 }
 ```
@@ -230,7 +230,7 @@ Respond
 	t: 2,
 	d: {
 		user_id: Number,
-		type: 1 | 2
+		type: 0 | 1
 	}
 }
 ```

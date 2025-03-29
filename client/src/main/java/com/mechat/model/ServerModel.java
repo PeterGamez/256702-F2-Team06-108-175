@@ -3,11 +3,12 @@ package com.mechat.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mechat.service.ApiService;
+import com.mechat.service.RestApiService;
 import com.mechat.utils.AppDataStorage;
 
 public class ServerModel {
@@ -33,12 +34,10 @@ public class ServerModel {
 
         serverList.forEach(server -> {
             try {
-                String serverIp = String.valueOf(server.get("serverIp"));
-                String serverPort = String.valueOf(server.get("serverPort"));
+                String serverIp = Objects.toString(server.get("serverIp"));
+                String serverPort = Objects.toString(server.get("serverPort"));
 
-                ApiService apiService = new ApiService(serverIp, serverPort);
-
-                String payload = apiService.getConnection().block();
+                String payload = RestApiService.getConnection(serverIp, serverPort).block();
 
                 if (payload != null) {
                     JsonNode jsonNode = objectMapper.readTree(payload);

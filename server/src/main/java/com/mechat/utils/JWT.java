@@ -49,7 +49,6 @@ public class JWT {
             Jwts.parser().verifyWith(key).build().parseSignedClaims(token);
             return true;
         } catch (JwtException | IllegalArgumentException e) {
-            e.printStackTrace();
             return false;
         }
     }
@@ -58,7 +57,6 @@ public class JWT {
         try {
             return Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
         } catch (JwtException e) {
-           e.printStackTrace();
            return null;
         }
 

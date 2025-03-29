@@ -9,7 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 
 public class TemplateView {
 
@@ -59,14 +58,12 @@ public class TemplateView {
         return button;
     }
 
-    public static final Circle createCircle(ImageView imageView) {
-        return new Circle(imageView.getFitWidth(), imageView.getFitHeight(), 60);
-    }
-
     public static final void bindImage(ImageView imageView, StringProperty imagePath) {
         imagePath.addListener((obs, oldImagePath, newImagePath) -> {
             if (newImagePath != null && !newImagePath.isEmpty()) {
                 imageView.setImage(new Image(newImagePath));
+            } else {
+                imageView.setImage(null);
             }
         });
     }
