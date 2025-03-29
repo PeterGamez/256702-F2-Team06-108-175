@@ -30,11 +30,6 @@ public class MessageEvent {
     }
 
     private static void sendToPrivateChat(int responseType) {
-        Object status = request.getD().get("status");
-        if (status.equals("error")) {
-            return;
-        }
-
         String chatId = Objects.toString(request.getD().get("chat_id"));
         String message = Objects.toString(request.getD().get("message"));
 
