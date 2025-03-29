@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Feb 09, 2025 at 03:41 PM
--- Server version: 11.3.1-MariaDB-log
--- PHP Version: 8.2.15
+-- Host: localhost:3306
+-- Generation Time: Mar 29, 2025 at 08:16 PM
+-- Server version: 10.11.11-MariaDB-0+deb12u1-log
+-- PHP Version: 8.3.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `chats` (
   `id` int(5) NOT NULL,
-  `name` varchar(20) NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
   `type` varchar(10) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -90,7 +90,7 @@ CREATE TABLE `friends` (
   `id` int(5) NOT NULL,
   `user_id` int(5) NOT NULL,
   `friend_id` int(5) NOT NULL,
-  `status` varchar(10) NOT NULL DEFAULT '''pending''',
+  `status` int(1) NOT NULL DEFAULT 0,
   `accepted_at` datetime DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -107,7 +107,7 @@ CREATE TABLE `users` (
   `username` varchar(20) NOT NULL,
   `password` varchar(80) NOT NULL,
   `display_name` varchar(20) DEFAULT NULL,
-  `avatar` varchar(100) NOT NULL,
+  `avatar` varchar(100) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -126,25 +126,32 @@ ALTER TABLE `chats`
 -- Indexes for table `chat_attachments`
 --
 ALTER TABLE `chat_attachments`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `chat_history_id` (`chat_history_id`);
 
 --
 -- Indexes for table `chat_histories`
 --
 ALTER TABLE `chat_histories`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `chat_id` (`chat_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `chat_members`
 --
 ALTER TABLE `chat_members`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `chat_id` (`chat_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `friends`
 --
 ALTER TABLE `friends`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `friend_id` (`friend_id`);
 
 --
 -- Indexes for table `users`
