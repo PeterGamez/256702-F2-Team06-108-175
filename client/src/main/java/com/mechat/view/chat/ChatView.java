@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -17,11 +18,22 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.ContextMenu;
 
 public class ChatView implements ViewInterface {
 
     private StringProperty friendNameProperty;
     private StringProperty friendImageProperty;
+
+    // private ContextMenu senderRightClickMenu;
+
+    // private MenuItem senderCopyMenuItem;
+    // private MenuItem editMenuItem;
+    // private MenuItem deleteMenuItem;
+
+    // private ContextMenu receiverRightClickMenu;
+
+    // private MenuItem receiverCopyMenuItem;
 
     // private Button informationButton;
     private Button backButton;
@@ -35,6 +47,18 @@ public class ChatView implements ViewInterface {
     public ChatView() {
         friendNameProperty = new SimpleStringProperty();
         friendImageProperty = new SimpleStringProperty();
+
+        // senderCopyMenuItem = new MenuItem("Copy");
+        // editMenuItem = new MenuItem("Edit");
+        // deleteMenuItem = new MenuItem("Delete");
+
+        // senderRightClickMenu = new ContextMenu();
+        // senderRightClickMenu.getItems().addAll(senderCopyMenuItem, editMenuItem, deleteMenuItem);
+
+        // receiverCopyMenuItem = new MenuItem("Copy");
+
+        // receiverRightClickMenu = new ContextMenu();
+        // receiverRightClickMenu.getItems().add(receiverCopyMenuItem);
 
         // informationButton = TemplateView.createImageButton("/images/info-button.png",
         // 30, 30, "back-button");
@@ -84,7 +108,7 @@ public class ChatView implements ViewInterface {
     private Parent createChatBox() {
         chatBox.getStyleClass().add("chat-box");
 
-        ScrollPane chatScrollPane =new ScrollPane(chatBox);
+        ScrollPane chatScrollPane = new ScrollPane(chatBox);
         chatScrollPane.getStyleClass().add("chat-scroll-pane");
         chatScrollPane.setFitToWidth(true);
         VBox.setVgrow(chatScrollPane, Priority.ALWAYS);
@@ -121,6 +145,11 @@ public class ChatView implements ViewInterface {
 
         messageBox.getChildren().addAll(messageLabel, timeLabel);
         messageBox.setSpacing(10);
+
+        // messageBox.setOnContextMenuRequested(e -> {
+        //     receiverRightClickMenu.show(messageBox, e.getScreenX(), e.getScreenY());
+        // });
+
         chatBox.getChildren().add(messageBox);
     }
 
@@ -137,6 +166,11 @@ public class ChatView implements ViewInterface {
 
         messageBox.getChildren().addAll(timeLabel, messageLabel);
         messageBox.setSpacing(10);
+
+        // messageBox.setOnContextMenuRequested(e -> {
+        //     senderRightClickMenu.show(messageBox, e.getScreenX(), e.getScreenY());
+        // });
+
         chatBox.getChildren().add(messageBox);
     }
 
@@ -164,7 +198,27 @@ public class ChatView implements ViewInterface {
         return chatBox;
     }
 
-    // public ScrollPane getChatScrollPane() {
-    // return chatScrollPane;
+    // public ContextMenu getSenderRightClickMenu() {
+    //     return senderRightClickMenu;
+    // }
+
+    // public ContextMenu getReceiverRightClickMenu() {
+    //     return receiverRightClickMenu;
+    // }
+
+    // public MenuItem getSenderCopyMenuItem() {
+    //     return senderCopyMenuItem;
+    // }
+
+    // public MenuItem getReceiverCopyMenuItem() {
+    //     return receiverCopyMenuItem;
+    // }
+
+    // public MenuItem getEditMenuItem() {
+    //     return editMenuItem;
+    // }
+
+    // public MenuItem getDeleteMenuItem() {
+    //     return deleteMenuItem;
     // }
 }

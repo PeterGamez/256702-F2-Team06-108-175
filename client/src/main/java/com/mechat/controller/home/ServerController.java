@@ -37,7 +37,7 @@ public class ServerController implements ControllerInterface {
         ScreenHandler.setScreen(serverView);
 
         serverList = serverModel.getServerList();
-        serverList.forEach(s -> {
+        serverList.stream().forEach(s -> {
             String serverName = Objects.toString(s.get("serverName"));
             String serverIp = Objects.toString(s.get("serverIp"));
             String serverPort = Objects.toString(s.get("serverPort"));
