@@ -31,15 +31,6 @@ public class ChatEvent {
     }
 
     private static void createChat(int responseType) {
-        Object status = request.getD().get("status");
-        if (status.equals("error")) {
-            String message = Objects.toString(request.getD().get("message"));
-            Platform.runLater(() -> {
-                MakeCache.getController(AddFriendController.class).errorMessage(message);
-            });
-            return;
-        }
-
         String chatId = Objects.toString(request.getD().get("chat_id"));
         Map<String, Object> chat = null;
         try {
