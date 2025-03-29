@@ -1,6 +1,7 @@
 package com.mechat.controller.home;
 
 import java.util.Map;
+import java.util.Objects;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -30,6 +31,7 @@ public class LoginController implements ControllerInterface {
     public void load() {
         loginView.getUsernameProperty().set(null);
         loginView.getPasswordProperty().set(null);
+
         loginView.getShowErrorProperty().set(null);
 
         ScreenHandler.setScreen(loginView);
@@ -47,24 +49,19 @@ public class LoginController implements ControllerInterface {
         }
 
         try {
-            String serverIp = String.valueOf(MakeCache.getServer().get("serverIp"));
-            String serverPort = String.valueOf(MakeCache.getServer().get("serverPort"));
-
-            RestApiService restApiService = new RestApiService(serverIp, serverPort);
-
-            String payload = restApiService.login(username, password).block();
+            String payload = RestApiService.login(username, password).block();
 
             JsonNode jsonNode = objectMapper.readTree(payload);
             Map<String, Object> respond = objectMapper.convertValue(jsonNode, new TypeReference<Map<String, Object>>() {
             });
 
             if (respond.get("status").toString().equals("success") == false) {
-                String message = String.valueOf(respond.get("message"));
+                String message = Objects.toString(respond.get("message"));
                 loginView.getShowErrorProperty().set(message);
                 return;
             }
 
-            String accessToken = String.valueOf(respond.get("accessToken"));
+            String accessToken = Objects.toString(respond.get("accessToken"));
             if (accessToken == null) {
                 loginView.getShowErrorProperty().set("Server error");
                 return;

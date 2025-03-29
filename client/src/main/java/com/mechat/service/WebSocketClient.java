@@ -6,6 +6,7 @@ import java.net.URI;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -18,10 +19,10 @@ public class WebSocketClient {
     private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     public static void connect() {
-        String serverIp = String.valueOf(MakeCache.getServer().get("serverIp"));
-        String serverPort = String.valueOf(MakeCache.getServer().get("serverPort"));
+        String serverIp = Objects.toString(MakeCache.getServer().get("serverIp"));
+        String serverPort = Objects.toString(MakeCache.getServer().get("serverPort"));
         String uri = "ws://" + serverIp + ":" + serverPort + "/ws";
-        String token = String.valueOf(MakeCache.getAuthToken());
+        String token = Objects.toString(MakeCache.getAuthToken());
         String authHeader = "Bearer " + token;
 
         WebSocketContainer container = ContainerProvider.getWebSocketContainer();
@@ -41,19 +42,22 @@ public class WebSocketClient {
         try {
             container.connectToServer(new WebSocketEndpoint(), config, new URI(uri));
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
     public static void reconnect() {
-        scheduler.scheduleAtFixedRate(() -> {
-            Session session = MakeCache.getSession();
-            if (session == null || !session.isOpen()) {
-                connect();
-            } else {
-                scheduler.shutdown();
-            }
-        }, 0, 5, TimeUnit.SECONDS);
+        try {
+            scheduler.scheduleAtFixedRate(() -> {
+                Session session = MakeCache.getSession();
+                if (session == null || !session.isOpen()) {
+                    connect();
+                } else {
+                    scheduler.shutdown();
+                }
+            }, 0, 5, TimeUnit.SECONDS);
+        } catch (Exception e) {
+            System.err.println("Failed to reconnect");
+        }
     }
 
     public static void close() {

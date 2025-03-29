@@ -2,11 +2,13 @@ package com.mechat.controller.home;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
 import com.mechat.model.ServerModel;
+import com.mechat.service.RestApiService;
 import com.mechat.view.home.ServerView;
 
 import javafx.event.ActionEvent;
@@ -28,6 +30,7 @@ public class ServerController implements ControllerInterface {
     @Override
     public void load() {
         MakeCache.setServer(null);
+        RestApiService.disconnect();
 
         serverView.getServerListView().getItems().clear();
 
@@ -35,13 +38,16 @@ public class ServerController implements ControllerInterface {
 
         serverList = serverModel.getServerList();
         serverList.forEach(s -> {
-            String serverName = String.valueOf(s.get("serverName"));
-            String serverIp = String.valueOf(s.get("serverIp"));
-            String serverPort = String.valueOf(s.get("serverPort"));
+            String serverName = Objects.toString(s.get("serverName"));
+            String serverIp = Objects.toString(s.get("serverIp"));
+            String serverPort = Objects.toString(s.get("serverPort"));
             boolean isOnline = (boolean) s.get("isOnline");
 
-            serverView.getServerListView().getItems().add(serverView.createServerItem(serverName, serverIp + ":" + serverPort, isOnline));
+            serverView.getServerListView().getItems()
+                    .add(serverView.createServerItem(serverName, serverIp + ":" + serverPort, isOnline));
         });
+
+        serverView.getServerListView().getSelectionModel().select(0);
     }
 
     private void joinEvent(ActionEvent e) {
@@ -59,6 +65,7 @@ public class ServerController implements ControllerInterface {
         }
 
         MakeCache.setServer(selectedServer);
+        RestApiService.connect();
 
         MakeCache.getController(LoginMenuController.class).load();
     }
@@ -78,6 +85,8 @@ public class ServerController implements ControllerInterface {
         Map<String, Object> selectedServer = serverList.get(selectedIndex);
 
         serverModel.deleteServer(selectedServer);
+
+        serverView.getServerListView().getItems().remove(selectedIndex);
     }
 
     private void backEvent(ActionEvent e) {

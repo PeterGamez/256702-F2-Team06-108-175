@@ -1,19 +1,31 @@
 package com.mechat.service;
 
 import java.time.Duration;
+import java.util.Objects;
 
 import org.springframework.web.reactive.function.client.WebClient;
+
+import com.mechat.MakeCache;
+
 import reactor.core.publisher.Mono;
 
 public class RestApiService {
 
-    private final WebClient webClient;
+    private static WebClient webClient;
 
-    public RestApiService(String serverIp, String serverPort) {
-        this.webClient = WebClient.builder().baseUrl("http://" + serverIp + ":" + serverPort).build();
+    public static void connect() {
+        String serverIp = Objects.toString(MakeCache.getServer().get("serverIp"));
+        String serverPort = Objects.toString(MakeCache.getServer().get("serverPort"));
+        RestApiService.webClient = WebClient.builder().baseUrl("http://" + serverIp + ":" + serverPort).build();
     }
 
-    public Mono<String> getConnection() throws Exception {
+    public static void disconnect() {
+        RestApiService.webClient = null;
+    }
+
+    public static Mono<String> getConnection(String serverIp, String serverPort) throws Exception {
+        WebClient webClient = WebClient.builder().baseUrl("http://" + serverIp + ":" + serverPort).build();
+
         return webClient.get()
                 .uri("/v1/connection")
                 .retrieve()
@@ -22,7 +34,7 @@ public class RestApiService {
                 .onErrorReturn("{\"message\": \"Offline\"}");
     }
 
-    public Mono<String> login(String username, String password) throws Exception {
+    public static Mono<String> login(String username, String password) throws Exception {
         String body = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
 
         return webClient.post()
@@ -38,7 +50,7 @@ public class RestApiService {
                 });
     }
 
-    public Mono<String> register(String username, String password) throws Exception {
+    public static Mono<String> register(String username, String password) throws Exception {
         String body = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
 
         return webClient.post()
@@ -50,6 +62,30 @@ public class RestApiService {
                 .timeout(Duration.ofSeconds(5))
                 .doOnError(error -> {
                     System.err.println(username + " " + password);
+                    System.err.println(error.getMessage());
+                });
+    }
+
+    public static Mono<String> getUserByUsername(String username) throws Exception {
+        return webClient.get()
+                .uri("/v1/user/search/" + username)
+                .retrieve()
+                .bodyToMono(String.class)
+                .timeout(Duration.ofSeconds(5))
+                .doOnError(error -> {
+                    System.err.println(username);
+                    System.err.println(error.getMessage());
+                });
+    }
+
+    public static Mono<String> getChat(String chatId) throws Exception {
+        return webClient.get()
+                .uri("/v1/chat/" + chatId)
+                .retrieve()
+                .bodyToMono(String.class)
+                .timeout(Duration.ofSeconds(5))
+                .doOnError(error -> {
+                    System.err.println(chatId);
                     System.err.println(error.getMessage());
                 });
     }

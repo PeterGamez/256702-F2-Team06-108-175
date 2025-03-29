@@ -19,15 +19,13 @@ import jakarta.websocket.Session;
 
 public class WebSocketEndpoint extends Endpoint {
 
-    private static Logger logger = Logger.getLogger(WebSocketEndpoint.class.getName());
-
     private ObjectMapper objectMapper = new ObjectMapper();
 
     @OnOpen
     public void onOpen(Session session, EndpointConfig config) {
         MakeCache.setSession(session);
 
-        logger.info("WebSocket connection opened: " + session.getId());
+        System.out.println("WebSocket connection opened: " + session.getId());
 
         addMessageHandler(session);
 
@@ -51,7 +49,6 @@ public class WebSocketEndpoint extends Endpoint {
 
             @Override
             public void onMessage(String message) {
-                logger.info("Received message: " + message);
                 WebSocketMessage.handle(message);
             }
         });
@@ -63,11 +60,11 @@ public class WebSocketEndpoint extends Endpoint {
 
         WebSocketClient.reconnect();
 
-        logger.info("Session closed: " + closeReason.getCloseCode() + " - " + closeReason.getReasonPhrase());
+        System.out.println("Session closed: " + closeReason.getCloseCode() + " - " + closeReason.getReasonPhrase());
     }
 
     @OnError
     public void onError(Session session, Throwable throwable) {
-        logger.severe("Error occurred: " + throwable.getMessage());
+        System.out.println("Error occurred: " + throwable.getMessage());
     }
 }

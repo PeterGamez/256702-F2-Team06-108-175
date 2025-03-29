@@ -20,7 +20,11 @@ public class AddServerController implements ControllerInterface {
 
     @Override
     public void load() {
+        addServerView.getServerNameProperty().set(null);
+        addServerView.getServerAddressProperty().set(null);
+
         addServerView.getShowErrorProperty().set(null);
+
         ScreenHandler.setScreen(addServerView);
     }
 

@@ -1,6 +1,7 @@
 package com.mechat.controller.home;
 
 import java.util.Map;
+import java.util.Objects;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -28,6 +29,7 @@ public class RegisterController implements ControllerInterface {
     public void load() {
         registerView.getUsernameProperty().set(null);
         registerView.getPasswordProperty().set(null);
+
         registerView.getShowErrorProperty().set(null);
 
         ScreenHandler.setScreen(registerView);
@@ -52,19 +54,14 @@ public class RegisterController implements ControllerInterface {
         }
 
         try {
-            String serverIp = String.valueOf(MakeCache.getServer().get("serverIp"));
-            String serverPort = String.valueOf(MakeCache.getServer().get("serverPort"));
-
-            RestApiService restApiService = new RestApiService(serverIp, serverPort);
-
-            String payload = restApiService.register(username, password).block();
+            String payload = RestApiService.register(username, password).block();
 
             JsonNode jsonNode = objectMapper.readTree(payload);
             Map<String, Object> respond = objectMapper.convertValue(jsonNode, new TypeReference<Map<String, Object>>() {
             });
 
             if (respond.get("status").toString().equals("success") == false) {
-                String message = String.valueOf(respond.get("message"));
+                String message = Objects.toString(respond.get("message"));
                 registerView.getShowErrorProperty().set(message);
                 return;
             }

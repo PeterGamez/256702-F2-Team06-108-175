@@ -1,5 +1,7 @@
 package com.mechat.controller.navbar;
 
+import java.util.Objects;
+
 import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
 import com.mechat.controller.home.LoginController;
@@ -29,8 +31,8 @@ public class SettingController extends NavbarController implements ControllerInt
     public void load() {
         ScreenHandler.setScreen(settingView);
 
-        String uuid = String.valueOf(MakeCache.getUser().get("id"));
-        String username = String.valueOf(MakeCache.getUser().get("username"));
+        String uuid = Objects.toString(MakeCache.getUser().get("id"));
+        String username = Objects.toString(MakeCache.getUser().get("username"));
 
         settingView.getUuidProperty().set(uuid);
         settingView.getUserProperty().set(username);
