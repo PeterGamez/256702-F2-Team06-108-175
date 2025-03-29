@@ -45,7 +45,7 @@ public class FriendEvent {
 
         Map<String, Object> friend = null;
         try {
-            String payload = RestApiService.getUserId(userId).block();
+            String payload = RestApiService.getUser(userId).block();
 
             JsonNode jsonNode = objectMapper.readTree(payload);
             Map<String, Object> respond = objectMapper.convertValue(jsonNode, new TypeReference<Map<String, Object>>() {
@@ -74,7 +74,9 @@ public class FriendEvent {
         MakeCache.setData("friends", friends);
 
         ResponseMessage respond = new ResponseMessage(13, 1);
-        respond.put("user_ids", List.of(userId));
+
+        String myId = Objects.toString(MakeCache.getUser().get("id"));
+        respond.put("user_ids", List.of(myId, userId));
         respond.put("type", 0);
 
         WebSocketClient.sendMessage(respond.raw());
