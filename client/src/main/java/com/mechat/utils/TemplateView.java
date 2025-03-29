@@ -9,7 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 
 public class TemplateView {
 
@@ -63,6 +62,8 @@ public class TemplateView {
         imagePath.addListener((obs, oldImagePath, newImagePath) -> {
             if (newImagePath != null && !newImagePath.isEmpty()) {
                 imageView.setImage(new Image(newImagePath));
+            } else {
+                imageView.setImage(null);
             }
         });
     }

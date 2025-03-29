@@ -1,7 +1,5 @@
 package com.mechat.view.chat;
 
-import java.util.ArrayList;
-
 import com.mechat.interfaces.ViewInterface;
 import com.mechat.utils.TemplateView;
 
@@ -9,17 +7,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class FriendChatInfoView implements ViewInterface {
 
-    private ArrayList<Pane> friends = new ArrayList<>();
-    private ArrayList<CheckBox> checkBoxes = new ArrayList<>();
     private Button backButton;
     private VBox editNameButtonLayout;
 

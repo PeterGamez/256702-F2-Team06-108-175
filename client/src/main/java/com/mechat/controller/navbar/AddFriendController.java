@@ -11,9 +11,9 @@ import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
 import com.mechat.service.ResponseMessage;
 import com.mechat.service.RestApiService;
-import com.mechat.service.WebSocketClient;
 import com.mechat.utils.NavbarController;
 import com.mechat.view.navbar.AddFriendView;
+import com.mechat.websocket.WebSocketClient;
 
 import javafx.event.ActionEvent;
 
@@ -35,6 +35,10 @@ public class AddFriendController extends NavbarController implements ControllerI
         addFriendView.getSearchField().textProperty().addListener((obs, oldVal, newVal) -> {
             addFriendView.getShowErrorProperty().set(null);
             userId = null;
+
+            addFriendView.getShowFriendName().set(null);
+            addFriendView.getImagePath().set(null);
+            addFriendView.getAddFriendButton().setVisible(false);
         });
 
         addFriendView.getAddFriendButton().setOnAction(this::addFriendEvent);
@@ -46,8 +50,9 @@ public class AddFriendController extends NavbarController implements ControllerI
         addFriendView.getShowErrorProperty().set(null);
         userId = null;
 
-        addFriendView.getImagePath().set(null);
         addFriendView.getShowFriendName().set(null);
+        addFriendView.getImagePath().set(null);
+        addFriendView.getAddFriendButton().setVisible(false);
 
         ScreenHandler.setScreen(addFriendView);
     }
@@ -93,5 +98,9 @@ public class AddFriendController extends NavbarController implements ControllerI
         respond.put("user_id", userId);
 
         WebSocketClient.sendMessage(respond.raw());
+    }
+
+    public void errorMessage(String message) {
+        addFriendView.getShowErrorProperty().set(message);
     }
 }

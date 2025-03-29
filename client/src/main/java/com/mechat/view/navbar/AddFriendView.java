@@ -35,7 +35,6 @@ public class AddFriendView extends NavbarView implements ViewInterface {
         showErrorProperty = new SimpleStringProperty();
 
         addFriendButton = new Button();
-        addFriendButton.setVisible(false);
 
         searchField = new TextField();
     }

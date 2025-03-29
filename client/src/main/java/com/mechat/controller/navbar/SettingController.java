@@ -6,9 +6,9 @@ import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
 import com.mechat.controller.home.LoginController;
 import com.mechat.interfaces.ControllerInterface;
-import com.mechat.service.WebSocketClient;
 import com.mechat.utils.NavbarController;
 import com.mechat.view.navbar.SettingView;
+import com.mechat.websocket.WebSocketClient;
 
 import javafx.event.ActionEvent;
 

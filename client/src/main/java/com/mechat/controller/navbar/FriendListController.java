@@ -36,9 +36,9 @@ public class FriendListController extends NavbarController implements Controller
             return;
         }
 
-        friends.forEach(chat -> {
-            String chatName = Objects.toString(chat.get("displayName"), Objects.toString(chat.get("username")));
-            String chatIcon = Objects.toString(chat.get("icon"));
+        friends.forEach(friend -> {
+            String chatName = Objects.toString(friend.get("displayName"), Objects.toString(friend.get("username")));
+            String chatIcon = Objects.toString(friend.get("icon"));
 
             friendListView.addFriends(chatIcon, chatName);
         });

@@ -11,8 +11,8 @@ import com.mechat.ScreenHandler;
 import com.mechat.controller.navbar.HomeController;
 import com.mechat.interfaces.ControllerInterface;
 import com.mechat.service.RestApiService;
-import com.mechat.service.WebSocketClient;
 import com.mechat.view.home.LoginView;
+import com.mechat.websocket.WebSocketClient;
 
 import javafx.event.ActionEvent;
 
