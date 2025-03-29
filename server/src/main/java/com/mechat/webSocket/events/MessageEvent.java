@@ -55,7 +55,7 @@ public class MessageEvent implements EventInterface {
     }
 
     private void sendToPrivateChat(int responseType) {
-        String chatStr = request.getD().get("chat").toString();
+        String chatStr = request.getD().get("chat_id").toString();
         String message = request.getD().get("message").toString();
 
         Long chatId = null;
