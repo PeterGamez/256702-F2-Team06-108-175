@@ -31,6 +31,7 @@ public class FriendListController extends NavbarController implements Controller
     public void loadChats() {
         friendListView.getFriends().clear();
 
+        @SuppressWarnings("unchecked")
         List<Map<String, Object>> friends = (List<Map<String, Object>>) MakeCache.getData("friends");
         if (friends == null) {
             return;

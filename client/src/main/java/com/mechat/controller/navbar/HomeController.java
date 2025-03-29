@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Stream;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -46,7 +45,8 @@ public class HomeController extends NavbarController implements ControllerInterf
 
     public void loadChats() {
         homeView.getChats().clear();
-
+        
+        @SuppressWarnings("unchecked")
         List<Map<String, Object>> chats = (List<Map<String, Object>>) MakeCache.getData("chats");
         if (chats == null) {
             return;

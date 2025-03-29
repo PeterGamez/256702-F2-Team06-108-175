@@ -55,8 +55,10 @@ public class FriendEvent {
                 return;
             }
 
-            friend = (Map<String, Object>) respond.get("user");
+            @SuppressWarnings("unchecked")
+            Map<String, Object> user = (Map<String, Object>) respond.get("user");
 
+            friend = user;
         } catch (Exception e) {
         }
 
@@ -64,6 +66,7 @@ public class FriendEvent {
             return;
         }
 
+        @SuppressWarnings("unchecked")
         List<Map<String, Object>> friends = (List<Map<String, Object>>) MakeCache.getData("friends");
 
         friends.add(friend);
