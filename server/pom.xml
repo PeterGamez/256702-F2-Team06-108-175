@@ -6,7 +6,7 @@
 
   <groupId>com.mechat</groupId>
   <artifactId>server</artifactId>
-  <version>1.0.0-Beta</version>
+  <version>1.0.0</version>
 
   <name>server</name>
   <!-- FIXME change it to the project's website -->

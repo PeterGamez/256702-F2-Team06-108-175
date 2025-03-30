@@ -8,7 +8,8 @@ import java.io.IOException;
 
 public class AppDataStorage {
 
-    private static final String FILE_PATH = getAppDataPath("/com.mechat/");
+    private static final String appName = "/com.mechat/";
+    private static final String FILE_PATH = getAppDataPath();
 
     public static void saveData(String fileName, String data) {
         createDirectoryIfNotExists();
@@ -16,17 +17,32 @@ public class AppDataStorage {
         try (FileWriter writer = new FileWriter(FILE_PATH + fileName)) {
             writer.write(data);
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
-    public static String loadData(String fileNam) {
+    public static String loadData(String fileName) {
         createDirectoryIfNotExists();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH + fileNam))) {
-            return reader.readLine();
+        StringBuilder data = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH + fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                data.append(line).append(System.lineSeparator());
+            }
         } catch (IOException e) {
             return null;
+        }
+
+        return data.toString().trim();
+    }
+
+    public static void deleteData(String fileName) {
+        createDirectoryIfNotExists();
+
+        File file = new File(FILE_PATH + fileName);
+        if (file.exists()) {
+            file.delete();
         }
     }
 
@@ -37,7 +53,7 @@ public class AppDataStorage {
         }
     }
 
-    public static String getAppDataPath(String appName) {
+    public static String getAppDataPath() {
         String os = System.getProperty("os.name").toLowerCase();
         String userHome = System.getProperty("user.home");
 
