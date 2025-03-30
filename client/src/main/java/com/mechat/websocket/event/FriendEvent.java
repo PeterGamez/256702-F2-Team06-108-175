@@ -10,10 +10,10 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mechat.MakeCache;
 import com.mechat.service.RequestMessage;
 import com.mechat.service.ResponseMessage;
 import com.mechat.service.RestApiService;
+import com.mechat.utils.MakeCache;
 import com.mechat.websocket.WebSocketClient;
 
 public class FriendEvent {

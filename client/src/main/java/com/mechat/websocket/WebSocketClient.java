@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mechat.MakeCache;
+import com.mechat.utils.MakeCache;
 
 @ClientEndpoint
 public class WebSocketClient {

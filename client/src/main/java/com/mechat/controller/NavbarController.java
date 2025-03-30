@@ -1,10 +1,10 @@
 package com.mechat.controller;
 
-import com.mechat.MakeCache;
 import com.mechat.controller.navbar.AddFriendController;
 import com.mechat.controller.navbar.FriendListController;
 import com.mechat.controller.navbar.HomeController;
 import com.mechat.controller.navbar.SettingController;
+import com.mechat.utils.MakeCache;
 
 import javafx.event.ActionEvent;
 

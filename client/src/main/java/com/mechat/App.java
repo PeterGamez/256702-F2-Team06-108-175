@@ -1,6 +1,9 @@
 package com.mechat;
 
 import com.mechat.controller.home.MainController;
+import com.mechat.utils.MakeCache;
+import com.mechat.utils.ScreenHandler;
+
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;

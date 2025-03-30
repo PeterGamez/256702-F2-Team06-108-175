@@ -19,8 +19,8 @@ public class LoginView implements ViewInterface {
     private StringProperty passwordProperty;
     private StringProperty showErrorProperty;
 
-    Button loginButton;
-    Button backButton;
+    private Button loginButton;
+    private Button backButton;
 
     public LoginView() {
         usernameProperty = new SimpleStringProperty();

@@ -1,4 +1,4 @@
-package com.mechat;
+package com.mechat.utils;
 
 import java.awt.AWTException;
 import java.awt.Image;

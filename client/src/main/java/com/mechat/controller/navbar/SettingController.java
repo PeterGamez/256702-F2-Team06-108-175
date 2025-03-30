@@ -2,12 +2,12 @@ package com.mechat.controller.navbar;
 
 import java.util.Objects;
 
-import com.mechat.MakeCache;
-import com.mechat.ScreenHandler;
 import com.mechat.controller.NavbarController;
 import com.mechat.controller.home.LoginController;
 import com.mechat.interfaces.ControllerInterface;
 import com.mechat.model.navbar.SettingModel;
+import com.mechat.utils.MakeCache;
+import com.mechat.utils.ScreenHandler;
 import com.mechat.view.navbar.SettingView;
 import com.mechat.websocket.WebSocketClient;
 

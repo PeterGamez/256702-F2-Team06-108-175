@@ -1,8 +1,8 @@
 package com.mechat.websocket;
 
-import com.mechat.MakeCache;
 import com.mechat.controller.navbar.HomeController;
 import com.mechat.service.RequestMessage;
+import com.mechat.utils.MakeCache;
 import com.mechat.websocket.event.ChatEvent;
 import com.mechat.websocket.event.FriendEvent;
 import com.mechat.websocket.event.MessageEvent;
