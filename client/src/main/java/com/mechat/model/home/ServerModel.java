@@ -15,21 +15,8 @@ public class ServerModel {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    public List<Map<String, Object>> getServerList() {
-        List<Map<String, Object>> serverList = new ArrayList<>();
-
-        String appDataStorage = AppDataStorage.loadData("serverList.json");
-        if (appDataStorage == null) {
-            AppDataStorage.saveData("serverList.json", "[]");
-            appDataStorage = AppDataStorage.loadData("serverList.json");
-        }
-
-        try {
-            JsonNode jsonNode = objectMapper.readTree(appDataStorage);
-            serverList = objectMapper.convertValue(jsonNode, new TypeReference<List<Map<String, Object>>>() {
-            });
-        } catch (Exception e) {
-        }
+    public List<Map<String, Object>> getServerStatus() {
+        List<Map<String, Object>> serverList = getServerList();
 
         serverList.forEach(server -> {
             try {
@@ -56,9 +43,28 @@ public class ServerModel {
         return serverList;
     }
 
-    public void deleteServer(Map<String, Object> server) {
+    public List<Map<String, Object>> getServerList() {
+        List<Map<String, Object>> serverList = new ArrayList<>();
+
+        String appDataStorage = AppDataStorage.loadData("serverList.json");
+        if (appDataStorage == null) {
+            AppDataStorage.saveData("serverList.json", "[]");
+            appDataStorage = AppDataStorage.loadData("serverList.json");
+        }
+
+        try {
+            JsonNode jsonNode = objectMapper.readTree(appDataStorage);
+            serverList = objectMapper.convertValue(jsonNode, new TypeReference<List<Map<String, Object>>>() {
+            });
+        } catch (Exception e) {
+        }
+
+        return serverList;
+    }
+
+    public void deleteServer(int index) {
         List<Map<String, Object>> serverList = getServerList();
-        serverList.remove(server);
+        serverList.remove(index);
 
         try {
             String jsonString = objectMapper.writeValueAsString(serverList);

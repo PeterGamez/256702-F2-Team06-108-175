@@ -37,7 +37,7 @@ public class ServerController implements ControllerInterface {
 
         ScreenHandler.setScreen(serverView);
 
-        serverList = serverModel.getServerList();
+        serverList = serverModel.getServerStatus();
         serverList.stream().forEach(s -> {
             String serverName = Objects.toString(s.get("serverName"));
             String serverIp = Objects.toString(s.get("serverIp"));
@@ -83,9 +83,7 @@ public class ServerController implements ControllerInterface {
             return;
         }
 
-        Map<String, Object> selectedServer = serverList.get(selectedIndex);
-
-        serverModel.deleteServer(selectedServer);
+        serverModel.deleteServer(selectedIndex);
 
         serverView.getServerListView().getItems().remove(selectedIndex);
     }

@@ -1,9 +1,12 @@
 package com.mechat.controller.home;
 
+import java.net.InetAddress;
+
 import com.mechat.MakeCache;
 import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
 import com.mechat.model.home.AddServerModel;
+import com.mechat.utils.HostWithPortValidator;
 import com.mechat.view.home.AddServerView;
 
 import javafx.event.ActionEvent;
@@ -37,6 +40,11 @@ public class AddServerController implements ControllerInterface {
             return;
         }
 
+        if (!HostWithPortValidator.isValidHostWithPort(serverAddress)) {
+            addServerView.getShowErrorProperty().set("Invalid server address format ip:port or domain:port");
+            return;
+        }
+
         String serverIp;
         String serverPort;
 
@@ -55,6 +63,7 @@ public class AddServerController implements ControllerInterface {
         }
 
         addServerView.getShowErrorProperty().set(null);
+
         addServerModel.addServer(serverName, serverIp, serverPort);
 
         MakeCache.getController(ServerController.class).load();
