@@ -20,8 +20,8 @@ public class RegisterView implements ViewInterface {
     private StringProperty confirmPasswordProperty;
     private StringProperty showErrorProperty;
 
-    Button registerButton;
-    Button backButton;
+    private Button registerButton;
+    private Button backButton;
 
     public RegisterView() {
         usernameProperty = new SimpleStringProperty();
