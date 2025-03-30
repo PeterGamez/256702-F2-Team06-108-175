@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mechat.MakeCache;
+import com.mechat.utils.MakeCache;
 
 import jakarta.websocket.CloseReason;
 import jakarta.websocket.Endpoint;

@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.mechat.MakeCache;
+import com.mechat.utils.MakeCache;
 
 import reactor.core.publisher.Mono;
 

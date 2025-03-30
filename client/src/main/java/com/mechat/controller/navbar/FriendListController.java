@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import com.mechat.MakeCache;
-import com.mechat.ScreenHandler;
 import com.mechat.controller.NavbarController;
 import com.mechat.interfaces.ControllerInterface;
 import com.mechat.model.navbar.FriendListModel;
+import com.mechat.utils.MakeCache;
+import com.mechat.utils.ScreenHandler;
 import com.mechat.view.navbar.FriendListView;
 
 public class FriendListController extends NavbarController implements ControllerInterface {

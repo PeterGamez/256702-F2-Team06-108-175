@@ -1,4 +1,4 @@
-package com.mechat;
+package com.mechat.utils;
 
 import java.util.ArrayList;
 import java.util.List;

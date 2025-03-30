@@ -8,13 +8,13 @@ import java.util.Objects;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mechat.MakeCache;
-import com.mechat.ScreenHandler;
 import com.mechat.controller.NavbarController;
 import com.mechat.controller.chat.ChatController;
 import com.mechat.interfaces.ControllerInterface;
 import com.mechat.model.navbar.HomeModel;
 import com.mechat.service.RestApiService;
+import com.mechat.utils.MakeCache;
+import com.mechat.utils.ScreenHandler;
 import com.mechat.view.navbar.HomeView;
 
 import javafx.scene.layout.Pane;

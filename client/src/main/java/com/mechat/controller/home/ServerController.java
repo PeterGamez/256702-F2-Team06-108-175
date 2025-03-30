@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-import com.mechat.MakeCache;
-import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
 import com.mechat.model.home.ServerModel;
 import com.mechat.service.RestApiService;
+import com.mechat.utils.MakeCache;
+import com.mechat.utils.ScreenHandler;
 import com.mechat.view.home.ServerView;
 
 import javafx.event.ActionEvent;

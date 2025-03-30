@@ -1,9 +1,9 @@
 package com.mechat.controller.home;
 
-import com.mechat.MakeCache;
-import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
 import com.mechat.model.home.MainModel;
+import com.mechat.utils.MakeCache;
+import com.mechat.utils.ScreenHandler;
 import com.mechat.view.home.MainView;
 
 import javafx.event.ActionEvent;

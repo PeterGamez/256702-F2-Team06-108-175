@@ -1,9 +1,9 @@
 package com.mechat.controller.chat;
 
-import com.mechat.MakeCache;
-import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
 import com.mechat.model.chat.GroupChatInfoModel;
+import com.mechat.utils.MakeCache;
+import com.mechat.utils.ScreenHandler;
 import com.mechat.view.chat.GroupChatInfoView;
 
 import javafx.event.ActionEvent;

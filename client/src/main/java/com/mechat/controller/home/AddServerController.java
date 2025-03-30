@@ -2,11 +2,11 @@ package com.mechat.controller.home;
 
 import java.net.InetAddress;
 
-import com.mechat.MakeCache;
-import com.mechat.ScreenHandler;
 import com.mechat.interfaces.ControllerInterface;
 import com.mechat.model.home.AddServerModel;
 import com.mechat.utils.HostWithPortValidator;
+import com.mechat.utils.MakeCache;
+import com.mechat.utils.ScreenHandler;
 import com.mechat.view.home.AddServerView;
 
 import javafx.event.ActionEvent;
