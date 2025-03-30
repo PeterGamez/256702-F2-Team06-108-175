@@ -10,11 +10,14 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mechat.controller.navbar.AddFriendController;
 import com.mechat.service.RequestMessage;
 import com.mechat.service.ResponseMessage;
 import com.mechat.service.RestApiService;
 import com.mechat.utils.MakeCache;
 import com.mechat.websocket.WebSocketClient;
+
+import javafx.application.Platform;
 
 public class FriendEvent {
 
@@ -37,6 +40,15 @@ public class FriendEvent {
     }
 
     private static void addFriend(int responseType) {
+        Object status = request.getD().get("status");
+        if (status != null && status.equals("error")) {
+            String message = Objects.toString(request.getD().get("message"));
+            Platform.runLater(() -> {
+                MakeCache.getController(AddFriendController.class).errorMessage(message);
+            });
+            return;
+        }
+
         String userId = Objects.toString(request.getD().get("user_id"));
 
         Map<String, Object> friend = null;
@@ -69,8 +81,7 @@ public class FriendEvent {
 
         MakeCache.setData("friends", friends);
 
-        Object status = request.getD().get("status");
-        if (status.equals("success")) {
+        if (status != null && status.equals("success")) {
             ResponseMessage respond = new ResponseMessage(13, 1);
 
             String myId = Objects.toString(MakeCache.getUser().get("id"));
