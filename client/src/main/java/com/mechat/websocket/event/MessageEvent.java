@@ -51,7 +51,7 @@ public class MessageEvent {
         }
 
         Object status = request.getD().get("status");
-        if (!status.equals("success")) {
+        if (status == null || !status.equals("success")) {
             Notification.showNotification("You've got a new message.", message);
         }
     }
