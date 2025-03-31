@@ -29,6 +29,8 @@ public class App extends Application {
         stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/main-icon.png")));
 
         new ScreenHandler(stage, windowWidth, windowHeight);
+        ScreenHandler.setStageCenter();
+
         new MakeCache();
 
         MakeCache.getController(MainController.class).load();
