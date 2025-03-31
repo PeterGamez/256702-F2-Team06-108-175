@@ -95,14 +95,13 @@ public class HomeController extends NavbarController implements ControllerInterf
         int i = 0;
         for (Pane chat : homeView.getChats()) {
             final int index = i;
+            i++;
 
             chat.setOnMouseClicked(e -> {
                 String chatId = chatIds.get(index).toString();
                 MakeCache.setChatId(chatId);
                 MakeCache.getController(ChatController.class).load();
             });
-
-            i++;
         }
 
         ScreenHandler.setScreen(homeView);
