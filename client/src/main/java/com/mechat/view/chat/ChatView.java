@@ -65,6 +65,10 @@ public class ChatView implements ViewInterface {
 
         messageField = new TextField();
 
+        friendNameProperty.addListener((observable, oldValue, newValue) -> {
+            messageField.setPromptText("Message to" + newValue);
+        });
+
         chatBox = new VBox();
 
         chatScrollPane = new ScrollPane();
@@ -120,7 +124,6 @@ public class ChatView implements ViewInterface {
         messageBox.getStyleClass().add("message-box");
         messageBox.setAlignment(Pos.CENTER);
 
-        messageField.setPromptText("Message @Friend 1");
         messageField.getStyleClass().add("message-field");
         HBox.setHgrow(messageField, Priority.ALWAYS);
 
