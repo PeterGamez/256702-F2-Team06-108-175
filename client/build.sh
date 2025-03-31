@@ -5,3 +5,4 @@ if [ ! -d "build" ]; then
 fi
 
 mv target/client-jar-with-dependencies.jar build/client.jar
+cp script/mechat.* build/

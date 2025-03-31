@@ -6,3 +6,4 @@ if not exist build (
 )
 
 move /Y target\client-jar-with-dependencies.jar build\client.jar
+xcopy /Y script\mechat.* build\
