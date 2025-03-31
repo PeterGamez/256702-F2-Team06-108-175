@@ -33,13 +33,6 @@ public class ScreenHandler {
 
         stage.setScene(scene);
 
-        if (MakeCache.isFullScreen()) {
-            stage.setMaximized(true);
-        } else {
-            stage.setMaximized(false);
-            stage.centerOnScreen();
-        }
-
         if (!stage.isShowing()) {
             stage.show();
         }
@@ -59,13 +52,6 @@ public class ScreenHandler {
         }
 
         stage.setScene(scene);
-
-        if (MakeCache.isFullScreen()) {
-            stage.setMaximized(true);
-        } else {
-            stage.setMaximized(false);
-            stage.centerOnScreen();
-        }
 
         if (!stage.isShowing()) {
             stage.show();
@@ -93,4 +79,7 @@ public class ScreenHandler {
         });
     }
 
+    public static void setStageCenter() {
+        stage.centerOnScreen();
+    }
 }

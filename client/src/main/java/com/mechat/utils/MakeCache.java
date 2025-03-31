@@ -13,7 +13,6 @@ import jakarta.websocket.Session;
 
 public class MakeCache {
 
-    private static boolean isFullScreen = false;
     private static ArrayList<ControllerInterface> controllers;
     private static Map<String, Object> server;
     private static String authToken;
@@ -41,14 +40,6 @@ public class MakeCache {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static boolean isFullScreen() {
-        return isFullScreen;
-    }
-
-    public static void setFullScreen(boolean isFullScreen) {
-        MakeCache.isFullScreen = isFullScreen;
     }
 
     public static <T extends ControllerInterface> T getController(Class<T> controllerClass) {
