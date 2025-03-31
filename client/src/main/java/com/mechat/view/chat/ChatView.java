@@ -1,4 +1,4 @@
- package com.mechat.view.chat;
+package com.mechat.view.chat;
 
 import com.mechat.interfaces.ViewInterface;
 import com.mechat.view.TemplateView;
@@ -51,7 +51,8 @@ public class ChatView implements ViewInterface {
         // deleteMenuItem = new MenuItem("Delete");
 
         // senderRightClickMenu = new ContextMenu();
-        // senderRightClickMenu.getItems().addAll(senderCopyMenuItem, editMenuItem, deleteMenuItem);
+        // senderRightClickMenu.getItems().addAll(senderCopyMenuItem, editMenuItem,
+        // deleteMenuItem);
 
         // receiverCopyMenuItem = new MenuItem("Copy");
 
@@ -145,7 +146,7 @@ public class ChatView implements ViewInterface {
         messageBox.setSpacing(10);
 
         // messageBox.setOnContextMenuRequested(e -> {
-        //     receiverRightClickMenu.show(messageBox, e.getScreenX(), e.getScreenY());
+        // receiverRightClickMenu.show(messageBox, e.getScreenX(), e.getScreenY());
         // });
 
         chatBox.getChildren().add(messageBox);
@@ -170,7 +171,7 @@ public class ChatView implements ViewInterface {
         messageBox.setSpacing(10);
 
         // messageBox.setOnContextMenuRequested(e -> {
-        //     senderRightClickMenu.show(messageBox, e.getScreenX(), e.getScreenY());
+        // senderRightClickMenu.show(messageBox, e.getScreenX(), e.getScreenY());
         // });
 
         chatBox.getChildren().add(messageBox);
@@ -205,26 +206,26 @@ public class ChatView implements ViewInterface {
     }
 
     // public ContextMenu getSenderRightClickMenu() {
-    //     return senderRightClickMenu;
+    // return senderRightClickMenu;
     // }
 
     // public ContextMenu getReceiverRightClickMenu() {
-    //     return receiverRightClickMenu;
+    // return receiverRightClickMenu;
     // }
 
     // public MenuItem getSenderCopyMenuItem() {
-    //     return senderCopyMenuItem;
+    // return senderCopyMenuItem;
     // }
 
     // public MenuItem getReceiverCopyMenuItem() {
-    //     return receiverCopyMenuItem;
+    // return receiverCopyMenuItem;
     // }
 
     // public MenuItem getEditMenuItem() {
-    //     return editMenuItem;
+    // return editMenuItem;
     // }
 
     // public MenuItem getDeleteMenuItem() {
-    //     return deleteMenuItem;
+    // return deleteMenuItem;
     // }
 }
