@@ -1,3 +1,6 @@
 .mvn
 build
 target
+
+.env
+application.yml
