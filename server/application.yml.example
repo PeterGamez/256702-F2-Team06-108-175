@@ -21,10 +21,6 @@ spring:
       idle-timeout: 30000 # จำนวนเวลาที่ connection จะถูกปิดเมื่อไม่มีการใช้งาน
       connection-timeout: 30000 # จำนวนเวลาที่ connection จะถูกปิดเมื่อไม่สามารถเชื่อมต่อได้
   jpa:
-    database-platform: org.hibernate.dialect.MariaDB103Dialect
     hibernate:
-      ddl-auto: update # จัดการการสร้าง schema อัตโนมัติ (update, create, create-drop, validate)
+      ddl-auto: validate # จัดการการสร้าง schema อัตโนมัติ (none, update, create, create-drop, validate)
     show-sql: false # แสดง SQL queries ที่ Hibernate สร้างขึ้น
-    properties:
-      hibernate:
-        format_sql: false

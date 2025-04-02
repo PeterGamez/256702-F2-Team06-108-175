@@ -13,3 +13,5 @@ spring:
     username: ${DB_USER}
     password: ${DB_PASS}
     driver-class-name: ${DB_DRIVER}
+  jpa:
+    database-platform: ${DB_PLATFORM}
